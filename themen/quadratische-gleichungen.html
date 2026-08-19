@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadratische Gleichungen – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Erkennungs-Flussdiagramm */
+    .flow { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.875rem 1.25rem;
+      border: 1.5px solid var(--border);
+      border-bottom: none;
+      background: var(--surface-alt);
+      font-size: 0.88rem;
+    }
+    .flow-step:first-child { border-radius: var(--r-md) var(--r-md) 0 0; }
+    .flow-step:last-child  { border-bottom: 1.5px solid var(--border); border-radius: 0 0 var(--r-md) var(--r-md); }
+    .flow-step:nth-child(even) { background: var(--surface); }
+    .flow-q { font-weight: 500; }
+    .flow-ans { display: flex; flex-direction: column; gap: 0.25rem; text-align: right; font-size: 0.8rem; white-space: nowrap; }
+    .flow-nein { color: #dc2626; }
+    .flow-ja   { color: var(--ok); }
+    .flow-nein strong, .flow-ja strong { color: var(--text); }
+
+    /* Formel-Box (große Darstellung der LF) */
+    .formel-box {
+      background: var(--surface-alt);
+      border: 2px solid var(--border-strong);
+      border-radius: var(--r-md);
+      padding: 1.5rem 1.5rem 2.25rem;
+      text-align: center;
+      font-size: 1.35rem;
+      margin: 1.25rem 0;
+      position: relative;
+    }
+    .formel-box .formelheft-hinweis {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+    }
+
+    /* Koeffizientenübersicht */
+    .koeff-table {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.375rem 1.25rem;
+      font-size: 0.88rem;
+      margin: 0.75rem 0;
+      align-items: baseline;
+    }
+    .koeff-sym { font-weight: 700; }
+
+    /* Nebeninfo (z.B. Normieren als Alternative) */
+    .nebeninfo {
+      background: var(--ghost-light);
+      border-radius: var(--r-md);
+      padding: 0.75rem 1rem;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin: 1rem 0;
+      border: 1px dashed var(--border-strong);
+    }
+    .nebeninfo strong { color: var(--text); }
+
+    /* Quiz */
+    .quiz-eq-box {
+      background: var(--surface-alt);
+      border: 2px solid var(--border-strong);
+      border-radius: var(--r-md);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.4rem;
+      margin: 1.25rem 0;
+      min-height: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quiz-antworten {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem;
+      margin: 1rem 0;
+    }
+    .quiz-btn {
+      padding: 0.7rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--t-fast);
+    }
+    .quiz-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .quiz-btn:disabled { cursor: default; }
+    .quiz-btn.richtig { background: var(--ok-light); border-color: var(--ok); color: #15803d; }
+    .quiz-btn.falsch  { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+    .quiz-feedback {
+      border-radius: var(--r-md);
+      padding: 0.75rem 1rem;
+      font-size: 0.86rem;
+      margin: 0.75rem 0 0;
+      line-height: 1.6;
+      display: none;
+    }
+    .quiz-feedback.richtig { background: var(--ok-light); border: 1px solid #86efac; color: #15803d; display: block; }
+    .quiz-feedback.falsch  { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    .quiz-score {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .quiz-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.875rem;
+    }
+    .quiz-progress { font-size: 0.8rem; color: var(--text-muted); }
+    .quiz-next-btn {
+      display: none;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--t-fast);
+    }
+    .quiz-next-btn:hover { background: #1e3a8a; }
+
+    /* Toggle-Button */
+    .weiter-box { padding: 1.25rem 0 0.5rem; display: flex; justify-content: center; }
+    .weiter-btn-main {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.75rem; font-size: 0.9rem; font-weight: 600;
+      background: var(--primary); color: white; border: none;
+      border-radius: var(--r-md); cursor: pointer; font-family: inherit;
+      transition: background 0.15s;
+    }
+    .weiter-btn-main:hover { background: #1e3a8a; }
+    .weiter-btn-main .arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .weiter-btn-main.open .arrow { transform: rotate(180deg); }
+
+    /* Aufklappbare Sektion */
+    .reveal-section {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .reveal-section.visible {
+      max-height: 9999px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html" class="active">Themen</a>
+    <a href="../grundbausteine/index.html">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <span>Algebra</span>
+    <span class="sep">›</span>
+    <span class="current">Quadratische Gleichungen</span>
+  </div>
+
+  <div class="thema-header">
+    <h1>Quadratische Gleichungen</h1>
+
+    <!-- Grundbausteine Voraussetzungen -->
+    <div class="prerequisites">
+      <div class="prerequisites-label">Benötigte Grundbausteine</div>
+      <div class="baustein-chips">
+        <a href="../grundbausteine/herausheben.html" class="baustein-chip" data-gb="herausheben">
+          <svg class="icon-baustein" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+            <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+            <rect x="1" y="11" width="58" height="30" rx="5"/>
+          </svg>
+          Herausheben
+          <span class="chip-status"></span>
+          <span class="chip-status-label"></span>
+        </a>
+        <a href="../grundbausteine/kleine-lf.html" class="baustein-chip" data-gb="kleine-lf">
+          <svg class="icon-baustein" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+            <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+            <rect x="1" y="11" width="58" height="30" rx="5"/>
+          </svg>
+          Kleine Lösungsformel
+          <span class="chip-status"></span>
+          <span class="chip-status-label"></span>
+        </a>
+        <a href="../grundbausteine/grosse-lf.html" class="baustein-chip" data-gb="grosse-lf">
+          <svg class="icon-baustein" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+            <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+            <rect x="1" y="11" width="58" height="30" rx="5"/>
+          </svg>
+          Große Lösungsformel
+          <span class="chip-status"></span>
+          <span class="chip-status-label"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 1. Allgemeine Form ══ -->
+  <section class="section" id="form">
+    <h2>Die allgemeine Form</h2>
+    <p>Jede quadratische Gleichung lässt sich in die <strong>allgemeine Form</strong> bringen:</p>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{a \cdot x^2} \;+\; \textcolor{#047857}{b \cdot x} \;+\; \textcolor{#b45309}{c} \;=\; 0$
+      </div>
+      <div class="formula-labels">
+        <span class="formula-label quad">quadratisches Glied</span>
+        <span class="formula-label lin">lineares Glied</span>
+        <span class="formula-label abs">absolutes Glied</span>
+      </div>
+      <div class="formula-note">mit $a \neq 0$ (sonst wäre es keine quadratische Gleichung)</div>
+    </div>
+
+    <div class="term-cards">
+      <div class="term-card quad">
+        <div class="term-card-title">Quadratisches Glied</div>
+        <div class="term-card-formula">$ax^2$</div>
+        <div class="term-card-desc">Enthält $x^2$. Der Koeffizient $a$ darf nicht 0 sein.</div>
+      </div>
+      <div class="term-card lin">
+        <div class="term-card-title">Lineares Glied</div>
+        <div class="term-card-formula">$bx$</div>
+        <div class="term-card-desc">Enthält $x$. Der Koeffizient $b$ kann auch 0 sein.</div>
+      </div>
+      <div class="term-card abs">
+        <div class="term-card-title">Absolutes Glied</div>
+        <div class="term-card-formula">$c$</div>
+        <div class="term-card-desc">Die Konstante ohne $x$. $c$ kann auch 0 sein.</div>
+      </div>
+    </div>
+
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="erscheinungsformen">
+        Wenn du das verstanden hast, weiter <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ 2. Erscheinungsformen ══ -->
+  <section class="section" id="erscheinungsformen" style="display:none;">
+    <h2>Wie quadratische Gleichungen erscheinen</h2>
+    <p>
+      Eine quadratische Gleichung sieht nicht immer gleich aus. Die Koeffizienten $b$ oder $c$ können 0 sein –
+      dann werden die entsprechenden Glieder weggelassen.
+      Oder $a$ ist 1, und wir schreiben das quadratische Glied ohne Koeffizient.
+    </p>
+    <p>
+      Bevor du lösen kannst, musst du erkennen, welche Erscheinungsform dir vorliegt –
+      denn davon hängt der Lösungsweg ab.
+    </p>
+    <div class="typ-grid" style="margin-top: 1.25rem;">
+
+      <div class="typ-card">
+        <a href="#reinquadratisch" class="typ-card-main">
+          <div class="typ-card-nr">Reinquadratisch</div>
+          <div class="typ-card-title">Das lineare Glied fehlt ($b = 0$)</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;">$ax^2 + \textcolor{#9ca3af}{0 \cdot x} + c = 0$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;padding-left:3rem;">↓</div>
+          <div class="typ-card-form">$ax^2 + c = 0$</div>
+          <div class="term-badges" style="margin-top:0.75rem;">
+            <span class="term-badge quad">quad. Glied ✓</span>
+            <span class="term-badge lin null">lin. Glied</span>
+            <span class="term-badge abs">abs. Glied ✓</span>
+          </div>
+        </a>
+        <button class="typ-beispiele-btn" data-panel="bsp-1">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="bsp-1">
+          <ul class="typ-beispiele-list">
+            <li>$5x^2 - 20 = 0$</li>
+            <li>$x^2 = 16$</li>
+            <li>$-3x^2 + 27 = 0$</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="typ-card">
+        <a href="#herausheben" class="typ-card-main">
+          <div class="typ-card-nr">Ohne Zahl</div>
+          <div class="typ-card-title">Das absolute Glied fehlt ($c = 0$)</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;">$ax^2 + bx + \textcolor{#9ca3af}{0} = 0$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;padding-left:3rem;">↓</div>
+          <div class="typ-card-form">$ax^2 + bx = 0$</div>
+          <div class="term-badges" style="margin-top:0.75rem;">
+            <span class="term-badge quad">quad. Glied ✓</span>
+            <span class="term-badge lin">lin. Glied ✓</span>
+            <span class="term-badge abs null">abs. Glied</span>
+          </div>
+        </a>
+        <button class="typ-beispiele-btn" data-panel="bsp-2">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="bsp-2">
+          <ul class="typ-beispiele-list">
+            <li>$x^2 - 3x = 0$</li>
+            <li>$4x^2 + 8x = 0$</li>
+            <li>$x^2 = 5x$</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="typ-card">
+        <a href="#kleine-lf" class="typ-card-main">
+          <div class="typ-card-nr">Normiert</div>
+          <div class="typ-card-title">Der Koeffizient von $x^2$ ist $1$ ($a = 1$)</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;">$\textcolor{#9ca3af}{1 \cdot} x^2 + bx + c = 0$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;padding-left:3rem;">↓</div>
+          <div class="typ-card-form">$x^2 + bx + c = 0$</div>
+          <div style="font-size:0.7rem;color:var(--text-muted);margin:0.4rem 0 0.1rem;">bei normiert üblich: $p$ statt $b$, $q$ statt $c$</div>
+          <div class="typ-card-form">$x^2 + px + q = 0$</div>
+          <div class="term-badges" style="margin-top:0.75rem;">
+            <span class="term-badge quad">quad. Glied ✓</span>
+            <span class="term-badge lin">lin. Glied ✓</span>
+            <span class="term-badge abs">abs. Glied ✓</span>
+          </div>
+        </a>
+        <button class="typ-beispiele-btn" data-panel="bsp-3">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="bsp-3">
+          <ul class="typ-beispiele-list">
+            <li>$x^2 - 5x + 6 = 0$</li>
+            <li>$x^2 + x - 12 = 0$</li>
+            <li>$x^2 - 4x + 4 = 0$</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="typ-card">
+        <a href="#grosse-lf" class="typ-card-main">
+          <div class="typ-card-nr">Alles da</div>
+          <div class="typ-card-title">Alle drei Glieder vorhanden ($a \neq 1$)</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;">$ax^2 + bx + c = 0$</div>
+          <div class="term-badges" style="margin-top:0.75rem;">
+            <span class="term-badge quad">quad. Glied ✓</span>
+            <span class="term-badge lin">lin. Glied ✓</span>
+            <span class="term-badge abs">abs. Glied ✓</span>
+          </div>
+        </a>
+        <button class="typ-beispiele-btn" data-panel="bsp-4">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="bsp-4">
+          <ul class="typ-beispiele-list">
+            <li>$2x^2 - 7x + 3 = 0$</li>
+            <li>$3x^2 + x - 2 = 0$</li>
+            <li>$-2x^2 + 3x + 5 = 0$</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="erkennungstest">
+        Wenn du die Formen erkennst, weiter zum Test <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ Erkennungstest ══ -->
+  <section class="section" id="erkennungstest" style="display:none;">
+    <h2>Teste dein Wissen</h2>
+    <p>Welche Erscheinungsform liegt vor?</p>
+
+    <div class="quiz-eq-box">
+      <div id="quiz-eq"></div>
+    </div>
+
+    <div class="quiz-antworten">
+      <button class="quiz-btn" data-typ="reinquadratisch">Reinquadratisch</button>
+      <button class="quiz-btn" data-typ="ohneZahl">Ohne Zahl</button>
+      <button class="quiz-btn" data-typ="normiert">Normiert</button>
+      <button class="quiz-btn" data-typ="allesDa">Alles da</button>
+    </div>
+
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <div class="quiz-score"    id="quiz-score"></div>
+
+    <div class="quiz-footer">
+      <span class="quiz-progress" id="quiz-progress"></span>
+      <button class="quiz-next-btn" id="quiz-next"></button>
+    </div>
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="reinquadratisch">
+        Weiter zu den Lösungswegen <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ Typ 1: Reinquadratisch ══ -->
+  <section class="typ-section" id="reinquadratisch" style="display:none;">
+    <div class="typ-header">
+      <span class="typ-name">Reinquadratisch</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{a \cdot x^2} \;+\; \textcolor{#b45309}{c} \;=\; 0$
+      </div>
+      <div class="formula-note">Das lineare Glied fehlt ($b = 0$).</div>
+    </div>
+
+
+    <p class="loesung-intro"><strong>Lösungsweg:</strong> Umformen, bis $x^2 = \ldots$ steht – dann Wurzel ziehen. Bei einer positiven rechten Seite gibt es zwei Lösungen ($\pm$), bei null genau eine, bei negativer Seite keine reelle Lösung.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$3x^2 - 75 = 0$</div>
+          <div class="schritt-op">Ausgangsgleichung</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">②</span>
+          <div class="schritt-formel">$3x^2 = 75$</div>
+          <div class="schritt-op">$+75$</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">③</span>
+          <div class="schritt-formel">$x^2 = 25$</div>
+          <div class="schritt-op">$\div 3$</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">④</span>
+          <div class="schritt-formel">$x = \pm\sqrt{25} = \pm 5$</div>
+          <div class="schritt-op">Wurzel ziehen, $\pm$ nicht vergessen!</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\mathbb{L} = \{-5;\; 5\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="herausheben">
+        Verstanden – weiter zu: Ohne Zahl <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ Typ 2: Herausheben ══ -->
+  <section class="typ-section" id="herausheben" style="display:none;">
+    <div class="typ-header">
+      <span class="typ-name">Ohne Zahl</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{a \cdot x^2} \;+\; \textcolor{#047857}{b \cdot x} \;=\; 0$
+      </div>
+      <div class="formula-note">Das absolute Glied fehlt ($c = 0$).</div>
+    </div>
+
+
+    <p class="loesung-intro"><strong>Lösungsweg:</strong> Gemeinsamen Faktor ausklammern → Produkt-Null-Satz: Ein Produkt ist genau dann null, wenn mindestens ein Faktor null ist.</p>
+
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$2x^2 + 8x = 0$</div>
+          <div class="schritt-op">Ausgangsgleichung</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">②</span>
+          <div class="schritt-formel">$2x\,(x + 4) = 0$</div>
+          <div class="schritt-op">2x herausheben</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">③</span>
+          <div class="schritt-formel">$2x = 0 \quad\text{oder}\quad x + 4 = 0$</div>
+          <div class="schritt-op">Produkt-Null-Satz</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">④</span>
+          <div class="schritt-formel">$x_1 = 0 \quad\text{oder}\quad x_2 = -4$</div>
+          <div class="schritt-op">Jede Gleichung für sich lösen</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\mathbb{L} = \{0;\; -4\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Wichtig:</strong> $x_1 = 0$ ist eine vollwertige Lösung und darf nicht vergessen werden!
+    </div>
+
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="kleine-lf">
+        Verstanden – weiter zu: Normiert <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ Typ 3: Kleine Lösungsformel ══ -->
+  <section class="typ-section" id="kleine-lf" style="display:none;">
+    <div class="typ-header">
+      <span class="typ-name">Normiert</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{x^2} \;+\; \textcolor{#047857}{b \cdot x} \;+\; \textcolor{#b45309}{c} \;=\; 0$
+      </div>
+      <div class="formula-labels">
+        <span class="formula-label quad">quadratisches Glied, $a = 1$</span>
+        <span class="formula-label lin">lineares Glied</span>
+        <span class="formula-label abs">absolutes Glied</span>
+      </div>
+      <div class="formula-note">Der Koeffizient von $x^2$ ist $1$ – die unsichtbare $1$.</div>
+    </div>
+
+
+    <div class="info-box">
+      <strong>Warum plötzlich p und q?</strong><br>
+      In der normierten Form schreibt man üblicherweise $p$ statt $b$ und $q$ statt $c$ – das ist eine eingespielte Schreibweise in der Schulmathematik, kein neues Konzept.
+      $p$ steht an der Stelle von $b$, $q$ an der Stelle von $c$. Lass dich von anderen Buchstaben nicht verwirren: der Name eines Koeffizienten ist austauschbar, seine Rolle im Term ist es nicht.
+      <div style="margin-top:0.625rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <span class="term-badge lin">$p$ = lineares Glied (wie $b$)</span>
+        <span class="term-badge abs">$q$ = absolutes Glied (wie $c$)</span>
+      </div>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{x^2} \;+\; \textcolor{#047857}{p \cdot x} \;+\; \textcolor{#b45309}{q} \;=\; 0$
+      </div>
+      <div class="formula-note">So steht die normierte Form im Formelheft – mit $p$ und $q$.</div>
+    </div>
+
+    <div class="loesung-block">
+      <p class="loesung-intro"><strong>Lösungsweg:</strong> Mit Hilfe der <strong class="lf-name">kleinen Lösungsformel</strong> lösen.</p>
+      <div class="formel-box">
+        $x_{1,2} = -\dfrac{p}{2} \pm \sqrt{\left(\dfrac{p}{2}\right)^2 - q}$
+        <div class="formelheft-hinweis">
+          <span class="formelheft-icon">📖</span>
+          <div>Formelheft Kap. 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$x^2 - 7x + 12 = 0$</div>
+          <div class="schritt-op">Ausgangsgleichung</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">②</span>
+          <div class="schritt-formel">$\textcolor{#047857}{p = -7} \qquad \textcolor{#b45309}{q = 12}$</div>
+          <div class="schritt-op">ablesen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">③</span>
+          <div class="schritt-formel">$x_{1,2} = -\dfrac{-7}{2} \pm \sqrt{\left(\dfrac{-7}{2}\right)^2 - 12}$</div>
+          <div class="schritt-op">Formel einsetzen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">④</span>
+          <div class="schritt-formel">$= \dfrac{7}{2} \pm \sqrt{\dfrac{49}{4} - \dfrac{48}{4}} = \dfrac{7}{2} \pm \sqrt{\dfrac{1}{4}} = \dfrac{7}{2} \pm \dfrac{1}{2}$</div>
+          <div class="schritt-op">vereinfachen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">⑤</span>
+          <div class="schritt-formel">$x_1 = \dfrac{8}{2} = 4 \qquad x_2 = \dfrac{6}{2} = 3$</div>
+          <div class="schritt-op">$+$ und $-$ einsetzen</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\mathbb{L} = \{3;\; 4\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weiter-box">
+      <button class="weiter-btn-main" data-reveals="grosse-lf">
+        Verstanden – weiter zu: Alles da <span class="arrow">▾</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ Typ 4: Große Lösungsformel ══ -->
+  <section class="typ-section" id="grosse-lf" style="display:none;">
+    <div class="typ-header">
+      <span class="typ-name">Alles da</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\textcolor{#1d4ed8}{a \cdot x^2} \;+\; \textcolor{#047857}{b \cdot x} \;+\; \textcolor{#b45309}{c} \;=\; 0 \qquad (a \neq 1)$
+      </div>
+      <div class="formula-note">Alle drei Glieder vorhanden, der Koeffizient von $x^2$ ist nicht 1.</div>
+    </div>
+
+
+    <div class="loesung-block">
+      <p class="loesung-intro"><strong>Lösungsweg:</strong> Mit Hilfe der <strong class="lf-name">großen Lösungsformel</strong> lösen.</p>
+      <div class="formel-box">
+        $x_{1,2} = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+        <div class="formelheft-hinweis">
+          <span class="formelheft-icon">📖</span>
+          <div>Formelheft Kap. 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$2x^2 - 7x + 3 = 0$</div>
+          <div class="schritt-op">Ausgangsgleichung</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">②</span>
+          <div class="schritt-formel">$\textcolor{#1d4ed8}{a = 2} \qquad \textcolor{#047857}{b = -7} \qquad \textcolor{#b45309}{c = 3}$</div>
+          <div class="schritt-op">ablesen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">③</span>
+          <div class="schritt-formel">$x_{1,2} = \dfrac{-(-7) \pm \sqrt{(-7)^2 - 4 \cdot 2 \cdot 3}}{2 \cdot 2}$</div>
+          <div class="schritt-op">Formel einsetzen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">④</span>
+          <div class="schritt-formel">$= \dfrac{7 \pm \sqrt{49 - 24}}{4} = \dfrac{7 \pm \sqrt{25}}{4} = \dfrac{7 \pm 5}{4}$</div>
+          <div class="schritt-op">vereinfachen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr">⑤</span>
+          <div class="schritt-formel">$x_1 = \dfrac{12}{4} = 3 \qquad x_2 = \dfrac{2}{4} = \dfrac{1}{2}$</div>
+          <div class="schritt-op">$+$ und $-$ einsetzen</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\mathbb{L} = \left\{\dfrac{1}{2};\; 3\right\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nebeninfo">
+      <strong>Alternative:</strong> Man könnte die Gleichung auch durch $2$ dividieren (<em>normieren</em>), erhält dann
+      $x^2 - \tfrac{7}{2}x + \tfrac{3}{2} = 0$ und könnte die kleine Lösungsformel anwenden.
+      Sobald dabei Brüche entstehen, ist die große Lösungsformel aber bequemer.
+    </div>
+  </section>
+
+
+</div>
+
+<!-- KaTeX -->
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  // ── Quiz ──
+  (function () {
+    const fragen = [
+      { eq: "3x^2 - 12 = 0",      typ: "reinquadratisch", hint: "Kein $x$-Term – nur $x^2$ und eine Konstante." },
+      { eq: "x^2 + 4x = 0",       typ: "ohneZahl",        hint: "Jeder Term enthält $x$ – keine Konstante." },
+      { eq: "x^2 - 3x + 2 = 0",   typ: "normiert",        hint: "Kein Koeffizient vor $x^2$ – die unsichtbare $1$." },
+      { eq: "2x^2 + 5x - 3 = 0",  typ: "allesDa",         hint: "Alle drei Glieder da, vor $x^2$ steht $2$." },
+      { eq: "x^2 = 25",            typ: "reinquadratisch", hint: "$x^2$ auf einer Seite, Konstante auf der anderen – kein $x$." },
+      { eq: "2x^2 = 8x",           typ: "ohneZahl",        hint: "Umformen zu $2x^2 - 8x = 0$ – beide Terme enthalten $x$, keine Konstante." },
+      { eq: "x^2 - 7x + 10 = 0",  typ: "normiert",        hint: "Vor $x^2$ steht $1$ – alle drei Glieder vorhanden." },
+      { eq: "3x^2 - x - 2 = 0",   typ: "allesDa",         hint: "Alle drei Glieder da, vor $x^2$ steht $3$." },
+      { eq: "-4x^2 + 36 = 0",     typ: "reinquadratisch", hint: "Kein $x$-Term – nur $x^2$ und eine Konstante." },
+      { eq: "x^2 + 5x = 0",       typ: "ohneZahl",        hint: "Beide Terme enthalten $x$ – keine Konstante." },
+      { eq: "x^2 - 6x + 9 = 0",   typ: "normiert",        hint: "Kein Koeffizient vor $x^2$ – also $a = 1$." },
+      { eq: "2x^2 - 3x + 1 = 0",  typ: "allesDa",         hint: "Alle drei Glieder da, vor $x^2$ steht $2$." },
+    ];
+
+    const ANZAHL = 8;
+    const eqEl       = document.getElementById('quiz-eq');
+    const feedbackEl = document.getElementById('quiz-feedback');
+    const scoreEl    = document.getElementById('quiz-score');
+    const nextBtn    = document.getElementById('quiz-next');
+    const progressEl = document.getElementById('quiz-progress');
+    const btns       = document.querySelectorAll('.quiz-btn');
+
+    let auswahl = [], idx = 0, score = 0;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function starten() {
+      auswahl = shuffle(fragen).slice(0, ANZAHL);
+      idx = 0; score = 0;
+      scoreEl.style.display = 'none';
+      nextBtn.textContent = 'Nächste →';
+      zeigeFrage();
+    }
+
+    function zeigeFrage() {
+      eqEl.innerHTML = katex.renderToString(auswahl[idx].eq, { throwOnError: false });
+      btns.forEach(b => { b.disabled = false; b.className = 'quiz-btn'; });
+      feedbackEl.className = 'quiz-feedback';
+      nextBtn.style.display = 'none';
+      progressEl.textContent = `${idx + 1} / ${ANZAHL}`;
+    }
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = auswahl[idx];
+        const richtig = btn.dataset.typ === f.typ;
+        if (richtig) score++;
+
+        btns.forEach(b => {
+          b.disabled = true;
+          if (b.dataset.typ === f.typ)              b.classList.add('richtig');
+          else if (b.dataset.typ === btn.dataset.typ) b.classList.add('falsch');
+        });
+
+        feedbackEl.innerHTML = (richtig ? '✓ ' : '✗ ') + f.hint;
+        feedbackEl.className = 'quiz-feedback ' + (richtig ? 'richtig' : 'falsch');
+        renderMathInElement(feedbackEl, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false,
+        });
+
+        if (idx === ANZAHL - 1) {
+          scoreEl.textContent = `Ergebnis: ${score} von ${ANZAHL} richtig.`;
+          scoreEl.style.display = 'block';
+          nextBtn.textContent = 'Neu starten';
+        }
+        nextBtn.style.display = 'inline-flex';
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (idx === ANZAHL - 1) { starten(); return; }
+      idx++;
+      zeigeFrage();
+    });
+
+    starten();
+  })();
+
+  document.querySelectorAll('.typ-beispiele-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.dataset.panel);
+      if (panel) {
+        panel.classList.toggle('visible');
+        btn.classList.toggle('open');
+      }
+    });
+  });
+
+  document.querySelectorAll('.weiter-btn-main').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.reveals);
+      if (target) {
+        target.style.display = 'block';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+      }
+    });
+  });
+
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ],
+    throwOnError: false,
+    trust: true,
+  });
+</script>
+
+</body>
+</html>

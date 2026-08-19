@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grundbausteine – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <span class="current">Grundbausteine</span>
+  </div>
+
+  <div class="thema-header">
+    <h1>Grundbausteine</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      Grundbausteine sind die fundamentalen Werkzeuge der Mathematik – Formeln, Regeln und Techniken,
+      die in vielen verschiedenen Themen immer wieder gebraucht werden.
+      Sie bilden das Fundament: Wenn ein Thema auf einem Grundbaustein aufbaut und dieser noch nicht
+      verstanden ist, wackelt alles darüber.
+    </p>
+    <p>
+      Klicke einen Baustein an, um ihn als <strong>verstanden</strong> zu markieren.
+      Auf den Themenseiten siehst du dann sofort, welche Bausteine du für ein Thema noch brauchst.
+    </p>
+  </div>
+
+  <div class="gb-grid">
+
+    <a href="herausheben.html" class="gb-card" data-gb="herausheben">
+      <svg class="gb-card-icon" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <div class="gb-card-title">Herausheben</div>
+      <div class="gb-card-desc">Gemeinsamen Faktor aus Termen ausklammern. Grundlage für Typ 2 der quadratischen Gleichungen.</div>
+      <div class="gb-card-status">Noch offen</div>
+    </a>
+
+    <a href="kleine-lf.html" class="gb-card" data-gb="kleine-lf">
+      <svg class="gb-card-icon" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <div class="gb-card-title">Kleine Lösungsformel</div>
+      <div class="gb-card-desc">Für normierte quadratische Gleichungen ($a = 1$). Formelsammlung Kapitel 5.</div>
+      <div class="gb-card-status">Noch offen</div>
+    </a>
+
+    <a href="grosse-lf.html" class="gb-card" data-gb="grosse-lf">
+      <svg class="gb-card-icon" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <div class="gb-card-title">Große Lösungsformel</div>
+      <div class="gb-card-desc">Für vollständige quadratische Gleichungen ($a \neq 1$). Formelsammlung Kapitel 5.</div>
+      <div class="gb-card-status">Noch offen</div>
+    </a>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ],
+    throwOnError: false,
+  });
+</script>
+
+</body>
+</html>

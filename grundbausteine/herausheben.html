@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herausheben – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Herausheben</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Herausheben</h1>
+  </div>
+
+  <section class="section">
+    <h2>Was ist Herausheben?</h2>
+    <p>
+      Herausheben (auch: Ausklammern) bedeutet, einen gemeinsamen Faktor aus mehreren Termen
+      <em>heraus</em>zuziehen. Es ist die Umkehrung des Distributivgesetzes.
+    </p>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $a \cdot b \;+\; a \cdot c \;=\; a\,(b + c)$
+      </div>
+      <div class="formula-note">$a$ ist der gemeinsame Faktor.</div>
+    </div>
+
+    <p>
+      Wenn man von rechts nach links liest: $a\,(b+c) = ab + ac$ – das ist das Distributivgesetz.
+      Herausheben geht in die andere Richtung: von $ab + ac$ zurück zu $a\,(b+c)$.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Beispiele</h2>
+
+    <h3>Einfaches Beispiel</h3>
+    <div class="schritte" style="margin-bottom:1.25rem;">
+      <div class="schritt">
+        <span class="schritt-nr">①</span>
+        <div class="schritt-formel">$6x + 4$</div>
+        <div class="schritt-op">gemeinsamer Faktor: $2$</div>
+      </div>
+      <div class="schritt lsg">
+        <span class="schritt-nr"></span>
+        <div class="schritt-formel">$= 2\,(3x + 2)$</div>
+        <div class="schritt-op"></div>
+      </div>
+    </div>
+
+    <h3>Mit $x$ als Faktor</h3>
+    <div class="schritte" style="margin-bottom:1.25rem;">
+      <div class="schritt">
+        <span class="schritt-nr">①</span>
+        <div class="schritt-formel">$x^2 + 5x$</div>
+        <div class="schritt-op">gemeinsamer Faktor: $x$</div>
+      </div>
+      <div class="schritt lsg">
+        <span class="schritt-nr"></span>
+        <div class="schritt-formel">$= x\,(x + 5)$</div>
+        <div class="schritt-op"></div>
+      </div>
+    </div>
+
+    <h3>Für quadratische Gleichungen (Typ 2)</h3>
+    <div class="schritte">
+      <div class="schritt">
+        <span class="schritt-nr">①</span>
+        <div class="schritt-formel">$2x^2 + 8x = 0$</div>
+        <div class="schritt-op">gemeinsamer Faktor: $2x$</div>
+      </div>
+      <div class="schritt">
+        <span class="schritt-nr">②</span>
+        <div class="schritt-formel">$2x\,(x + 4) = 0$</div>
+        <div class="schritt-op">herausgehoben</div>
+      </div>
+      <div class="schritt">
+        <span class="schritt-nr">③</span>
+        <div class="schritt-formel">$2x = 0 \quad\text{oder}\quad x + 4 = 0$</div>
+        <div class="schritt-op">Produkt-Null-Satz</div>
+      </div>
+      <div class="schritt lsg">
+        <span class="schritt-nr"></span>
+        <div class="schritt-formel">$x_1 = 0 \;\text{ oder }\; x_2 = -4$</div>
+        <div class="schritt-op"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Wo wird dieser Baustein gebraucht?</h2>
+    <p>
+      <a href="../themen/quadratische-gleichungen.html#herausheben">Quadratische Gleichungen – Typ 2</a>
+    </p>
+    <button class="mark-btn" data-gb="herausheben">Als verstanden markieren</button>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ],
+    throwOnError: false,
+  });
+</script>
+
+</body>
+</html>

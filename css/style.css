@@ -190,7 +190,7 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow-sm);
 }
 .section h2 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
@@ -257,7 +257,7 @@ a:hover { text-decoration: underline; }
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   margin-bottom: 0.5rem;
 }
 .term-card.quad .term-card-title { color: var(--quad); }
@@ -364,11 +364,11 @@ a:hover { text-decoration: underline; }
 }
 .typ-card-main:hover { text-decoration: none; }
 .typ-card-nr {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: var(--text-subtle);
+  color: var(--text-muted);
   margin-bottom: 0.375rem;
 }
 .typ-card-title {
@@ -376,7 +376,7 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   margin-bottom: 0.625rem;
 }
-.typ-card-form { font-size: 0.92rem; margin-bottom: 0.625rem; }
+.typ-card-form { font-size: 1.05rem; margin-bottom: 0.625rem; }
 .typ-beispiele-btn {
   display: flex;
   align-items: center;
@@ -468,6 +468,50 @@ a:hover { text-decoration: underline; }
 }
 .erkennungsmerkmal-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
 
+/* ----- Formel-Zeile (geteilt) ----- */
+.entd-eq,
+.entd-zeile,
+.schritt {
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-size: 1.05rem;
+  position: relative;
+}
+.entd-op,
+.schritt-op {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.entd-op { color: var(--text); }
+.entd-op.hint,
+.schritt-op { color: var(--text-muted); }
+
+/* ----- Zeilen-Container (Entdeckung + Lösungsschritte) ----- */
+.zeilen,
+.schritte {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin: 0.3rem 0;
+}
+.zeilen .entd-eq,
+.zeilen .entd-zeile,
+.schritte .schritt {
+  background: var(--surface-alt);
+  border-radius: 0;
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+.zeilen .entd-eq:last-child,
+.zeilen .entd-zeile:last-child,
+.schritte .schritt:last-child { border-bottom: none; }
+.zeilen  :nth-child(even of .entd-eq, .entd-zeile),
+.schritte :nth-child(even of .schritt) { background: var(--surface); }
+
 /* ----- Lösungsweg ----- */
 .loesungsweg { margin: 1.25rem 0; }
 .loesungsweg-title {
@@ -476,28 +520,8 @@ a:hover { text-decoration: underline; }
   color: var(--text);
   margin-bottom: 0.625rem;
 }
-.schritte {
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-md);
-  overflow: hidden;
-}
-.schritt {
-  display: grid;
-  grid-template-columns: 1.75rem 1fr auto;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.625rem 1rem;
-  border-bottom: 1px solid var(--border);
-}
-.schritt:last-child { border-bottom: none; }
-.schritt:nth-child(even) { background: var(--surface-alt); }
-.schritt-nr { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-align: center; }
-.schritt-formel { font-size: 0.93rem; }
-.schritt-op { font-size: 0.77rem; color: var(--text-muted); white-space: nowrap; }
-.schritt.lsg {
-  background: var(--ok-light) !important;
-  border-top: 1.5px solid #86efac;
-}
+.schritt-nr { display: none; }
+.schritt.lsg { background: var(--ok-light) !important; border-color: #86efac; }
 .schritt.lsg .schritt-formel { font-weight: 600; color: #15803d; }
 
 /* ----- Formelheft Hinweis ----- */
@@ -528,10 +552,10 @@ a:hover { text-decoration: underline; }
 .loesung-intro {
   margin-top: 1.25rem;
   margin-bottom: 1.5rem;
-  padding: 0.6rem 0.9rem;
-  background: var(--surface-alt);
-  border-left: 3px solid var(--primary);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: 0.75rem 1rem;
+  background: var(--primary-light);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--r-md);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -541,10 +565,10 @@ a:hover { text-decoration: underline; }
 .loesung-block {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
-  padding: 0.9rem 1rem 1rem;
-  background: var(--surface-alt);
-  border-left: 3px solid var(--primary);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: 1rem;
+  background: var(--primary-light);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--r-md);
 }
 .loesung-block .loesung-intro {
   margin: 0 0 0.75rem;
@@ -556,6 +580,7 @@ a:hover { text-decoration: underline; }
 .loesung-block .formel-box {
   margin: 0;
   background: var(--surface);
+  border-color: var(--border);
 }
 
 /* ----- Baustein Reference ----- */
@@ -731,7 +756,6 @@ a:hover { text-decoration: underline; }
   .site-nav { padding: 0 1rem; }
   .anim-stage { padding: 1.25rem; }
   .formula-display { padding: 1rem; }
-  .schritt { grid-template-columns: 1.5rem 1fr; }
-  .schritt-op { display: none; }
+  .entd-op, .schritt-op { display: none; }
   .hero h1 { font-size: 1.7rem; }
 }

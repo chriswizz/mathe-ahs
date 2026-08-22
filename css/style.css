@@ -509,8 +509,9 @@ a:hover { text-decoration: underline; }
 .zeilen .entd-eq:last-child,
 .zeilen .entd-zeile:last-child,
 .schritte .schritt:last-child { border-bottom: none; }
-.zeilen  :nth-child(even of .entd-eq, .entd-zeile),
-.schritte :nth-child(even of .schritt) { background: var(--surface); }
+.zeilen .entd-eq.zebra,
+.zeilen .entd-zeile.zebra,
+.schritte .schritt.zebra { background: var(--surface); }
 
 /* ----- Lösungsweg ----- */
 .loesungsweg { margin: 1.25rem 0; }

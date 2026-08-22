@@ -868,6 +868,18 @@
   ];
   renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
 
+  // ── Zebra: jede zweite Zeile bekommt Klasse .zebra ──
+  document.querySelectorAll('.schritte').forEach(cont => {
+    Array.from(cont.querySelectorAll(':scope > .schritt')).forEach((el, i) => {
+      if (i % 2 === 1) el.classList.add('zebra');
+    });
+  });
+  document.querySelectorAll('.zeilen').forEach(cont => {
+    Array.from(cont.querySelectorAll(':scope > .entd-eq, :scope > .entd-zeile')).forEach((el, i) => {
+      if (i % 2 === 1) el.classList.add('zebra');
+    });
+  });
+
   // ── Sequenzielle Reveal-Navigation ──
   // Ein einziger Weiter-Button navigiert durch diese Liste.
   // Jeder Eintrag = ein Klick, der das entsprechende Element sichtbar macht.

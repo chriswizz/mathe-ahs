@@ -901,13 +901,17 @@
   const navContainer = weiterBtn.closest('.entd-nav');
   let revealIdx = 0;
 
-  function ensureVisible(el) {
+  // Scrolle so weit runter dass bottomEl.bottom sichtbar wird,
+  // aber nicht so weit dass topEl.top über die Navbar verschwindet.
+  function scrollDownSmart(topEl, bottomEl) {
     requestAnimationFrame(() => {
-      const rect = el.getBoundingClientRect();
+      const NAV_HEIGHT = 54;   // sticky nav
       const pad = 12;
-      if (rect.bottom > window.innerHeight - pad) {
-        window.scrollBy({ top: rect.bottom - window.innerHeight + pad, behavior: 'smooth' });
-      }
+      const desiredDelta = bottomEl.getBoundingClientRect().bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;                    // Button schon sichtbar
+      const maxDelta = topEl.getBoundingClientRect().top - NAV_HEIGHT - pad;
+      const delta = Math.min(desiredDelta, Math.max(maxDelta, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
     });
   }
 
@@ -929,10 +933,10 @@
 
     if (revealIdx >= revealSequence.length) {
       navContainer.setAttribute('hidden', '');
-      ensureVisible(el);
+      scrollDownSmart(el, el);
     } else {
-      // Immer zum Weiter-Button scrollen, damit er sichtbar ist
-      ensureVisible(navContainer);
+      // Zum Button scrollen — aber Anfang des neuen Elements muss sichtbar bleiben
+      scrollDownSmart(el, navContainer);
     }
   });
 

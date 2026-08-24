@@ -501,7 +501,7 @@ a:hover { text-decoration: underline; }
 .zeilen .entd-eq,
 .zeilen .entd-zeile,
 .schritte .schritt {
-  background: var(--surface-alt);
+  background: var(--surface);
   border-radius: 0;
   margin: 0;
   border-bottom: 1px solid var(--border);
@@ -509,9 +509,6 @@ a:hover { text-decoration: underline; }
 .zeilen .entd-eq:last-child,
 .zeilen .entd-zeile:last-child,
 .schritte .schritt:last-child { border-bottom: none; }
-.zeilen .entd-eq.zebra,
-.zeilen .entd-zeile.zebra,
-.schritte .schritt.zebra { background: var(--surface); }
 
 /* ----- Lösungsweg ----- */
 .loesungsweg { margin: 1.25rem 0; }
@@ -522,8 +519,7 @@ a:hover { text-decoration: underline; }
   margin-bottom: 0.625rem;
 }
 .schritt-nr { display: none; }
-.schritt.lsg { background: var(--ok-light) !important; border-color: #86efac; }
-.schritt.lsg .schritt-formel { font-weight: 600; color: #15803d; }
+.schritt.lsg .schritt-formel { font-weight: 600; }
 
 /* ----- Formelheft Hinweis ----- */
 .formelheft-hinweis {
@@ -554,10 +550,10 @@ a:hover { text-decoration: underline; }
   margin-top: 1.25rem;
   margin-bottom: 1.5rem;
   padding: 0.75rem 1rem;
-  background: var(--primary-light);
-  border: 1.5px solid var(--primary);
+  background: #eff6ff;
+  border: 1.5px solid #93c5fd;
   border-radius: var(--r-md);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 .loesung-intro strong { color: var(--primary); }
@@ -567,8 +563,8 @@ a:hover { text-decoration: underline; }
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   padding: 1rem;
-  background: var(--primary-light);
-  border: 1.5px solid var(--primary);
+  background: #eff6ff;
+  border: 1.5px solid #93c5fd;
   border-radius: var(--r-md);
 }
 .loesung-block .loesung-intro {

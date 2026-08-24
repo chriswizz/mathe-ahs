@@ -61,6 +61,7 @@
       justify-content: center;
       margin: 2rem 0 1.5rem;
     }
+    .entd-nav[hidden] { display: none; }
     .weiter-btn-main {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.7rem 1.75rem; font-size: 0.9rem; font-weight: 600;
@@ -622,7 +623,7 @@
   <!-- Überleitung zu den Lösungswegen -->
   <section class="section" id="loesungswege-intro" hidden>
     <h2>Die vier Lösungswege</h2>
-    <p>Für jede Form eine passende Methode. Wir gehen sie der Reihe nach durch — mit kurzer Erklärung und einem Beispiel.</p>
+    <p>Wir gehen die vier Lösungswege nochmal der Reihe nach durch — jeweils mit einer kompakten Erklärung und einem Beispiel.</p>
   </section>
 
   <!-- ══════════════════════════════════════════
@@ -868,18 +869,6 @@
   ];
   renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
 
-  // ── Zebra: jede zweite Zeile bekommt Klasse .zebra ──
-  document.querySelectorAll('.schritte').forEach(cont => {
-    Array.from(cont.querySelectorAll(':scope > .schritt')).forEach((el, i) => {
-      if (i % 2 === 1) el.classList.add('zebra');
-    });
-  });
-  document.querySelectorAll('.zeilen').forEach(cont => {
-    Array.from(cont.querySelectorAll(':scope > .entd-eq, :scope > .entd-zeile')).forEach((el, i) => {
-      if (i % 2 === 1) el.classList.add('zebra');
-    });
-  });
-
   // ── Sequenzielle Reveal-Navigation ──
   // Ein einziger Weiter-Button navigiert durch diese Liste.
   // Jeder Eintrag = ein Klick, der das entsprechende Element sichtbar macht.
@@ -901,16 +890,26 @@
   const navContainer = weiterBtn.closest('.entd-nav');
   let revealIdx = 0;
 
-  // Scrolle so weit runter dass bottomEl.bottom sichtbar wird,
-  // aber nicht so weit dass topEl.top über die Navbar verschwindet.
+  // Scrolle so weit runter dass bottomEl.bottom sichtbar wird.
+  // Wenn topEl beim Aufruf initial nicht sichtbar ist, stopp so bald sein Anfang unter der Navbar steht.
+  // Wenn topEl schon sichtbar ist, darf voll gescrollt werden (der User hat den Anfang bereits gesehen).
   function scrollDownSmart(topEl, bottomEl) {
     requestAnimationFrame(() => {
-      const NAV_HEIGHT = 54;   // sticky nav
+      const NAV_HEIGHT = 54;
       const pad = 12;
-      const desiredDelta = bottomEl.getBoundingClientRect().bottom - window.innerHeight + pad;
-      if (desiredDelta <= 0) return;                    // Button schon sichtbar
-      const maxDelta = topEl.getBoundingClientRect().top - NAV_HEIGHT - pad;
-      const delta = Math.min(desiredDelta, Math.max(maxDelta, 0));
+      const topRect    = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return; // Button schon sichtbar
+
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > NAV_HEIGHT;
+      let delta;
+      if (topAlreadyVisible) {
+        delta = desiredDelta;
+      } else {
+        const maxDelta = topRect.top - NAV_HEIGHT - pad;
+        delta = Math.min(desiredDelta, Math.max(maxDelta, 0));
+      }
       if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
     });
   }

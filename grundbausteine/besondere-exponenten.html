@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Besondere Exponenten – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Besondere Exponenten</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Besondere Exponenten</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee grundidee-pfeile grundidee-zeilen">
+        <li><span>$x^{-2} = \dfrac{1}{x^{2}}$</span><span>→</span><span>Kehrwert</span></li>
+        <li><span>$x^{2/3} = \sqrt[3]{x^{2}}$</span><span>→</span><span>Wurzel, <span class="bedingung">$x \ge 0$</span></span></li>
+        <li><span>$x^{0} = 1$</span><span>→</span><span>alles hoch $0$ ist $1$, <span class="bedingung">$x \neq 0$</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="sec-negativ" hidden>
+    <h2>Negativer Exponent</h2>
+    <p>
+      Minus im Exponenten → als Bruch mit 1 darüber schreiben.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$2^{-3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1}{2^{3}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1}{8}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$(2x)^{-2}$</div>
+          <div class="schritt-op">ganze Basis in den Nenner</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1}{(2x)^{2}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1}{4x^{2}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-bruch" hidden>
+    <h2>Bruch-Exponent</h2>
+    <p>
+      Bruch mit 1 im Zähler → Wurzel. Besonders oft: $\frac{1}{2}$ → Quadratwurzel.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$9^{1/2}$</div>
+          <div class="schritt-op">Quadratwurzel</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{9}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 3$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$8^{2/3}$</div>
+          <div class="schritt-op">wie oben</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt[3]{8^{2}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt[3]{(2^{3})^{2}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt[3]{2^{6}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 2^{2}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 4$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-null" hidden>
+    <h2>Exponent 0</h2>
+    <p>
+      Hoch 0 → immer 1, solange die Basis nicht 0 ist.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$5^{0}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 1$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$(2x)^{0}$</div>
+          <div class="schritt-op">$2x \neq 0$</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 1$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box">
+      <div class="formula-main" style="margin:0.15rem 0 0.75rem;">
+        $a^{-n} = \dfrac{1}{a^{n}}$
+      </div>
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0 0.75rem;">
+        $a^{1/n} = \sqrt[n]{a}$
+        <span class="formula-bedingung">$(a \ge 0)$</span>
+      </div>
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0 0.75rem;">
+        $a^{m/n} = \sqrt[n]{a^{m}} = \bigl(\sqrt[n]{a}\bigr)^{m}$
+        <span class="formula-bedingung">$(a \ge 0)$</span>
+      </div>
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0;">
+        $a^{0} = 1$
+        <span class="formula-bedingung">$(a \neq 0)$</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "a^{-1} = -a", "richtig": false, "warum": "Minus im Exponenten → Kehrwert, nicht negativ: $a^{-1} = \\dfrac{1}{a}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "2^{-3} = -8", "richtig": false, "warum": "Minus im Exponenten → Kehrwert: $2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "4^{-2}", "optionen": ["\\dfrac{1}{16}", "-16", "-8", "\\dfrac{1}{8}"], "richtig": [0], "warum": "$4^{-2} = \\dfrac{1}{4^{2}} = \\dfrac{1}{16}$ — Minus im Exponenten heißt Kehrwert, nicht negativ."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "x^{-2}", "optionen": ["\\dfrac{1}{x^{2}}", "-x^{2}", "\\sqrt{x}", "\\dfrac{1}{x \\cdot x}"], "richtig": [0, 3], "warum": "$x^{-2} = \\dfrac{1}{x^{2}} = \\dfrac{1}{x \\cdot x}$ — Kehrwert, nicht negativ und keine Wurzel."},
+      {"art": "sc", "frage": "Schreibe als Bruch.", "ausgang": "3x^{-1}", "optionen": ["\\dfrac{3}{x}", "\\dfrac{1}{3x}", "-3x", "\\dfrac{x}{3}"], "richtig": [0], "warum": "Der Exponent gehört nur zu $x$, nicht zur $3$: $3x^{-1} = 3 \\cdot \\dfrac{1}{x} = \\dfrac{3}{x}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "2x^{-2} = \\dfrac{1}{4x^{2}}", "richtig": false, "warum": "Ohne Klammer gehört der Exponent nur zu $x$: $2x^{-2} = 2 \\cdot \\dfrac{1}{x^{2}} = \\dfrac{2}{x^{2}}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "(2x)^{-2}", "optionen": ["\\dfrac{1}{(2x)^{2}}", "\\dfrac{2}{x^{2}}", "\\dfrac{1}{4x^{2}}", "-4x^{2}"], "richtig": [0, 2], "warum": "Mit Klammer kommt die ganze Basis in den Nenner: $(2x)^{-2} = \\dfrac{1}{(2x)^{2}} = \\dfrac{1}{4x^{2}}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(2x)^{-1} = \\dfrac{1}{2x}", "richtig": true, "warum": "Ganze Basis in den Nenner: $(2x)^{-1} = \\dfrac{1}{2x}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{1/2} = \\dfrac{1}{x^{2}}", "bedingung": ["x \\ge 0"], "richtig": false, "warum": "Bruch-Exponent → Wurzel, nicht Kehrwert: $x^{1/2} = \\sqrt{x}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "16^{1/2}", "optionen": ["4", "8", "\\dfrac{1}{256}", "\\dfrac{1}{4}"], "richtig": [0], "warum": "Bruch-Exponent $\\frac{1}{2}$ → Quadratwurzel: $16^{1/2} = \\sqrt{16} = 4$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "x^{1/2}", "bedingung": ["x \\ge 0"], "optionen": ["\\sqrt{x}", "\\dfrac{1}{x^{2}}", "\\sqrt[4]{x^{2}}", "\\dfrac{x}{2}"], "richtig": [0, 2], "warum": "Bruch-Exponent → Wurzel, nicht Kehrwert: $x^{1/2} = \\sqrt{x}$ und $\\sqrt[4]{x^{2}} = x^{2/4} = x^{1/2}$."},
+      {"art": "sc", "frage": "Schreibe als Potenz von $2$.", "ausgang": "\\dfrac{1}{\\sqrt{2}}", "optionen": ["2^{-1/2}", "2^{-2}", "2^{1/2}", "-2^{1/2}"], "richtig": [0], "warum": "Wurzel → Bruch-Exponent, Kehrwert → Minus: $\\dfrac{1}{\\sqrt{2}} = \\dfrac{1}{2^{1/2}} = 2^{-1/2}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "27^{2/3}", "optionen": ["9", "18", "3", "729"], "richtig": [0], "warum": "Erst die dritte Wurzel, dann hoch $2$: $27^{2/3} = \\bigl(\\sqrt[3]{27}\\bigr)^{2} = 3^{2} = 9$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "8^{-1/3}", "optionen": ["\\dfrac{1}{2}", "-2", "-\\dfrac{8}{3}", "\\dfrac{1}{512}"], "richtig": [0], "warum": "Minus → Kehrwert, $\\frac{1}{3}$ → dritte Wurzel: $8^{-1/3} = \\dfrac{1}{\\sqrt[3]{8}} = \\dfrac{1}{2}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt[3]{x^{2}} = x^{3/2}", "bedingung": ["x \\ge 0"], "richtig": false, "warum": "Die Wurzel steht im Nenner des Exponenten: $\\sqrt[3]{x^{2}} = x^{2/3}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "(-3)^{0}", "optionen": ["1", "0", "-1", "-3"], "richtig": [0], "warum": "Alles hoch $0$ ist $1$, auch bei negativer Basis: $(-3)^{0} = 1$."},
+      {"art": "sc", "frage": "Vereinfache.", "ausgang": "2x^{0}", "bedingung": ["x \\neq 0"], "optionen": ["2", "1", "0", "2x"], "richtig": [0], "warum": "Hoch $0$ gehört nur zu $x$: $2x^{0} = 2 \\cdot 1 = 2$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{0} + 5^{0} = 2", "bedingung": ["x \\neq 0"], "richtig": true, "warum": "Alles hoch $0$ ist $1$: $x^{0} + 5^{0} = 1 + 1 = 2$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\left(\\dfrac{2}{3}\\right)^{-2}", "optionen": ["\\dfrac{9}{4}", "-\\dfrac{4}{9}", "\\dfrac{4}{9}", "-\\dfrac{9}{4}"], "richtig": [0], "warum": "Negativer Exponent → Kehrwert: $\\left(\\dfrac{2}{3}\\right)^{-2} = \\dfrac{1}{\\left(\\dfrac{2}{3}\\right)^{2}} = \\dfrac{9}{4}$."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js?v=20261107t0900"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  const revealSequence = ['sec-negativ', 'sec-bruch', 'sec-null', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+</script>
+
+</body>
+</html>

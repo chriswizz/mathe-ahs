@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brüche kürzen / erweitern – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Brüche kürzen / erweitern</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Brüche kürzen / erweitern</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee">
+        <li><strong>Kürzen</strong> → Zähler und Nenner durch denselben <strong>Faktor</strong> dividieren</li>
+        <li><strong>Erweitern</strong> → Zähler und Nenner mit demselben <strong>Faktor</strong> multiplizieren</li>
+      </ul>
+    </div>
+    <div class="idee-viz">
+      <p>Der <strong>Wert</strong> bleibt gleich — nur die Schreibweise ändert sich.</p>
+      <div id="viz-kuerzen-dual" class="bruch-dual"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-kuerzen" hidden>
+    <h2>Kürzen</h2>
+    <p>
+      Gleiche Faktoren in Zähler und Nenner <strong>dividieren</strong> (wegstreichen).<br>
+      <strong>Zerlegen in Primfaktoren</strong> — nur nötig, wenn man den gemeinsamen Faktor nicht sieht.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{12}{18}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{\overset{\scriptstyle 2}{\cancel{12}}}{\overset{\scriptstyle 3}{\cancel{18}}}$</div>
+          <div class="schritt-op schritt-op-opt">
+            $\dfrac{2 \cdot \cancel{2} \cdot \cancel{3}}{\cancel{2} \cdot \cancel{3} \cdot 3}$
+          </div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{2}{3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{2 \cdot x \cdot y}{4 \cdot x}$</div>
+          <div class="schritt-op">kürzen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{\cancel{2} \cdot \cancel{x} \cdot y}{\overset{\scriptstyle 2}{\cancel{4}} \cdot \cancel{x}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{y}{2}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-erweitern" hidden>
+    <h2>Erweitern</h2>
+    <p>
+      Zähler und Nenner mit demselben Faktor <strong>multiplizieren</strong>
+      (z.&nbsp;B. für einen gemeinsamen Nenner).
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{2}{5}$</div>
+          <div class="schritt-op">mit $3$ erweitern</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{2 \cdot 3}{5 \cdot 3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{6}{15}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{a}{b}$</div>
+          <div class="schritt-op">mit $2$ erweitern</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{a \cdot 2}{b \cdot 2}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{2a}{2b}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box">
+      <div class="bruch-allg-arc" aria-hidden="true">
+        <div class="bruch-allg-dir bruch-allg-dir--kur">kürzen mit k</div>
+        <svg class="bruch-allg-svg" viewBox="0 0 120 22" width="120" height="22">
+          <defs>
+            <marker id="allg-kur" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--baustein)"/>
+            </marker>
+          </defs>
+          <path d="M8 18 C35 4, 85 4, 112 18" fill="none" stroke="var(--baustein)" stroke-width="2"
+                stroke-linecap="round" marker-end="url(#allg-kur)"/>
+        </svg>
+      </div>
+      <div class="formula-main" style="margin:0.2rem 0;">
+        $\dfrac{a \cdot k}{b \cdot k} \;=\; \dfrac{a}{b}$
+      </div>
+      <div class="bruch-allg-arc" aria-hidden="true">
+        <svg class="bruch-allg-svg" viewBox="0 0 120 22" width="120" height="22">
+          <defs>
+            <marker id="allg-ext" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--baustein)"/>
+            </marker>
+          </defs>
+          <path d="M112 4 C85 18, 35 18, 8 4" fill="none" stroke="var(--baustein)" stroke-width="2"
+                stroke-linecap="round" marker-end="url(#allg-ext)"/>
+        </svg>
+        <div class="bruch-allg-dir bruch-allg-dir--ext">erweitern mit k</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{a+2}{2} = a+1", "richtig": false, "warum": "Aus Summen wird nicht gekürzt: $2$ ist kein Faktor des ganzen Zählers $a+2$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{x+3}{x} = 1+3", "richtig": false, "warum": "Aus Summen wird nicht gekürzt: $x$ ist kein Faktor des ganzen Zählers $x+3$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{5+x}{5+y} = \\dfrac{x}{y}", "richtig": false, "warum": "Aus Summen wird nicht gekürzt: $5$ ist ein Summand, kein Faktor."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{2+6}{2}", "optionen": ["4", "7", "6", "8"], "richtig": [0], "warum": "Erst den Zähler ausrechnen: $\\dfrac{2+6}{2} = \\dfrac{8}{2} = 4$ — aus Summen wird nicht gekürzt."},
+      {"art": "mc", "frage": "Bei welchen Brüchen kann man durch $x$ kürzen?", "pruefung": "kuerzbar", "faktor": "x", "optionen": ["\\dfrac{3x}{x^{2}}", "\\dfrac{x+1}{x}", "\\dfrac{x \\cdot y}{2x}", "\\dfrac{x^{2}+1}{x}"], "richtig": [0, 2], "warum": "Durch $x$ kürzen geht nur, wenn $x$ Faktor des ganzen Zählers und des ganzen Nenners ist — bei $x+1$ und $x^{2}+1$ nicht."},
+      {"art": "sc", "frage": "Kürze vollständig.", "ausgang": "\\dfrac{24}{36}", "pruefung": "gekuerzt", "optionen": ["\\dfrac{2}{3}", "\\dfrac{4}{6}", "\\dfrac{12}{18}", "\\dfrac{3}{4}"], "richtig": [0], "warum": "$24$ und $36$ haben den Faktor $12$ gemeinsam: $\\dfrac{24}{36} = \\dfrac{2 \\cdot 12}{3 \\cdot 12} = \\dfrac{2}{3}$."},
+      {"art": "sc", "frage": "Durch welche Zahl kann man kürzen?", "ausgang": "\\dfrac{14}{35}", "pruefung": "teiler", "optionen": ["2", "5", "7", "14"], "richtig": [2], "warum": "$14 = 2 \\cdot 7$ und $35 = 5 \\cdot 7$ — gemeinsam ist nur der Faktor $7$."},
+      {"art": "mc", "frage": "Durch welche Zahlen kann man kürzen?", "ausgang": "\\dfrac{18}{42}", "pruefung": "teiler", "optionen": ["2", "3", "6", "9"], "richtig": [0, 1, 2], "warum": "$18 = 2 \\cdot 3 \\cdot 3$ und $42 = 2 \\cdot 3 \\cdot 7$ — gemeinsam sind $2$, $3$ und $2 \\cdot 3 = 6$."},
+      {"art": "sc", "frage": "Welcher Bruch ist vollständig gekürzt?", "pruefung": "gekuerzt", "optionen": ["\\dfrac{6}{9}", "\\dfrac{10}{15}", "\\dfrac{2}{3}", "\\dfrac{14}{21}"], "richtig": [2], "warum": "Bei $\\dfrac{2}{3}$ haben Zähler und Nenner keinen gemeinsamen Faktor mehr; die anderen kann man noch durch $3$, $5$ oder $7$ kürzen."},
+      {"art": "sc", "frage": "Kürze vollständig.", "ausgang": "\\dfrac{6x}{9x^{2}}", "pruefung": "gekuerzt", "optionen": ["\\dfrac{2}{3x}", "\\dfrac{2x}{3x^{2}}", "\\dfrac{6}{9x}", "\\dfrac{2}{3x^{2}}"], "richtig": [0], "warum": "Gemeinsam ist der Faktor $3x$: $\\dfrac{6x}{9x^{2}} = \\dfrac{2 \\cdot 3x}{3x \\cdot 3x} = \\dfrac{2}{3x}$."},
+      {"art": "sc", "frage": "Kürze vollständig.", "ausgang": "\\dfrac{12ab}{8b^{2}}", "pruefung": "gekuerzt", "optionen": ["\\dfrac{3a}{2b}", "\\dfrac{6a}{4b}", "\\dfrac{3ab}{2b^{2}}", "\\dfrac{3a}{2}"], "richtig": [0], "warum": "Gemeinsam ist der Faktor $4b$: $\\dfrac{12ab}{8b^{2}} = \\dfrac{3a \\cdot 4b}{2b \\cdot 4b} = \\dfrac{3a}{2b}$."},
+      {"art": "sc", "frage": "Kürze vollständig.", "ausgang": "\\dfrac{x+2}{2x}", "pruefung": "gekuerzt", "optionen": ["\\dfrac{x+2}{2x}", "1", "\\dfrac{x+1}{x}", "\\dfrac{3}{2}"], "richtig": [0], "warum": "Im Zähler steht eine Summe: $x$ und $2$ sind keine Faktoren des ganzen Zählers, also kann man nicht kürzen."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{15}{35} = \\dfrac{3}{7}", "richtig": true, "warum": "Zähler und Nenner durch $5$ dividieren: $\\dfrac{15}{35} = \\dfrac{3}{7}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{6ab}{9b} = \\dfrac{2a}{3}", "richtig": true, "warum": "Zähler und Nenner durch $3b$ dividieren: $\\dfrac{6ab}{9b} = \\dfrac{2a}{3}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{3}{4} = \\dfrac{3+2}{4+2}", "richtig": false, "warum": "Erweitern heißt Zähler und Nenner mit demselben Faktor multiplizieren; $2$ dazuzählen ändert den Wert."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{a}{3} = \\dfrac{4a}{12}", "richtig": true, "warum": "Mit $4$ erweitert: $\\dfrac{a \\cdot 4}{3 \\cdot 4} = \\dfrac{4a}{12}$."},
+      {"art": "sc", "frage": "Erweitere mit $5$.", "ausgang": "\\dfrac{3}{4}", "nenner": "20", "optionen": ["\\dfrac{15}{20}", "\\dfrac{15}{4}", "\\dfrac{8}{9}", "\\dfrac{3}{20}"], "richtig": [0], "warum": "Zähler und Nenner mit $5$ multiplizieren: $\\dfrac{3 \\cdot 5}{4 \\cdot 5} = \\dfrac{15}{20}$."},
+      {"art": "sc", "frage": "Erweitere auf den Nenner $6x$.", "ausgang": "\\dfrac{5}{2x}", "nenner": "6x", "optionen": ["\\dfrac{15}{6x}", "\\dfrac{5}{6x}", "\\dfrac{15x}{6x}", "\\dfrac{8}{6x}"], "richtig": [0], "warum": "Der Nenner wird mit $3$ multipliziert, also auch der Zähler: $\\dfrac{5 \\cdot 3}{2x \\cdot 3} = \\dfrac{15}{6x}$."},
+      {"art": "sc", "frage": "Schreibe $3$ als Bruch mit dem Nenner $4$.", "ausgang": "3", "nenner": "4", "optionen": ["\\dfrac{12}{4}", "\\dfrac{3}{4}", "\\dfrac{7}{4}", "\\dfrac{4}{3}"], "richtig": [0], "warum": "$3 = \\dfrac{3}{1}$, dann mit $4$ erweitern: $\\dfrac{3 \\cdot 4}{1 \\cdot 4} = \\dfrac{12}{4}$."},
+      {"art": "mc", "frage": "Welche Brüche haben denselben Wert?", "ausgang": "\\dfrac{2}{3}", "optionen": ["\\dfrac{4}{6}", "\\dfrac{10}{15}", "\\dfrac{3}{4}", "\\dfrac{5}{6}"], "richtig": [0, 1], "warum": "$\\dfrac{4}{6}$ ist mit $2$ erweitert, $\\dfrac{10}{15}$ mit $5$; bei den anderen wurde zu Zähler und Nenner dieselbe Zahl dazugezählt."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/cancel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/viz/mathe-viz.js?v=20260927t2149"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  // ── Mode-Toggle + Reveal (wie Quad) ──
+  const revealSequence = ['sec-kuerzen', 'sec-erweitern', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+
+  MatheViz.fractionDual('#viz-kuerzen-dual', {
+    left: [2, 4],
+    right: [1, 2],
+    katex: true,
+  });
+</script>
+
+</body>
+</html>

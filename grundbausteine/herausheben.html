@@ -2,12 +2,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Herausheben – Grundbaustein – Mathe AHS</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herausheben / Ausmultiplizieren – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
 </head>
-<body>
+<body class="thema-layout">
 
 <nav class="site-nav">
   <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
@@ -24,7 +27,7 @@
     <span class="sep">›</span>
     <a href="index.html">Grundbausteine</a>
     <span class="sep">›</span>
-    <span class="current">Herausheben</span>
+    <span class="current">Herausheben / Ausmultiplizieren</span>
   </div>
 
   <div class="thema-header">
@@ -36,106 +39,365 @@
       </svg>
       <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
     </div>
-    <h1>Herausheben</h1>
+    <h1>Herausheben / Ausmultiplizieren</h1>
   </div>
 
-  <section class="section">
-    <h2>Was ist Herausheben?</h2>
-    <p>
-      Herausheben (auch: Ausklammern) bedeutet, einen gemeinsamen Faktor aus mehreren Termen
-      <em>heraus</em>zuziehen. Es ist die Umkehrung des Distributivgesetzes.
-    </p>
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
 
-    <div class="formula-display">
-      <div class="formula-main">
-        $a \cdot b \;+\; a \cdot c \;=\; a\,(b + c)$
-      </div>
-      <div class="formula-note">$a$ ist der gemeinsame Faktor.</div>
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee">
+        <li><strong>Herausheben</strong> → gemeinsamen Faktor <strong>vor</strong> die Klammer</li>
+        <li><strong>Ausmultiplizieren</strong> → Faktor mit jedem Summanden <strong>multiplizieren</strong></li>
+      </ul>
     </div>
-
-    <p>
-      Wenn man von rechts nach links liest: $a\,(b+c) = ab + ac$ – das ist das Distributivgesetz.
-      Herausheben geht in die andere Richtung: von $ab + ac$ zurück zu $a\,(b+c)$.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>Beispiele</h2>
-
-    <h3>Einfaches Beispiel</h3>
-    <div class="schritte" style="margin-bottom:1.25rem;">
-      <div class="schritt">
-        <span class="schritt-nr">①</span>
-        <div class="schritt-formel">$6x + 4$</div>
-        <div class="schritt-op">gemeinsamer Faktor: $2$</div>
-      </div>
-      <div class="schritt lsg">
-        <span class="schritt-nr"></span>
-        <div class="schritt-formel">$= 2\,(3x + 2)$</div>
-        <div class="schritt-op"></div>
-      </div>
-    </div>
-
-    <h3>Mit $x$ als Faktor</h3>
-    <div class="schritte" style="margin-bottom:1.25rem;">
-      <div class="schritt">
-        <span class="schritt-nr">①</span>
-        <div class="schritt-formel">$x^2 + 5x$</div>
-        <div class="schritt-op">gemeinsamer Faktor: $x$</div>
-      </div>
-      <div class="schritt lsg">
-        <span class="schritt-nr"></span>
-        <div class="schritt-formel">$= x\,(x + 5)$</div>
-        <div class="schritt-op"></div>
-      </div>
-    </div>
-
-    <h3>Für quadratische Gleichungen (Typ 2)</h3>
-    <div class="schritte">
-      <div class="schritt">
-        <span class="schritt-nr">①</span>
-        <div class="schritt-formel">$2x^2 + 8x = 0$</div>
-        <div class="schritt-op">gemeinsamer Faktor: $2x$</div>
-      </div>
-      <div class="schritt">
-        <span class="schritt-nr">②</span>
-        <div class="schritt-formel">$2x\,(x + 4) = 0$</div>
-        <div class="schritt-op">herausgehoben</div>
-      </div>
-      <div class="schritt">
-        <span class="schritt-nr">③</span>
-        <div class="schritt-formel">$2x = 0 \quad\text{oder}\quad x + 4 = 0$</div>
-        <div class="schritt-op">Produkt-Null-Satz</div>
-      </div>
-      <div class="schritt lsg">
-        <span class="schritt-nr"></span>
-        <div class="schritt-formel">$x_1 = 0 \;\text{ oder }\; x_2 = -4$</div>
-        <div class="schritt-op"></div>
+    <div class="idee-viz">
+      <p>Der <strong>Term</strong> bleibt gleich — nur die Schreibweise ändert sich.</p>
+      <div class="farb-viz">
+        <div class="farb-viz-line">
+          <span class="farb-f">2</span>x + <span class="farb-f">2</span>y
+        </div>
+        <div class="farb-viz-mid" aria-hidden="true">
+          <svg class="farb-viz-arcs" viewBox="0 0 180 120" width="180" height="120">
+            <defs>
+              <marker id="farb-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--baustein)"/>
+              </marker>
+            </defs>
+            <text x="90" y="16" text-anchor="middle" fill="var(--baustein)" font-size="12" font-weight="700">herausheben</text>
+            <path d="M22 42 C65 18, 115 18, 158 42" fill="none" stroke="var(--baustein)" stroke-width="2.25"
+                  stroke-linecap="round" marker-end="url(#farb-arr)"/>
+            <path d="M158 78 C115 102, 65 102, 22 78" fill="none" stroke="var(--baustein)" stroke-width="2.25"
+                  stroke-linecap="round" marker-end="url(#farb-arr)"/>
+            <text x="90" y="114" text-anchor="middle" fill="var(--baustein)" font-size="12" font-weight="700">ausmultiplizieren</text>
+          </svg>
+        </div>
+        <div class="farb-viz-line">
+          <span class="farb-f">2</span>(x + y)
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Wo wird dieser Baustein gebraucht?</h2>
+  <section class="section" id="sec-herausheben" hidden>
+    <h2>Herausheben</h2>
     <p>
-      <a href="../themen/quadratische-gleichungen.html#herausheben">Quadratische Gleichungen – Typ 2</a>
+      Gemeinsamen Faktor in allen Summanden finden → <strong>vor</strong> die Klammer schreiben.
     </p>
-    <button class="mark-btn" data-gb="herausheben">Als verstanden markieren</button>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$6x + 4$</div>
+          <div class="schritt-op">gemeinsamer Faktor $2$</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 2\,(3x + 2)$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$x^2 + 5x$</div>
+          <div class="schritt-op">gemeinsamer Faktor $x$</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x\,(x + 5)$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <section class="section" id="sec-ausmultiplizieren" hidden>
+    <h2>Ausmultiplizieren</h2>
+    <p>
+      Funktioniert wie Herausheben — nur andersherum.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">
+            <div class="klammern-viz" data-arcs="einfach">
+              <svg class="klammern-arcs" aria-hidden="true"></svg>
+              <div class="klammern-term">
+                <span class="kl-end" data-arc="from">$3$</span>(<span class="kl-end" data-arc="to">$x$</span> + <span class="kl-end" data-arc="to">$4$</span>)
+              </div>
+            </div>
+          </div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 3x + 12$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-zwei-klammern" hidden>
+    <h2>Zwei Klammern</h2>
+    <p>
+      Jeden Summanden der ersten Klammer mit jedem der zweiten <strong>multiplizieren</strong>.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">
+            <div class="klammern-viz" data-arcs="zwei">
+              <svg class="klammern-arcs" aria-hidden="true"></svg>
+              <div class="klammern-term">
+                (<span class="kl-end" data-arc="from-top">$x$</span> + <span class="kl-end" data-arc="from-bot">$2$</span>)(<span class="kl-end" data-arc="to">$x$</span> + <span class="kl-end" data-arc="to">$3$</span>)
+              </div>
+            </div>
+          </div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x\cdot x + x\cdot 3 + 2\cdot x + 2\cdot 3$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 + 5x + 6$</div>
+          <div class="schritt-op">zusammenfassen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box">
+      <div class="bruch-allg-arc" aria-hidden="true">
+        <div class="bruch-allg-dir bruch-allg-dir--kur">herausheben</div>
+        <svg class="bruch-allg-svg" viewBox="0 0 120 22" width="120" height="22">
+          <defs>
+            <marker id="allg-her" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--baustein)"/>
+            </marker>
+          </defs>
+          <path d="M8 18 C35 4, 85 4, 112 18" fill="none" stroke="var(--baustein)" stroke-width="2"
+                stroke-linecap="round" marker-end="url(#allg-her)"/>
+        </svg>
+      </div>
+      <div class="formula-main" style="margin:0.2rem 0;">
+        $a\cdot b + a\cdot c \;=\; a\,(b + c)$
+      </div>
+      <div class="bruch-allg-arc" aria-hidden="true">
+        <svg class="bruch-allg-svg" viewBox="0 0 120 22" width="120" height="22">
+          <defs>
+            <marker id="allg-dis" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--baustein)"/>
+            </marker>
+          </defs>
+          <path d="M112 4 C85 18, 35 18, 8 4" fill="none" stroke="var(--baustein)" stroke-width="2"
+                stroke-linecap="round" marker-end="url(#allg-dis)"/>
+        </svg>
+        <div class="bruch-allg-dir bruch-allg-dir--ext">ausmultiplizieren</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "-(a + b) = -a + b", "richtig": false, "warum": "Das Minus gilt für jeden Summanden: $-(a + b) = -a - b$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "-(x - 3) = -x + 3", "richtig": true, "warum": "Das Minus gilt für jeden Summanden: $-(x - 3) = -x + 3$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "5 - (2x - 3)", "optionen": ["8 - 2x", "2 - 2x", "8 + 2x", "2 + 2x"], "richtig": [0], "warum": "Das Minus gilt für jeden Summanden: $5 - (2x - 3) = 5 - 2x + 3 = 8 - 2x$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "-2\\,(x - 4)", "optionen": ["-2x + 8", "-2x - 8", "-2x - 4", "2x - 8"], "richtig": [0], "warum": "Den Faktor $-2$ mit jedem Summanden multiplizieren: $-2 \\cdot x + (-2) \\cdot (-4) = -2x + 8$."},
+      {"art": "sc", "frage": "Hebe $-3$ heraus.", "ausgang": "-3x - 6", "optionen": ["-3\\,(x + 2)", "-3\\,(x - 2)", "3\\,(x - 2)", "-3\\,(x - 6)"], "richtig": [0], "warum": "Aus jedem Summanden $-3$ herausheben: $-3x - 6 = -3 \\cdot x + (-3) \\cdot 2 = -3\\,(x + 2)$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $-(x - y)$?", "ausgang": "-(x - y)", "optionen": ["-x + y", "y - x", "-x - y", "x - y"], "richtig": [0, 1], "warum": "Das Minus gilt für jeden Summanden: $-(x - y) = -x + y = y - x$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "6x + 4 = 3x + 2 \\cdot 2", "richtig": false, "warum": "Der Faktor $2$ steht vor der ganzen Klammer: $6x + 4 = 2\\,(3x + 2)$."},
+      {"art": "sc", "frage": "Hebe heraus.", "ausgang": "10a + 15b", "optionen": ["5\\,(2a + 3b)", "5\\,(2a + 15b)", "5 \\cdot 2a + 3b", "5\\,(5a + 10b)"], "richtig": [0], "warum": "Aus jedem Summanden $5$ herausheben, die Klammer bleibt: $10a + 15b = 5 \\cdot 2a + 5 \\cdot 3b = 5\\,(2a + 3b)$."},
+      {"art": "sc", "frage": "Hebe heraus.", "ausgang": "4x^{2} - 6x", "optionen": ["2x\\,(2x - 3)", "2x\\,(2x - 6)", "2x\\,(x - 3)", "2x \\cdot 2x - 3"], "richtig": [0], "warum": "Aus jedem Summanden $2x$ herausheben: $4x^{2} - 6x = 2x \\cdot 2x - 2x \\cdot 3 = 2x\\,(2x - 3)$."},
+      {"art": "sc", "frage": "Hebe heraus.", "ausgang": "x\\,(a + b) + 2\\,(a + b)", "optionen": ["(a + b)(x + 2)", "2x\\,(a + b)", "(a + b)^{2}\\,(x + 2)", "x + 2\\,(a + b)"], "richtig": [0], "warum": "Die ganze Klammer $(a + b)$ ist der gemeinsame Faktor: $x\\,(a + b) + 2\\,(a + b) = (a + b)(x + 2)$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "3\\,(x - 1) - x\\,(x - 1) = (x - 1)(3 - x)", "richtig": true, "warum": "Die ganze Klammer $(x - 1)$ ist der gemeinsame Faktor: $3\\,(x - 1) - x\\,(x - 1) = (x - 1)(3 - x)$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $a\\,(x + 1) + (x + 1)$?", "ausgang": "a\\,(x + 1) + (x + 1)", "optionen": ["(x + 1)(a + 1)", "(a + 1)(x + 1)", "a\\,(x + 1)", "(x + 1)^{2}\\,a"], "richtig": [0, 1], "warum": "Vor der zweiten Klammer steht der Faktor $1$: $a\\,(x + 1) + 1 \\cdot (x + 1) = (x + 1)(a + 1)$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(x + 2)(x - 5)", "optionen": ["x^{2} - 3x - 10", "x^{2} - 10", "x^{2} + 3x - 10", "x^{2} - 7x - 10"], "richtig": [0], "warum": "Jeden Summanden der ersten Klammer mit jedem der zweiten multiplizieren: $(x + 2)(x - 5) = x^{2} - 5x + 2x - 10 = x^{2} - 3x - 10$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(a + 1)(b + 2) = ab + 2", "richtig": false, "warum": "Jeden Summanden der ersten Klammer mit jedem der zweiten multiplizieren: $(a + 1)(b + 2) = ab + 2a + b + 2$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $(x + 1)(y + 2)$?", "ausgang": "(x + 1)(y + 2)", "optionen": ["xy + 2x + y + 2", "x\\,(y + 2) + (y + 2)", "xy + 2", "xy + 2x + 2"], "richtig": [0, 1], "warum": "$x$ und $1$ je mit $(y + 2)$ multiplizieren: $x\\,(y + 2) + 1 \\cdot (y + 2) = xy + 2x + y + 2$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(2x - 1)(x + 3)", "optionen": ["2x^{2} + 5x - 3", "2x^{2} - 3", "2x^{2} + 7x - 3", "2x^{2} + 5x + 3"], "richtig": [0], "warum": "Jeden Summanden der ersten Klammer mit jedem der zweiten multiplizieren: $(2x - 1)(x + 3) = 2x^{2} + 6x - x - 3 = 2x^{2} + 5x - 3$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "3\\,(x + 4) = 3x + 4", "richtig": false, "warum": "Der Faktor $3$ wird mit jedem Summanden multipliziert: $3\\,(x + 4) = 3x + 12$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "2x\\,(x - 3) = 2x^{2} - 6x", "richtig": true, "warum": "Der Faktor $2x$ wird mit jedem Summanden multipliziert: $2x \\cdot x - 2x \\cdot 3 = 2x^{2} - 6x$."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <script src="../js/app.js"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
 <script>
-  renderMathInElement(document.body, {
-    delimiters: [
-      { left: '$$', right: '$$', display: true },
-      { left: '$',  right: '$',  display: false }
-    ],
-    throwOnError: false,
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  function drawKlammernArcs() {
+    document.querySelectorAll('.klammern-viz').forEach(drawOneKlammernViz);
+  }
+
+  function drawOneKlammernViz(viz) {
+    const svg = viz.querySelector('.klammern-arcs');
+    if (!svg || viz.closest('[hidden]')) return;
+
+    const vr = viz.getBoundingClientRect();
+    const w = Math.max(vr.width, 1);
+    const h = Math.max(vr.height, 1);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.replaceChildren();
+
+    const stroke = getComputedStyle(document.documentElement)
+      .getPropertyValue('--text-subtle').trim() || '#94a3b8';
+
+    function center(el, edge) {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 - vr.left,
+        y: edge === 'bottom' ? r.bottom - vr.top - 1 : r.top - vr.top + 1,
+      };
+    }
+
+    function ctrlY(p, q, side) {
+      const dist = Math.abs(q.x - p.x);
+      const rise = Math.max(10, dist * 0.38);
+      if (side === 'top') return Math.max(2, p.y - rise);
+      return Math.min(h - 2, p.y + rise);
+    }
+
+    function addArc(p, q, side) {
+      const cy = ctrlY(p, q, side);
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M${p.x} ${p.y} C${p.x} ${cy}, ${q.x} ${cy}, ${q.x} ${q.y}`);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', stroke);
+      path.setAttribute('stroke-width', '1.2');
+      svg.appendChild(path);
+    }
+
+    const mode = viz.dataset.arcs;
+    if (mode === 'einfach') {
+      const from = viz.querySelector('[data-arc="from"]');
+      const tos = [...viz.querySelectorAll('[data-arc="to"]')];
+      if (!from || tos.length < 2) return;
+      const p = center(from, 'top');
+      tos.forEach(t => addArc(p, center(t, 'top'), 'top'));
+      return;
+    }
+
+    if (mode === 'zwei') {
+      const fromTop = viz.querySelector('[data-arc="from-top"]');
+      const fromBot = viz.querySelector('[data-arc="from-bot"]');
+      const tos = [...viz.querySelectorAll('[data-arc="to"]')];
+      if (!fromTop || !fromBot || tos.length < 2) return;
+      const aTop = center(fromTop, 'top');
+      const bBot = center(fromBot, 'bottom');
+      const [c, d] = tos;
+      addArc(aTop, center(c, 'top'), 'top');
+      addArc(aTop, center(d, 'top'), 'top');
+      addArc(bBot, center(c, 'bottom'), 'bottom');
+      addArc(bBot, center(d, 'bottom'), 'bottom');
+    }
+  }
+
+  function afterMath(el) {
+    renderMathInElement(el || document.body, { delimiters: DELIMITERS, throwOnError: false });
+    requestAnimationFrame(() => requestAnimationFrame(drawKlammernArcs));
+  }
+
+  const revealSequence = ['sec-herausheben', 'sec-ausmultiplizieren', 'sec-zwei-klammern', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    afterMath(el);
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
   });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    afterMath(document.body);
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  window.addEventListener('resize', () => requestAnimationFrame(drawKlammernArcs));
+
+  showAllMode();
 </script>
 
 </body>

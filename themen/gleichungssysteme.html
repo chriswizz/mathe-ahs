@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lineare Gleichungssysteme – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Discovery area ── */
+    .entd-seq {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .entd-seq.reveal-ein { animation: fadeUp 0.4s ease; }
+
+    .entd-step { animation: fadeUp 0.35s ease; }
+    .entd-step + .entd-step { margin-top: 1.75rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .entd-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .entd-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0.6rem 0;
+    }
+
+    .entd-step.ablage {
+      border: 2px solid #8b5cf6;
+      border-radius: var(--r-md);
+      padding: 1.25rem;
+      background: #f5f3ff;
+    }
+    .entd-step.ablage .entd-label { color: #6d28d9; }
+    .entd-step.ablage .zeilen    { border: none; overflow: visible; }
+    .entd-step.ablage .entd-eq   { background: white; font-size: 1.15rem; border-radius: var(--r-md); border-bottom: none; }
+
+    /* Kleinere Schrift bei Bruch-Formelzeilen (automatisch) */
+    .zeilen .entd-eq:has(.mfrac),
+    .zeilen .entd-zeile:has(.mfrac),
+    .schritte .schritt:has(.mfrac) {
+      font-size: 0.9rem;
+    }
+
+    /* Doppel-Gleichung: zwei Zeilen als "System" darstellen */
+    .system {
+      display: inline-block;
+      text-align: left;
+      border-left: 2.5px solid var(--text);
+      padding-left: 0.75rem;
+    }
+    .system > div { line-height: 1.9; }
+
+    /* Mode-Toggle */
+    .mode-toggle {
+      display: inline-flex;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 3px;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .mode-btn {
+      padding: 0.4rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    .mode-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .mode-btn:not(.active):hover { color: var(--text); }
+
+    /* Nav button */
+    .entd-nav {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0 1.5rem;
+    }
+    .entd-nav[hidden] { display: none; }
+    .weiter-btn-main {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.75rem; font-size: 0.9rem; font-weight: 600;
+      background: var(--primary); color: white; border: none;
+      border-radius: var(--r-md); cursor: pointer; font-family: inherit;
+      transition: background 0.15s;
+    }
+    .weiter-btn-main:hover { background: #1e3a8a; }
+
+    /* Karten-Animation gestaffelt */
+    @keyframes karteEin {
+      from { opacity: 0; transform: translateY(6px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    #sammlung .typ-card { animation: karteEin 0.45s ease both; }
+    #sammlung .typ-card:nth-child(1) { animation-delay: 0.10s; }
+    #sammlung .typ-card:nth-child(2) { animation-delay: 0.28s; }
+    #sammlung .typ-card:nth-child(3) { animation-delay: 0.46s; }
+
+    .reveal-ein { animation: fadeUp 0.4s ease; }
+
+    /* Quiz */
+    .quiz-eq-box {
+      background: var(--surface-alt);
+      border: 2px solid var(--border-strong);
+      border-radius: var(--r-md);
+      padding: 1.25rem;
+      text-align: center;
+      font-size: 1.15rem;
+      margin: 1.25rem 0;
+      min-height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quiz-antworten {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.625rem;
+      margin: 1rem 0;
+    }
+    .quiz-btn {
+      padding: 0.7rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--t-fast);
+    }
+    .quiz-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .quiz-btn:disabled { cursor: default; }
+    .quiz-btn.richtig { background: var(--ok-light); border-color: var(--ok); color: #15803d; }
+    .quiz-btn.falsch  { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+    .quiz-feedback {
+      border-radius: var(--r-md);
+      padding: 0.75rem 1rem;
+      font-size: 0.86rem;
+      margin: 0.75rem 0 0;
+      line-height: 1.6;
+      display: none;
+    }
+    .quiz-feedback.richtig { background: var(--ok-light); border: 1px solid #86efac; color: #15803d; display: block; }
+    .quiz-feedback.falsch  { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    .quiz-score {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .quiz-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.875rem;
+    }
+    .quiz-progress { font-size: 0.8rem; color: var(--text-muted); }
+    .quiz-next-btn {
+      display: none;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--t-fast);
+    }
+    .quiz-next-btn:hover { background: #1e3a8a; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html" class="active">Themen</a>
+    <a href="../grundbausteine/index.html">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <span>Algebra</span>
+    <span class="sep">›</span>
+    <span class="current">Lineare Gleichungssysteme</span>
+  </div>
+
+  <div class="thema-header">
+    <h1>Lineare Gleichungssysteme</h1>
+  </div>
+
+  <div class="mode-toggle" role="tablist" aria-label="Anzeige-Modus">
+    <button class="mode-btn active" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       ENTDECKUNGSBEREICH
+  ══════════════════════════════════════════ -->
+  <div id="entdeckung">
+
+    <!-- ── Sequenz 1: Substitution ── -->
+    <div class="entd-seq" id="seq-1">
+
+      <div class="entd-step" id="s1-1">
+        <div class="entd-label">Zwei Gleichungen, zwei Unbekannte</div>
+        <p class="entd-text">Ein lineares Gleichungssystem besteht aus zwei Gleichungen mit zwei Unbekannten – meistens $\textcolor{#1d4ed8}{x}$ und $\textcolor{#047857}{y}$:</p>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} \textcolor{#047857}{y} &= 2\textcolor{#1d4ed8}{x} + 1 \\ \textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} &= 7 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">Gesucht: ein Zahlenpaar $(\textcolor{#1d4ed8}{x} \mid \textcolor{#047857}{y})$, das <strong>beide</strong> Gleichungen erfüllt.</p>
+      </div>
+
+      <div class="entd-step" id="s1-2" hidden>
+        <div class="entd-label">Die erste Gleichung ist schon nach $y$ aufgelöst</div>
+        <p class="entd-text">Also können wir den Ausdruck für $\textcolor{#047857}{y}$ direkt in die zweite Gleichung einsetzen:</p>
+        <div class="zeilen">
+          <div class="entd-zeile">$\textcolor{#1d4ed8}{x} + \underbrace{(2\textcolor{#1d4ed8}{x} + 1)}_{\textcolor{#047857}{y}} = 7$<span class="entd-op hint">$y$ ersetzt</span></div>
+          <div class="entd-zeile">$3\textcolor{#1d4ed8}{x} + 1 = 7$<span class="entd-op">| $-1$</span></div>
+          <div class="entd-zeile">$3\textcolor{#1d4ed8}{x} = 6$<span class="entd-op">| $\div 3$</span></div>
+          <div class="entd-eq">$\textcolor{#1d4ed8}{x = 2}$</div>
+        </div>
+        <p class="entd-text">Jetzt $\textcolor{#1d4ed8}{x = 2}$ zurück in die erste Gleichung einsetzen um $\textcolor{#047857}{y}$ zu bekommen:</p>
+        <div class="zeilen">
+          <div class="entd-eq">$\textcolor{#047857}{y} = 2 \cdot 2 + 1 = \textcolor{#047857}{5}$</div>
+        </div>
+      </div>
+
+      <div class="entd-step" id="s1-3" hidden>
+        <div class="entd-label">Was wenn keine Gleichung aufgelöst ist?</div>
+        <p class="entd-text">Dann lösen wir zuerst selbst eine nach einer Variable auf:</p>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} \textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} &= 5 \\ 2\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} &= 4 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">1. Gleichung nach $\textcolor{#047857}{y}$ auflösen:</p>
+        <div class="zeilen">
+          <div class="entd-zeile">$\textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} = 5$<span class="entd-op">| $-x$</span></div>
+          <div class="entd-eq">$\textcolor{#047857}{y} = 5 - \textcolor{#1d4ed8}{x}$</div>
+        </div>
+        <p class="entd-text">Und in die 2. Gleichung einsetzen:</p>
+        <div class="zeilen">
+          <div class="entd-zeile">$2\textcolor{#1d4ed8}{x} - (5 - \textcolor{#1d4ed8}{x}) = 4$<span class="entd-op hint">Klammer auflösen</span></div>
+          <div class="entd-zeile">$3\textcolor{#1d4ed8}{x} - 5 = 4$<span class="entd-op">| $+5$, $\div 3$</span></div>
+          <div class="entd-eq">$\textcolor{#1d4ed8}{x = 3}, \quad \textcolor{#047857}{y = 2}$</div>
+        </div>
+      </div>
+
+      <div class="entd-step ablage" id="s1-ablage" hidden>
+        <div class="entd-label">Verallgemeinert</div>
+        <p class="entd-text">
+          <strong>Substitutionsverfahren:</strong> Eine Gleichung nach einer Variable auflösen und in die andere einsetzen.
+        </p>
+        <div class="zeilen">
+          <div class="entd-eq">$\textcolor{#047857}{y} = \ldots\textcolor{#1d4ed8}{x}\ldots \;\;\longrightarrow\;\; \text{in andere Gl. einsetzen}$</div>
+        </div>
+        <p class="entd-text">
+          Gut geeignet wenn eine Gleichung <strong>bereits nach einer Variable aufgelöst</strong> ist – oder leicht auflösbar (Koeffizient $\pm 1$).
+        </p>
+      </div>
+
+    </div><!-- /seq-1 -->
+
+    <!-- ── Sequenz 2: Gleichsetzung ── -->
+    <div class="entd-seq" id="seq-2" hidden>
+
+      <div class="entd-step" id="s2-1">
+        <div class="entd-label">Was wenn beide Gleichungen nach $y$ aufgelöst sind?</div>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} \textcolor{#047857}{y} &= 2\textcolor{#1d4ed8}{x} + 1 \\ \textcolor{#047857}{y} &= -\textcolor{#1d4ed8}{x} + 4 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">
+          Beide rechten Seiten sind gleich $\textcolor{#047857}{y}$ – also müssen sie <strong>untereinander gleich</strong> sein:
+        </p>
+        <div class="zeilen">
+          <div class="entd-zeile">$2\textcolor{#1d4ed8}{x} + 1 = -\textcolor{#1d4ed8}{x} + 4$<span class="entd-op">| $+x$, $-1$</span></div>
+          <div class="entd-zeile">$3\textcolor{#1d4ed8}{x} = 3$<span class="entd-op">| $\div 3$</span></div>
+          <div class="entd-eq">$\textcolor{#1d4ed8}{x = 1}, \quad \textcolor{#047857}{y = 3}$</div>
+        </div>
+      </div>
+
+      <div class="entd-step ablage" id="s2-ablage" hidden>
+        <div class="entd-label">Verallgemeinert</div>
+        <p class="entd-text">
+          <strong>Gleichsetzungsverfahren:</strong> Beide Gleichungen nach derselben Variable auflösen und gleichsetzen.
+        </p>
+        <div class="zeilen">
+          <div class="entd-eq">$\textcolor{#047857}{y} = A(\textcolor{#1d4ed8}{x}) \;\;\wedge\;\; \textcolor{#047857}{y} = B(\textcolor{#1d4ed8}{x}) \;\;\Longrightarrow\;\; A(\textcolor{#1d4ed8}{x}) = B(\textcolor{#1d4ed8}{x})$</div>
+        </div>
+        <p class="entd-text">
+          Gut geeignet wenn <strong>beide Gleichungen</strong> nach derselben Variable aufgelöst sind (oder es leicht möglich ist).
+        </p>
+      </div>
+
+    </div><!-- /seq-2 -->
+
+    <!-- ── Sequenz 3: Additionsverfahren ── -->
+    <div class="entd-seq" id="seq-3" hidden>
+
+      <div class="entd-step" id="s3-1">
+        <div class="entd-label">Was wenn keine Gleichung nach $x$ oder $y$ aufgelöst ist?</div>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} &= 7 \\ 3\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} &= 3 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">
+          Auflösen ginge, ist aber Aufwand. Beobachtung: In der ersten Gleichung steht $+\textcolor{#047857}{y}$, in der zweiten $-\textcolor{#047857}{y}$.
+          Wenn wir die beiden Gleichungen <strong>addieren</strong>, fällt $\textcolor{#047857}{y}$ komplett weg:
+        </p>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} &= 7 \\ +\quad 3\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} &= 3 \\ \hline 5\textcolor{#1d4ed8}{x} \phantom{\;+\;0\textcolor{#047857}{y}} &= 10 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">
+          Also $\textcolor{#1d4ed8}{x = 2}$, und aus der ersten Gleichung: $\textcolor{#047857}{y} = 7 - 2 \cdot 2 = \textcolor{#047857}{3}$.
+        </p>
+      </div>
+
+      <div class="entd-step" id="s3-2" hidden>
+        <div class="entd-label">Was wenn die Koeffizienten nicht passen?</div>
+        <p class="entd-text">
+          Dann multiplizieren wir eine (oder beide) Gleichungen so, dass beim Addieren eine Variable rausfällt:
+        </p>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + 3\textcolor{#047857}{y} &= 12 \\ 4\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} &= 10 \end{aligned}$</div>
+        </div>
+        <p class="entd-text">
+          Multipliziere die 2. Gleichung mit $3$, damit $-\textcolor{#047857}{y}$ zu $-3\textcolor{#047857}{y}$ wird und sich mit $+3\textcolor{#047857}{y}$ oben wegkürzt:
+        </p>
+        <div class="zeilen">
+          <div class="entd-eq">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + 3\textcolor{#047857}{y} &= 12 \\ +\quad 12\textcolor{#1d4ed8}{x} - 3\textcolor{#047857}{y} &= 30 \\ \hline 14\textcolor{#1d4ed8}{x} &= 42 \end{aligned}$</div>
+          <div class="entd-eq">$\textcolor{#1d4ed8}{x = 3}, \quad \textcolor{#047857}{y = 2}$</div>
+        </div>
+      </div>
+
+      <div class="entd-step ablage" id="s3-ablage" hidden>
+        <div class="entd-label">Verallgemeinert</div>
+        <p class="entd-text">
+          <strong>Additionsverfahren:</strong> Gleichungen so multiplizieren, dass beim Addieren (oder Subtrahieren) eine Variable rausfällt.
+        </p>
+        <p class="entd-text">
+          Gut geeignet wenn <strong>keine</strong> Gleichung sinnvoll nach einer Variable auflösbar ist – also wenn beide Gleichungen in Standardform vorliegen: $a\textcolor{#1d4ed8}{x} + b\textcolor{#047857}{y} = c$.
+        </p>
+      </div>
+
+    </div><!-- /seq-3 -->
+
+  </div>
+
+  <!-- Ein einziger Weiter-Button -->
+  <div class="entd-nav">
+    <button class="weiter-btn-main" id="weiter-btn">
+      <span>Weiter</span>&nbsp;<span>▾</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       ZUSAMMENFASSUNG (1 Klick)
+  ══════════════════════════════════════════ -->
+  <section class="section" id="zus-uebersicht" hidden>
+    <h2>Zusammenfassung</h2>
+    <p>Ein lineares Gleichungssystem mit zwei Gleichungen und zwei Unbekannten:</p>
+
+    <div class="formula-display">
+      <div class="formula-main">
+        $\begin{aligned} a_1 \textcolor{#1d4ed8}{x} + b_1 \textcolor{#047857}{y} &= c_1 \\ a_2 \textcolor{#1d4ed8}{x} + b_2 \textcolor{#047857}{y} &= c_2 \end{aligned}$
+      </div>
+      <div class="formula-note">Gesucht: das Zahlenpaar $(\textcolor{#1d4ed8}{x} \mid \textcolor{#047857}{y})$, das beide Gleichungen erfüllt.</div>
+    </div>
+
+    <p>Es gibt drei Standard-Verfahren. Welches am besten passt, hängt davon ab wie das System aussieht.</p>
+
+    <div class="typ-grid" id="sammlung">
+
+      <div class="typ-card" id="karte-1">
+        <div class="typ-card-main">
+          <div class="typ-card-nr">Substitution</div>
+          <div class="typ-card-title">Eine Gleichung ist nach einer Variable aufgelöst</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;font-size:0.9rem;">$\textcolor{#047857}{y} = 2\textcolor{#1d4ed8}{x} + 1$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;text-align:center;">↓ einsetzen</div>
+          <div class="typ-card-form" style="font-size:0.9rem;">$\textcolor{#1d4ed8}{x} + (2\textcolor{#1d4ed8}{x}+1) = 7$</div>
+        </div>
+        <button class="typ-beispiele-btn" data-panel="karte-bsp-1">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="karte-bsp-1">
+          <ul class="typ-beispiele-list">
+            <li>$y = 3x - 1$, $\;2x + y = 9$</li>
+            <li>$x = 4 - y$, $\;3x - 2y = 7$</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="typ-card" id="karte-2">
+        <div class="typ-card-main">
+          <div class="typ-card-nr">Gleichsetzung</div>
+          <div class="typ-card-title">Beide Gleichungen nach derselben Variable aufgelöst</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;font-size:0.9rem;">$\textcolor{#047857}{y} = 2\textcolor{#1d4ed8}{x}+1$</div>
+          <div class="typ-card-form" style="font-size:0.9rem;">$\textcolor{#047857}{y} = -\textcolor{#1d4ed8}{x}+4$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;text-align:center;">↓ gleichsetzen</div>
+          <div class="typ-card-form" style="font-size:0.9rem;">$2\textcolor{#1d4ed8}{x}+1 = -\textcolor{#1d4ed8}{x}+4$</div>
+        </div>
+        <button class="typ-beispiele-btn" data-panel="karte-bsp-2">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="karte-bsp-2">
+          <ul class="typ-beispiele-list">
+            <li>$y = 3x - 2$, $\;y = -x + 6$</li>
+            <li>$x = 2y + 1$, $\;x = 5 - y$</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="typ-card" id="karte-3">
+        <div class="typ-card-main">
+          <div class="typ-card-nr">Addition</div>
+          <div class="typ-card-title">Beide in Standardform $a\textcolor{#1d4ed8}{x}+b\textcolor{#047857}{y}=c$</div>
+          <div class="typ-card-form" style="margin-top:0.625rem;font-size:0.9rem;">$2\textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} = 7$</div>
+          <div class="typ-card-form" style="font-size:0.9rem;">$3\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} = 3$</div>
+          <div style="color:var(--text-subtle);font-size:0.75rem;line-height:1;margin:0.1rem 0;text-align:center;">↓ addieren</div>
+          <div class="typ-card-form" style="font-size:0.9rem;">$5\textcolor{#1d4ed8}{x} = 10$</div>
+        </div>
+        <button class="typ-beispiele-btn" data-panel="karte-bsp-3">Beispiele <span class="arrow">▾</span></button>
+        <div class="typ-beispiele-panel" id="karte-bsp-3">
+          <ul class="typ-beispiele-list">
+            <li>$3x + 2y = 13$, $\;5x - 2y = 3$</li>
+            <li>$2x + 3y = 12$, $\;4x - y = 10$</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quiz -->
+  <section class="section" id="erkennungstest" hidden>
+    <h2>Teste dein Wissen</h2>
+    <p>Jedes System kann man mit jedem Verfahren lösen – aber welches ist am praktischsten? Wähle das <strong>am besten passende</strong> Verfahren.</p>
+
+    <div class="quiz-eq-box">
+      <div id="quiz-eq"></div>
+    </div>
+
+    <div class="quiz-antworten">
+      <button class="quiz-btn" data-typ="substitution">Substitution</button>
+      <button class="quiz-btn" data-typ="gleichsetzung">Gleichsetzung</button>
+      <button class="quiz-btn" data-typ="addition">Addition</button>
+    </div>
+
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <div class="quiz-score"    id="quiz-score"></div>
+
+    <div class="quiz-footer">
+      <span class="quiz-progress" id="quiz-progress"></span>
+      <button class="quiz-next-btn" id="quiz-next"></button>
+    </div>
+  </section>
+
+  <!-- Überleitung -->
+  <section class="section" id="loesungswege-intro" hidden>
+    <h2>Die drei Lösungswege</h2>
+    <p>Wir gehen die drei Verfahren nochmal der Reihe nach durch — jeweils mit einer kompakten Erklärung und einem Beispiel.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TYP-SEKTIONEN — je auf einen eigenen Klick
+  ══════════════════════════════════════════ -->
+
+  <!-- Substitution -->
+  <section class="typ-section" id="zus-substitution" hidden>
+    <div class="typ-header">
+      <span class="typ-name">Substitutionsverfahren</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">$\textcolor{#047857}{y} = \ldots\textcolor{#1d4ed8}{x}\ldots \;\;\longrightarrow\;\; \text{einsetzen}$</div>
+      <div class="formula-note">Eine Gleichung nach einer Variable auflösen, in die andere einsetzen.</div>
+    </div>
+
+    <p class="loesung-intro"><strong>Lösungsweg:</strong> Wenn eine Gleichung schon nach einer Variable aufgelöst ist, sofort einsetzen. Sonst zuerst auflösen – am einfachsten wenn der Koeffizient $\pm 1$ ist.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <div class="schritt-formel">$\begin{aligned} \textcolor{#047857}{y} &= 3\textcolor{#1d4ed8}{x} - 1 \\ 2\textcolor{#1d4ed8}{x} + \textcolor{#047857}{y} &= 9 \end{aligned}$</div>
+          <div class="schritt-op">Ausgangssystem</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$2\textcolor{#1d4ed8}{x} + (3\textcolor{#1d4ed8}{x} - 1) = 9$</div>
+          <div class="schritt-op">$y$ in 2. Gl. einsetzen</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$5\textcolor{#1d4ed8}{x} - 1 = 9$</div>
+          <div class="schritt-op">zusammenfassen</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$5\textcolor{#1d4ed8}{x} = 10 \;\Rightarrow\; \textcolor{#1d4ed8}{x = 2}$</div>
+          <div class="schritt-op">$+1$, $\div 5$</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$\textcolor{#047857}{y} = 3 \cdot 2 - 1 = \textcolor{#047857}{5}$</div>
+          <div class="schritt-op">$x$ in 1. Gl. einsetzen</div>
+        </div>
+        <div class="schritt lsg">
+          <div class="schritt-formel">$\mathbb{L} = \{(2 \mid 5)\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gleichsetzung -->
+  <section class="typ-section" id="zus-gleichsetzung" hidden>
+    <div class="typ-header">
+      <span class="typ-name">Gleichsetzungsverfahren</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">$\textcolor{#047857}{y} = A(\textcolor{#1d4ed8}{x}) \;\;\wedge\;\; \textcolor{#047857}{y} = B(\textcolor{#1d4ed8}{x}) \;\;\Longrightarrow\;\; A(\textcolor{#1d4ed8}{x}) = B(\textcolor{#1d4ed8}{x})$</div>
+      <div class="formula-note">Beide Gleichungen nach derselben Variable auflösen und gleichsetzen.</div>
+    </div>
+
+    <p class="loesung-intro"><strong>Lösungsweg:</strong> Beide Gleichungen so umformen, dass links dieselbe Variable steht ($y = \ldots$ oder $x = \ldots$). Rechte Seiten gleichsetzen – daraus ergibt sich die andere Variable.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <div class="schritt-formel">$\begin{aligned} \textcolor{#047857}{y} &= 3\textcolor{#1d4ed8}{x} - 2 \\ \textcolor{#047857}{y} &= -\textcolor{#1d4ed8}{x} + 6 \end{aligned}$</div>
+          <div class="schritt-op">Ausgangssystem</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$3\textcolor{#1d4ed8}{x} - 2 = -\textcolor{#1d4ed8}{x} + 6$</div>
+          <div class="schritt-op">rechte Seiten gleichsetzen</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$4\textcolor{#1d4ed8}{x} = 8$</div>
+          <div class="schritt-op">$+x$, $+2$</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$\textcolor{#1d4ed8}{x = 2}$</div>
+          <div class="schritt-op">$\div 4$</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$\textcolor{#047857}{y} = 3 \cdot 2 - 2 = \textcolor{#047857}{4}$</div>
+          <div class="schritt-op">$x$ in 1. Gl. einsetzen</div>
+        </div>
+        <div class="schritt lsg">
+          <div class="schritt-formel">$\mathbb{L} = \{(2 \mid 4)\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additionsverfahren -->
+  <section class="typ-section" id="zus-addition" hidden>
+    <div class="typ-header">
+      <span class="typ-name">Additionsverfahren</span>
+    </div>
+
+    <div class="formula-display">
+      <div class="formula-main">$\begin{aligned} a_1 \textcolor{#1d4ed8}{x} + b_1 \textcolor{#047857}{y} &= c_1 \\ a_2 \textcolor{#1d4ed8}{x} + b_2 \textcolor{#047857}{y} &= c_2 \end{aligned}$</div>
+      <div class="formula-note">Gleichungen geeignet multiplizieren, dann addieren – eine Variable fällt raus.</div>
+    </div>
+
+    <p class="loesung-intro"><strong>Lösungsweg:</strong> Eine (oder beide) Gleichungen so mit einer Zahl multiplizieren, dass die Koeffizienten einer Variable in beiden Gleichungen <em>entgegengesetzt gleich</em> sind. Beim Addieren fällt diese Variable dann weg.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <div class="schritt-formel">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + 3\textcolor{#047857}{y} &= 12 \\ 4\textcolor{#1d4ed8}{x} - \textcolor{#047857}{y} &= 10 \end{aligned}$</div>
+          <div class="schritt-op">Ausgangssystem</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$\begin{aligned} 2\textcolor{#1d4ed8}{x} + 3\textcolor{#047857}{y} &= 12 \\ 12\textcolor{#1d4ed8}{x} - 3\textcolor{#047857}{y} &= 30 \end{aligned}$</div>
+          <div class="schritt-op">2. Gl. $\cdot 3$</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$14\textcolor{#1d4ed8}{x} = 42$</div>
+          <div class="schritt-op">addieren, $y$ fällt weg</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$\textcolor{#1d4ed8}{x = 3}$</div>
+          <div class="schritt-op">$\div 14$</div>
+        </div>
+        <div class="schritt">
+          <div class="schritt-formel">$4 \cdot 3 - \textcolor{#047857}{y} = 10 \;\Rightarrow\; \textcolor{#047857}{y = 2}$</div>
+          <div class="schritt-op">$x$ in 2. Gl. einsetzen</div>
+        </div>
+        <div class="schritt lsg">
+          <div class="schritt-formel">$\mathbb{L} = \{(3 \mid 2)\}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GRUNDBAUSTEINE DAZU ══ -->
+
+  <section class="section" id="sec-bausteine" hidden>
+    <h2>Grundbausteine dazu</h2>
+    <div class="gb-grid">
+
+      <a href="../grundbausteine/herausheben.html" class="gb-card">
+        <div class="gb-card-meta">
+          <svg class="gb-card-icon" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+            <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+            <rect x="1" y="11" width="58" height="30" rx="5"/>
+          </svg>
+          <span class="gb-card-ab" title="Unterstufe">U</span>
+        </div>
+        <div class="gb-card-title">Herausheben / Ausmultiplizieren</div>
+        <div class="gb-card-desc">Gemeinsamen Faktor vor die Klammer — und umgekehrt ausmultiplizieren</div>
+      </a>
+
+    </div>
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  // ── Sequenzielle Reveal-Navigation ──
+  const revealSequence = [
+    's1-2', 's1-3', 's1-ablage',
+    'seq-2', 's2-ablage',
+    'seq-3', 's3-2', 's3-ablage',
+    'zus-uebersicht',
+    'erkennungstest',
+    'loesungswege-intro',
+    'zus-substitution',
+    'zus-gleichsetzung',
+    'zus-addition',
+    'sec-bausteine'
+  ];
+
+  const weiterBtn        = document.getElementById('weiter-btn');
+  const navContainer     = weiterBtn.closest('.entd-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext   = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  // ── Mode-Toggle ──
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.dataset.mode;
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (mode === 'all') {
+        revealSequence.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.removeAttribute('hidden');
+            renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+          }
+        });
+        navContainer.setAttribute('hidden', '');
+      } else {
+        revealSequence.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute('hidden', '');
+        });
+        navInitialParent.insertBefore(navContainer, navInitialNext);
+        navContainer.removeAttribute('hidden');
+        revealIdx = 0;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Scroll-Helper
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const NAV_HEIGHT = 54;
+      const pad = 12;
+      const topRect    = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > NAV_HEIGHT;
+      let delta;
+      if (topAlreadyVisible) {
+        delta = desiredDelta;
+      } else {
+        const maxDelta = topRect.top - NAV_HEIGHT - pad;
+        delta = Math.min(desiredDelta, Math.max(maxDelta, 0));
+      }
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const id = revealSequence[revealIdx];
+    const el = document.getElementById(id);
+    el.removeAttribute('hidden');
+    el.classList.add('reveal-ein');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+
+    const container = el.closest('.entd-seq') || el;
+    container.insertAdjacentElement('afterend', navContainer);
+
+    revealIdx++;
+
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  // ── Quiz ──
+  (function () {
+    const fragen = [
+      { eq: "\\begin{aligned} y &= 3x - 1 \\\\ 2x + y &= 9 \\end{aligned}",
+        typ: "substitution",
+        hint: "Erste Gleichung ist schon nach $y$ aufgelöst – direkt einsetzen." },
+      { eq: "\\begin{aligned} y &= 2x + 3 \\\\ y &= -x + 9 \\end{aligned}",
+        typ: "gleichsetzung",
+        hint: "Beide sind nach $y$ aufgelöst – rechte Seiten gleichsetzen." },
+      { eq: "\\begin{aligned} 2x + 3y &= 12 \\\\ 4x - 3y &= 6 \\end{aligned}",
+        typ: "addition",
+        hint: "Koeffizienten von $y$ sind $+3$ und $-3$ – beim Addieren fällt $y$ weg." },
+      { eq: "\\begin{aligned} x + 2y &= 7 \\\\ 3x - y &= 7 \\end{aligned}",
+        typ: "substitution",
+        hint: "Erste nach $x$ auflösen (Koeffizient ist $1$), dann einsetzen." },
+      { eq: "\\begin{aligned} x &= 2y - 1 \\\\ x &= 5 - y \\end{aligned}",
+        typ: "gleichsetzung",
+        hint: "Beide nach $x$ aufgelöst – gleichsetzen." },
+      { eq: "\\begin{aligned} 3x + 2y &= 8 \\\\ 5x + 4y &= 14 \\end{aligned}",
+        typ: "addition",
+        hint: "1. Gl. mit $-2$ multiplizieren: $-6x - 4y = -16$. Beim Addieren fällt $y$ weg." },
+      { eq: "\\begin{aligned} y &= 4x + 2 \\\\ 3x - 2y &= 5 \\end{aligned}",
+        typ: "substitution",
+        hint: "Erste Gleichung ist nach $y$ aufgelöst – direkt einsetzen." },
+      { eq: "\\begin{aligned} 4x + y &= 11 \\\\ 4x - y &= 5 \\end{aligned}",
+        typ: "addition",
+        hint: "Koeffizienten von $y$ sind $+1$ und $-1$ – beim Addieren fällt $y$ weg." }
+    ];
+
+    const ANZAHL = 6;
+    const eqEl       = document.getElementById('quiz-eq');
+    const feedbackEl = document.getElementById('quiz-feedback');
+    const scoreEl    = document.getElementById('quiz-score');
+    const nextBtn    = document.getElementById('quiz-next');
+    const progressEl = document.getElementById('quiz-progress');
+    const btns       = document.querySelectorAll('.quiz-btn');
+
+    let auswahl = [], idx = 0, score = 0;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function starten() {
+      auswahl = shuffle(fragen).slice(0, ANZAHL);
+      idx = 0; score = 0;
+      scoreEl.style.display = 'none';
+      nextBtn.textContent = 'Nächste →';
+      zeigeFrage();
+    }
+
+    function zeigeFrage() {
+      eqEl.innerHTML = katex.renderToString(auswahl[idx].eq, { throwOnError: false, displayMode: true });
+      btns.forEach(b => { b.disabled = false; b.className = 'quiz-btn'; });
+      feedbackEl.className = 'quiz-feedback';
+      nextBtn.style.display = 'none';
+      progressEl.textContent = `${idx + 1} / ${ANZAHL}`;
+    }
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = auswahl[idx];
+        const richtig = btn.dataset.typ === f.typ;
+        if (richtig) score++;
+
+        btns.forEach(b => {
+          b.disabled = true;
+          if (b.dataset.typ === f.typ)               b.classList.add('richtig');
+          else if (b.dataset.typ === btn.dataset.typ) b.classList.add('falsch');
+        });
+
+        feedbackEl.innerHTML = (richtig ? '✓ ' : '✗ ') + f.hint;
+        feedbackEl.className = 'quiz-feedback ' + (richtig ? 'richtig' : 'falsch');
+        renderMathInElement(feedbackEl, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false,
+        });
+
+        if (idx === ANZAHL - 1) {
+          scoreEl.textContent = `Ergebnis: ${score} von ${ANZAHL} richtig.`;
+          scoreEl.style.display = 'block';
+          nextBtn.textContent = 'Neu starten';
+        }
+        nextBtn.style.display = 'inline-flex';
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (idx === ANZAHL - 1) { starten(); return; }
+      idx++;
+      zeigeFrage();
+    });
+
+    starten();
+  })();
+
+  document.querySelectorAll('.typ-beispiele-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.dataset.panel);
+      if (panel) {
+        panel.classList.toggle('visible');
+        btn.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

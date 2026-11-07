@@ -14,9 +14,14 @@
 
   --primary:        #1e40af;
   --primary-light:  #dbeafe;
+  --primary-dark:   #1e3a8a;
 
   --baustein:       #0e7490;
   --baustein-light: #cffafe;
+
+  /* Lösungswege / Werkzeuge – nicht die Term-Farben */
+  --werkzeug:       #5b21b6;
+  --werkzeug-light: #f5f3ff;
 
   /* Mathematische Glieder – Farbe = Rolle, nicht Buchstabe */
   --quad:           #1d4ed8;
@@ -32,6 +37,21 @@
   --ok-light:       #dcfce7;
   --warn:           #d97706;
   --warn-light:     #fef3c7;
+  --error:          #dc2626;
+  --error-light:    #fef2f2;
+  --error-border:   #fca5a5;
+  --error-text:     #991b1b;
+
+  /* Abstände (Themen-Layout) */
+  --gap-xs:  0.5rem;
+  --gap-sm:  0.75rem;
+  --gap-md:  1.25rem;
+  --inset:   1.25rem;
+
+  /* Section-Stack (Baustein/Thema). Außenrand = Section; innen ein Gap. */
+  --section-pad: 2rem;
+  --stack-gap: var(--gap-md);
+  --box-pad: 1rem;
 
   --r-sm: 4px;
   --r-md: 8px;
@@ -42,10 +62,21 @@
 
   --t-fast: 0.15s ease;
   --t-anim: 0.35s ease;
+
+  /* Schriftleiter. Entscheidend = gerenderte Größe am Bildschirm, nicht die Rem-Zahl.
+     KaTeX zeichnet Zeichen × --katex-scale. Zum Probieren nur diese vier Werte ändern. */
+  --text-size: 1rem;            /* Sätze, 16px */
+  --formel-size: 1.15rem;       /* Formelzeile; Zeichen ≈ 22px */
+  --katex-scale: 1.21;
+  --formel-sichtbar: calc(var(--formel-size) * var(--katex-scale));
+  --heading-size: 1.5rem;       /* Abschnittsüberschrift, 24px */
 }
 
 /* ----- Reset ----- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Attribut hidden muss immer verbergen: die UA-Regel [hidden]{display:none}
+   verliert sonst gegen jedes author-display (z. B. .thema-layout .section { display: flex }). */
+[hidden] { display: none !important; }
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -53,6 +84,7 @@ body {
   color: var(--text);
   line-height: 1.65;
   min-height: 100vh;
+  font-size: var(--text-size);
 }
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -185,12 +217,12 @@ a:hover { text-decoration: underline; }
 .section {
   background: var(--surface);
   border-radius: var(--r-lg);
-  padding: 2rem;
+  padding: var(--section-pad);
   margin-bottom: 1.5rem;
   box-shadow: var(--shadow-sm);
 }
 .section h2 {
-  font-size: 1.3rem;
+  font-size: var(--heading-size);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
@@ -205,6 +237,8 @@ a:hover { text-decoration: underline; }
   margin-bottom: 1rem;
 }
 .section p:last-child { margin-bottom: 0; }
+/* Section, die nur eine Überschrift trägt: unten nur --section-pad */
+.section h2:last-child { margin-bottom: 0; }
 
 /* ----- Formula Display ----- */
 .formula-display {
@@ -215,7 +249,27 @@ a:hover { text-decoration: underline; }
   margin: 1.25rem 0;
   border: 1px solid var(--border);
 }
-.formula-main { font-size: 1.35rem; margin-bottom: 1rem; }
+.formula-main { font-size: var(--formel-size); margin-bottom: 1rem; }
+/* Bedingung (a ≥ 0, b ≠ 0 …): eigenes Element neben der Formel, klein und grau
+   wie .schritt-op (außerhalb der Schriftleiter). Gleiche Rolle → gleiche Darstellung in
+   Allgemein (.formula-main.mit-bedingung), Quiz-Kasten (.quiz-aufgabe.mit-bedingung)
+   und Grundidee-Zeile (.bedingung, im Satz). Schmal: unter der Formel (Media-Query unten). */
+.mit-bedingung {
+  position: relative;
+  align-self: stretch;
+}
+.formula-bedingung {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.formula-bedingung,
+.bedingung {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 .formula-labels {
   display: flex;
   justify-content: center;
@@ -316,20 +370,6 @@ a:hover { text-decoration: underline; }
   background: var(--surface-alt);
   border-top: 1px solid var(--border);
 }
-.btn {
-  padding: 0.375rem 0.875rem;
-  font-size: 0.82rem;
-  font-weight: 500;
-  border-radius: var(--r-sm);
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-  transition: all var(--t-fast);
-  font-family: inherit;
-}
-.btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
-.btn:disabled { opacity: 0.35; cursor: default; }
 .anim-indicator {
   font-size: 0.78rem;
   color: var(--text-muted);
@@ -474,7 +514,7 @@ a:hover { text-decoration: underline; }
 .schritt {
   padding: 0.75rem 1.25rem;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   position: relative;
 }
 .entd-op,
@@ -483,12 +523,31 @@ a:hover { text-decoration: underline; }
   right: 0.9rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   white-space: nowrap;
 }
 .entd-op { color: var(--text); }
 .entd-op.hint,
 .schritt-op { color: var(--text-muted); }
+/* |… Umformungen: schwarz – Schüler schreiben sie ins Heft */
+.schritt-op.heft,
+.thema-layout .schritt-op.heft { color: var(--text); }
+
+/* Optionale Nebenform rechts — absolut, ohne die Hauptformel zu verschieben */
+.schritt-op.schritt-op-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+  white-space: normal;
+  text-align: right;
+  max-width: 13rem;
+  font-size: 1.15rem;
+}
+.schritt-op.schritt-op-opt .katex {
+  color: var(--text-muted);
+  font-size: 1em;
+}
 
 /* ----- Zeilen-Container (Entdeckung + Lösungsschritte) ----- */
 .zeilen,
@@ -506,15 +565,30 @@ a:hover { text-decoration: underline; }
   margin: 0;
   border-bottom: 1px solid var(--border);
 }
+.schritte .schritt:nth-child(even) {
+  background: var(--surface-alt);
+}
 .zeilen .entd-eq:last-child,
 .zeilen .entd-zeile:last-child,
 .schritte .schritt:last-child { border-bottom: none; }
 
+/* Formel-Umbruch: app.js teilt jede Inline-Formel in Glieder; umgebrochen wird nur
+   zwischen Gliedern, also nach =, ⇔, → … außerhalb von Klammern, nie mitten im Term. */
+.katex-glied { white-space: nowrap; }
+
+/* Kleinere Schrift nur in Brüchen — überall gleich, auch in Wurzeln */
+.thema-layout .katex .mfrac,
+.schritte .schritt .katex .mfrac,
+.zeilen .entd-eq .katex .mfrac,
+.zeilen .entd-zeile .katex .mfrac {
+  font-size: 0.9em;
+}
+
 /* ----- Lösungsweg ----- */
 .loesungsweg { margin: 1.25rem 0; }
 .loesungsweg-title {
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: inherit; /* wie Fließtext / Absätze – keine Extra-Größe */
+  font-weight: 400;
   color: var(--text);
   margin-bottom: 0.625rem;
 }
@@ -527,10 +601,9 @@ a:hover { text-decoration: underline; }
   gap: 0.5rem;
   align-items: center;
   margin: 0.75rem 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
-.formelheft-icon { flex-shrink: 0; }
 
 /* ----- Info Box ----- */
 .info-box {
@@ -668,22 +741,8 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow-md);
   text-decoration: none;
 }
-.thema-card.bald { opacity: 0.45; cursor: default; pointer-events: none; }
 .thema-card-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
 .thema-card-meta { font-size: 0.73rem; color: var(--text-muted); }
-.badge-neu {
-  display: inline-block;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background: var(--primary-light);
-  color: var(--primary);
-  padding: 1px 5px;
-  border-radius: 3px;
-  margin-left: 0.375rem;
-  vertical-align: middle;
-}
 
 /* ----- Grundbausteine Overview ----- */
 .gb-grid {
@@ -692,6 +751,8 @@ a:hover { text-decoration: underline; }
   gap: 1rem;
   margin-top: 1.5rem;
 }
+/* In einer Section (Themen: „Grundbausteine dazu“) kommt der Abstand vom Stack, nicht vom Grid */
+.section .gb-grid { margin-top: 0; }
 .gb-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -705,9 +766,21 @@ a:hover { text-decoration: underline; }
 }
 .gb-card:hover { border-color: var(--baustein); box-shadow: var(--shadow-md); text-decoration: none; }
 .gb-card.verstanden { border-color: var(--ok); }
-.gb-card-icon { width: 36px; height: 28px; color: var(--baustein); margin-bottom: 0.75rem; }
+.gb-card-icon { width: 36px; height: 28px; color: var(--baustein); }
 .gb-card.verstanden .gb-card-icon { color: var(--ok); }
+.gb-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
 .gb-card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+.gb-card-ab {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1;
+}
 .gb-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 .gb-card-status {
   margin-top: 0.875rem;
@@ -718,6 +791,390 @@ a:hover { text-decoration: underline; }
   color: var(--ghost);
 }
 .gb-card.verstanden .gb-card-status { color: var(--ok); }
+
+/* Brüche: Kürzen ↔ Erweitern Visual */
+.bruch-dual {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.25rem;
+  row-gap: 0.45rem;
+  margin: 0.5rem 0 0.25rem;
+}
+.bruch-dual-pie {
+  display: flex;
+  justify-content: center;
+}
+.bruch-dual-pie .bruch-torte {
+  width: 120px;
+  height: 120px;
+}
+.bruch-dual-label {
+  font-size: 0.95rem;
+  text-align: center;
+  min-height: 1.4em;
+}
+.bruch-dual-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px; /* Pfeile — nicht an Tortgröße koppeln */
+}
+.bruch-dual-arcs {
+  display: block;
+  width: 150px;
+  height: 120px;
+  overflow: visible;
+}
+@media (max-width: 520px) {
+  .bruch-dual {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    column-gap: 1rem;
+  }
+  .bruch-dual-mid {
+    grid-column: 1 / -1;
+    height: auto;
+    order: 3;
+  }
+  .bruch-dual-arcs {
+    width: min(16rem, 100%);
+    height: auto;
+    aspect-ratio: 150 / 120;
+  }
+  .bruch-dual-pie:nth-child(1) { order: 1; }
+  .bruch-dual-pie:nth-child(3) { order: 2; }
+  .bruch-dual-label:nth-child(4) { order: 4; }
+  .bruch-dual-label:nth-child(6) { order: 5; }
+  .bruch-dual-spacer { display: none; }
+}
+.grundidee {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.grundidee-box {
+  border: 2.25px solid var(--baustein);
+  border-radius: var(--r-md);
+  padding: 0.75rem 1rem;
+  margin: 0 0 1.25rem;
+  background: var(--surface);
+  font-size: var(--text-size);
+}
+.grundidee-box .grundidee {
+  margin: 0;
+}
+.grundidee li {
+  margin: 0;
+}
+/* Formel → Merksatz: Pfeile in einer Spalte, Luft hinter der Formel */
+.grundidee.grundidee-pfeile {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 0.65rem;
+  row-gap: 0.45rem;
+  align-items: center;
+}
+.grundidee.grundidee-pfeile li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+}
+.grundidee.grundidee-pfeile li > :first-child {
+  padding-right: 1.15rem;
+}
+/* Zeilen in einem Kästchen gleich hoch: die Höhe setzt JS pro Box (höchste Zeile darin), nicht ein globales Minimum */
+.grundidee.grundidee-pfeile.grundidee-zeilen {
+  row-gap: 0.55rem;
+}
+/* Binome: Quadrat = zwei Klammern = Summe, Spalten über die Zeilen hinweg */
+.grundidee.grundidee-formel {
+  font-size: var(--formel-size);
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  column-gap: 0.5rem;
+  row-gap: 0.4rem;
+  align-items: center;
+  justify-content: start;
+}
+.grundidee.grundidee-formel li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+}
+.grundidee-nr {
+  font-weight: 700;
+  text-align: right;
+  padding-right: 0.2rem;
+}
+.grundidee-eq {
+  text-align: center;
+}
+.grundidee-formel > li > span {
+  white-space: nowrap;
+}
+.idee-viz {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem 1rem;
+  margin: 0 0 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.idee-viz > p {
+  margin: 0;
+  font-size: var(--text-size);
+}
+.bruch-add-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+}
+.bruch-add-piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+.bruch-add-pie .bruch-torte {
+  width: 72px;
+  height: 72px;
+}
+.bruch-add-lab {
+  font-size: 0.95rem;
+  min-height: 1.4em;
+  text-align: center;
+}
+.bruch-add-op {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px; /* = Torte → Op mittig zur Torte, nicht zum Label */
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0 0.15rem;
+}
+.bruch-add-cap {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.2;
+  margin-top: -0.15rem;
+}
+
+/* Doppelbruch: strukturelle Viz außen/innen (keine Torten) */
+.doppel-viz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  margin: 0.35rem 0 0.15rem;
+}
+.doppel-viz-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.12rem;
+  min-width: 5.5rem;
+  padding-left: 7.5rem;
+}
+.doppel-viz-row {
+  display: grid;
+  grid-template-columns: 3.2rem 1.5rem;
+  align-items: center;
+  gap: 0.35rem;
+}
+.doppel-viz-lab {
+  font-size: 0.88rem;
+  color: var(--baustein);
+  font-weight: 700;
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+.doppel-viz-sym {
+  text-align: center;
+  font-size: 1.05rem;
+}
+.doppel-viz-thin {
+  display: block;
+  height: 1.5px;
+  width: 1.35rem;
+  background: var(--text);
+  margin: 0.05rem 0 0.05rem 3.6rem;
+}
+.doppel-viz-haupt {
+  position: relative;
+  margin: 0.2rem 0;
+  min-height: 1.5px;
+}
+.doppel-viz-thick {
+  display: block;
+  height: 1.5px;
+  width: 2.4rem;
+  background: var(--text);
+  margin: 0 0 0 3.1rem;
+}
+.doppel-viz-lab--haupt {
+  position: absolute;
+  left: -7.5rem;
+  width: 6.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: right;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  white-space: nowrap;
+  padding-right: 0.55rem;
+}
+.doppel-viz-eq {
+  font-size: 1.15rem;
+}
+
+.bruch-allg-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+.bruch-allg-box.formel-liste {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 0.65rem;
+  row-gap: 0.55rem;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  overflow-x: auto;
+  font-size: var(--formel-size);
+}
+.formel-liste > span:nth-child(even) {
+  white-space: nowrap;
+}
+.bruch-allg-arc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bruch-allg-svg {
+  display: block;
+  width: 7.5rem;
+  height: auto;
+}
+.bruch-allg-dir {
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.bruch-allg-dir--kur,
+.bruch-allg-dir--ext {
+  color: var(--baustein);
+}
+.bruch-allg .formula-display {
+  margin: 0.5rem 0;
+}
+
+/* Herausheben / Ausmultiplizieren: Faktor farbig */
+.farb-viz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem 1.25rem;
+}
+.farb-viz-line {
+  font-size: var(--formel-sichtbar);
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.farb-f {
+  display: inline-block;
+  color: var(--baustein);
+  font-weight: 700;
+  background: var(--baustein-light);
+  border-radius: 4px;
+  padding: 0.05rem 0.28rem;
+  line-height: 1.3;
+}
+.farb-a,
+.farb-b {
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.05rem 0.28rem;
+  line-height: 1.3;
+}
+.farb-a {
+  color: var(--baustein);
+  background: var(--baustein-light);
+}
+.farb-b {
+  color: #be185d;
+  background: #fce7f3;
+}
+.farb-legende {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.farb-viz-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.farb-viz-arcs {
+  display: block;
+  width: 180px;
+  height: 120px;
+  overflow: visible;
+}
+
+/* Zwei Klammern: graue Bögen jeder×jeder */
+.klammern-viz {
+  position: relative;
+  display: inline-block;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  min-width: 9rem;
+}
+.klammern-arcs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.klammern-term {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+.klammern-term .kl-end {
+  display: inline-block;
+}
 
 /* ----- Mark-as-Understood Button ----- */
 .mark-btn {
@@ -743,7 +1200,555 @@ a:hover { text-decoration: underline; }
   color: #15803d;
 }
 
+/* ================================================
+   Themen-Layout (Proto → Standard für alle Themen)
+   body.thema-layout auf Themenseiten setzen
+   ================================================ */
+
+.thema-layout .section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--stack-gap);
+}
+.thema-layout .section h2 {
+  line-height: 1.25;
+  margin: 0;
+}
+.thema-layout .section p {
+  margin: 0;
+}
+.thema-layout .section p + .muster-grid { margin-top: 0; }
+
+/* Inhaltsboxen: gleiches Innenpolster, kein Extra-Margin (Stack-Gap reicht) */
+.thema-layout .grundidee-box,
+.thema-layout .idee-viz,
+.thema-layout .formula-display,
+.thema-layout .formel-box {
+  margin: 0;
+  padding: var(--box-pad);
+}
+.thema-layout .loesungsweg,
+.thema-layout .schritte,
+.thema-layout .section > .formel-box,
+.thema-layout .section > .muster-grid {
+  margin: 0;
+}
+
+/* Kästchen */
+.thema-layout .card,
+.thema-layout .formel-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.thema-layout .card {
+  padding: var(--inset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+.thema-layout .formel-box {
+  padding: var(--box-pad);
+  text-align: center;
+  font-size: var(--math-size);
+  position: relative;
+}
+.thema-layout .quiz-formel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+  min-height: calc(var(--inset) * 2 + 2.35rem);
+}
+.thema-layout .quiz-formel #quiz1-eq,
+.thema-layout .quiz-formel #quiz2-eq {
+  width: 100%;
+  min-height: 2.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thema-layout .quiz-muster-link {
+  margin-top: 0;
+  /* Platz für 2 Zeilen (Muster + → Werkzeug), damit die Box nicht springt */
+  min-height: calc(0.95rem * 1.35 * 2 + 0.15rem);
+  visibility: hidden;
+}
+.thema-layout .quiz-muster-link.is-shown {
+  visibility: visible;
+}
+.thema-layout .section > .formel-box,
+.thema-layout .section > .muster-grid {
+  margin: 0;
+}
+.thema-layout .section p + .formel-box,
+.thema-layout .section p + .muster-grid { margin-top: 0; }
+.thema-layout .formel-box .formelheft-hinweis {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  gap: 0.4rem;
+}
+.thema-layout .formel-line {
+  font-size: var(--math-size);
+  text-align: center;
+}
+
+/*
+ * Term-Abstände (Referenz: Muster „alles da“)
+ * whitespace vor dem Zeichen : danach ≈ 69% : 31%
+ */
+.thema-layout {
+  --math-size: var(--formel-size);
+  --eq-term-gap: 0.45rem;
+  --eq-sign-before-frac: 0.69;
+  /* Hero-Formel etwas luftiger, gleiches Vorzeichen-Verhältnis;
+     Gap so gewählt, dass die Rollen-Chips unter den Termen nicht überlappen */
+  --glieder-term-gap: 1.75rem;
+}
+/* Gleichung mit expliziten Lücken (ist da / fehlt) */
+.thema-layout .eq-slots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--eq-term-gap);
+  font-size: var(--math-size);
+  line-height: 1;
+}
+.thema-layout .slot-fehlt {
+  width: 3.75rem;
+  height: 2.35rem;
+  border: 1.5px dashed var(--ghost);
+  background: var(--surface-alt);
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+.thema-layout .slot-fehlt-klein {
+  width: 1.4rem;
+  height: 1.65rem;
+}
+.thema-layout .slot-quad-gruppe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+/* Muster-Grid */
+.thema-layout .muster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-md);
+  margin: 0;
+}
+.thema-layout .muster-grid .card {
+  margin: 0;
+  justify-content: center;
+}
+.thema-layout .flip-inner {
+  display: grid;
+  transition: transform 0.45s ease;
+  transform-style: preserve-3d;
+}
+.thema-layout .muster-tag {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+}
+.thema-layout .muster-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+.thema-layout .loesungsweg-tag {
+  font-size: 0.95rem;
+  color: var(--werkzeug);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Muster-Deck (Flip-Karten) */
+.thema-layout .muster-deck .flip-card { perspective: 800px; }
+.thema-layout .flip-card.revealed .flip-inner { transform: rotateY(180deg); }
+.thema-layout .flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  width: 100%;
+}
+.thema-layout .flip-front { transform: rotateY(180deg); }
+.thema-layout .flip-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5.5rem;
+  border: 2px dashed var(--ghost);
+}
+.thema-layout .flip-nr {
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-subtle);
+  user-select: none;
+}
+.thema-layout .flip-card.next { cursor: pointer; }
+.thema-layout .flip-card:not(.revealed) .flip-back {
+  opacity: 0.42;
+}
+.thema-layout .flip-card.next:hover .flip-back {
+  opacity: 0.62;
+  border-color: var(--border);
+}
+/* Lösungsweg-Header — nebeneinander wie „4 Muster → 4 Lösungswege“ */
+.thema-layout .werkzeug-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: var(--gap-md);
+  font-size: var(--heading-size);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.thema-layout .werkzeug-wenn {
+  color: var(--text);
+}
+.thema-layout .werkzeug-name {
+  color: var(--werkzeug);
+}
+
+/* Quiz */
+.thema-layout .quiz-antworten {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+}
+.thema-layout .quiz-btn {
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--t-fast);
+}
+.thema-layout .quiz-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.thema-layout .quiz-btn:disabled { cursor: default; opacity: 1; }
+.thema-layout .quiz-btn.richtig {
+  background: var(--ok-light);
+  border-color: var(--ok);
+  color: #15803d;
+}
+.thema-layout .quiz-btn.falsch {
+  background: var(--error-light);
+  border-color: var(--error-border);
+  color: var(--error);
+}
+.thema-layout .quiz-feedback {
+  border-radius: var(--r-md);
+  padding: 0.6rem 0.9rem;
+  font-size: var(--text-size);
+  line-height: 1.5;
+  display: none;
+}
+.thema-layout .quiz-feedback.richtig {
+  background: var(--ok-light);
+  border: 1px solid #86efac;
+  color: #15803d;
+  display: block;
+}
+.thema-layout .quiz-feedback.falsch {
+  background: var(--error-light);
+  border: 1px solid var(--error-border);
+  color: var(--error-text);
+  display: block;
+}
+.thema-layout .quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-sm);
+}
+.thema-layout .quiz-progress { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+.thema-layout .quiz-streak { font-size: 0.8rem; color: var(--text-muted); }
+.thema-layout .quiz-next-btn {
+  display: none;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-family: inherit;
+}
+.thema-layout .quiz-next-btn:hover { background: var(--primary-dark); }
+.thema-layout .quiz-endscore {
+  display: none;
+  text-align: center;
+  padding: var(--gap-sm);
+  font-weight: 600;
+}
+/* Baustein-Quiz (js/quiz.js): Antwort als Formel auf der Formel-Größe;
+   gewählte Antwort bei Multiple Choice (gefüllt, damit sie sich vom Hover abhebt);
+   nach der Antwort (alle Formate, auch Quad): richtig, aber nicht gewählt →
+   grün umrandet, nicht gefüllt */
+.thema-layout .quiz-btn.quiz-btn-formel { font-size: var(--formel-size); }
+.thema-layout .quiz-btn.gewaehlt,
+.thema-layout .quiz-btn.gewaehlt:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+.thema-layout .quiz-btn.verpasst {
+  background: var(--surface);
+  border-color: var(--ok);
+  color: #15803d;
+}
+
+/* Schritt-für-Schritt / Weiter */
+.thema-layout .mode-toggle {
+  display: inline-flex;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 3px;
+  margin: 0.5rem 0 1.5rem;
+}
+.thema-layout .mode-btn {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.thema-layout .mode-btn.active {
+  background: var(--surface);
+  color: var(--primary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.thema-layout .mode-btn:not(.active):hover { color: var(--text); }
+.thema-layout .weiter-nav { display: flex; justify-content: center; margin: 1.5rem 0; }
+.thema-layout .weiter-nav[hidden] { display: none; }
+.thema-layout .weiter-btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  padding: 0.7rem 1.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--t-fast);
+}
+.thema-layout .weiter-btn-main:hover { background: var(--primary-dark); }
+
+/* Vertiefung (optional, nach Kern-Pfad) */
+.thema-layout .vertiefung-teaser {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 1rem;
+}
+.thema-layout .vertiefung-teaser[hidden] { display: none; }
+.thema-layout .vertiefung-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.thema-layout .vertiefung-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-alt);
+}
+.thema-layout .vertiefung-toggle .arrow {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+.thema-layout .vertiefung-section {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border);
+}
+.thema-layout .muster-bridge {
+  overflow-x: auto;
+  margin: 1.25rem 0 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.thema-layout .muster-bridge table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.thema-layout .muster-bridge th,
+.thema-layout .muster-bridge td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.thema-layout .muster-bridge tr:last-child td { border-bottom: none; }
+.thema-layout .muster-bridge th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  background: var(--surface-alt);
+}
+.thema-layout .muster-bridge td.methode {
+  color: var(--werkzeug);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.thema-layout .typ-card-form-allg {
+  margin-top: 0.625rem;
+  margin-bottom: 0;
+}
+.thema-layout .typ-card-arrow {
+  color: var(--text-subtle);
+  font-size: 0.75rem;
+  line-height: 1;
+  margin: 0.1rem 0;
+  padding-left: 3rem;
+}
+.thema-layout .typ-card-main .term-badges {
+  margin-top: 0.75rem;
+}
+
+.thema-layout .schritte {
+  margin: 0;
+}
+.thema-layout .schritte .schritt {
+  font-size: var(--math-size);
+}
+.thema-layout .loesungsweg {
+  margin: 0;
+}
+.thema-layout .schritt-op strong {
+  color: inherit;
+  font-weight: 700;
+}
+/*
+ * Glieder-Grid: Terme + Vorzeichen, Chips exakt unter den Termen.
+ * Chip-Zellen width:0 → Formelabstand bleibt, Chips zentrieren darunter.
+ */
+.thema-layout .glieder-grid {
+  display: grid;
+  grid-template-columns: repeat(6, max-content);
+  column-gap: 0;
+  row-gap: 0.5rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  font-size: var(--math-size);
+  line-height: 1.5;
+}
+.thema-layout .glied-sign {
+  padding-left: calc(var(--glieder-term-gap) * var(--eq-sign-before-frac));
+  padding-right: calc(
+    var(--glieder-term-gap) * (1 - var(--eq-sign-before-frac))
+  );
+}
+.thema-layout .glied-eq {
+  padding-left: 0.3em;
+}
+.thema-layout .glied-chip {
+  width: 0;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+}
+.thema-layout .glied-chip .rolle {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.thema-layout .glied-chip-spacer {
+  width: 0;
+}
+/* Rechenzeichen leicht näher am folgenden Term (KaTeX-Binary) */
+.thema-layout .katex .mbin {
+  margin-left: 0.28em;
+  margin-right: 0.12em;
+}
+.thema-layout .rolle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.thema-layout .rolle .dot { width: 10px; height: 10px; border-radius: 50%; }
+.thema-layout .rolle.quad { background: var(--quad-light); color: var(--quad); }
+.thema-layout .rolle.quad .dot { background: var(--quad); }
+.thema-layout .rolle.lin  { background: var(--lin-light);  color: var(--lin);  }
+.thema-layout .rolle.lin  .dot { background: var(--lin);  }
+.thema-layout .rolle.abs  { background: var(--abs-light);  color: var(--abs);  }
+.thema-layout .rolle.abs  .dot { background: var(--abs);  }
+
 /* ----- Responsive ----- */
+/* Binome-Grundidee schmal: drei Zeilen je Formel (Term / = Klammern / = Ergebnis),
+   Ergebnis-Spalten bleiben über I/II/III bündig; III ohne linke Seite beginnt mit dem Produkt */
+@media (max-width: 600px) {
+  .grundidee.grundidee-formel {
+    grid-template-columns: repeat(5, auto);
+    column-gap: 0.35rem;
+    row-gap: 0.75rem;
+  }
+  .grundidee.grundidee-formel li { row-gap: 0.3rem; }
+  .grundidee-formel > li > :nth-child(1) { grid-area: 1 / 1; }
+  .grundidee-formel > li > :nth-child(2) { grid-area: 1 / 2 / 2 / -1; }
+  .grundidee-formel > li > :nth-child(3) { grid-area: 2 / 2; }
+  .grundidee-formel > li > :nth-child(4) { grid-area: 2 / 3 / 3 / -1; }
+  .grundidee-formel > li > :nth-child(5) { grid-area: 3 / 2; }
+  .grundidee-formel > li > :nth-child(6) { grid-area: 3 / 3; }
+  .grundidee-formel > li > :nth-child(7) { grid-area: 3 / 4; }
+  .grundidee-formel > li > :nth-child(8) { grid-area: 3 / 5; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(2),
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(3) { display: none; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(4) { grid-area: 1 / 2 / 2 / -1; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(5) { grid-area: 2 / 2; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(6) { grid-area: 2 / 3; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(7) { grid-area: 2 / 4; }
+  .grundidee-formel > li:has(> :nth-child(2):empty) > :nth-child(8) { grid-area: 2 / 5; }
+}
 @media (max-width: 640px) {
   .page-wrapper { padding: 1rem 1rem 4rem; }
   .section, .typ-section { padding: 1.25rem; }
@@ -755,4 +1760,23 @@ a:hover { text-decoration: underline; }
   .formula-display { padding: 1rem; }
   .entd-op, .schritt-op { display: none; }
   .hero h1 { font-size: 1.7rem; }
+  .thema-layout .muster-grid,
+  .thema-layout .quiz-antworten { grid-template-columns: 1fr; }
+  .breadcrumb { flex-wrap: wrap; }
+  /* langer Seitentitel bei 320 px: umbrechen statt überlaufen (Trennstelle &shy; im Titel) */
+  .thema-header h1 { overflow-wrap: break-word; }
+}
+@media (max-width: 520px) {
+  /* Bedingung unter der Formel statt daneben */
+  .formula-bedingung {
+    position: static;
+    transform: none;
+    display: block;
+  }
+  /* Allgemein-Liste (Binome): an = umbrechen statt im Kasten zu scrollen */
+  .formel-liste > span:nth-child(even) { white-space: normal; }
+}
+@media (max-width: 360px) {
+  .site-nav { gap: 0.75rem; }
+  .nav-links a { padding: 0.375rem 0.5rem; }
 }

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brüche addieren / subtrahieren – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Brüche addieren / subtrahieren</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Brüche addieren / subtrahieren</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee">
+        <li><strong>Addieren / Subtrahieren</strong> → gleicher <strong>Nenner</strong> → nur die <strong>Zähler</strong> + / −</li>
+      </ul>
+    </div>
+    <div class="idee-viz">
+      <p>Nenner schon gleich</p>
+      <div class="bruch-add-row" id="viz-add-gleich"></div>
+    </div>
+    <div class="idee-viz">
+      <p><strong>Verschiedene Nenner</strong> → zuerst auf einen gemeinsamen Nenner <strong>erweitern</strong></p>
+      <div class="bruch-add-row" id="viz-add-verschieden"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-addieren" hidden>
+    <h2>Addieren</h2>
+    <p>
+      Zähler <strong>addieren</strong>, Nenner unverändert lassen.
+      Bei verschiedenen Nennern zuerst <strong>erweitern</strong>.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{3}{7} + \dfrac{2}{7}$</div>
+          <div class="schritt-op">Zähler addieren</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{3 + 2}{7}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{5}{7}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{1}{4} + \dfrac{1}{6}$</div>
+          <div class="schritt-op">Hauptnenner $12$</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1 \cdot 3}{4 \cdot 3} + \dfrac{1 \cdot 2}{6 \cdot 2}$</div>
+          <div class="schritt-op">erweitern</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{3}{12} + \dfrac{2}{12}$</div>
+          <div class="schritt-op">Zähler addieren</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{5}{12}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-subtrahieren" hidden>
+    <h2>Subtrahieren</h2>
+    <p>
+      Funktioniert wie Addieren — nur die Zähler <strong>subtrahieren</strong>.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$\dfrac{5}{8} - \dfrac{3}{8}$</div>
+          <div class="schritt-op">Zähler subtrahieren</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{5 - 3}{8}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{2}{8}$</div>
+          <div class="schritt-op">kürzen</div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \dfrac{1}{4}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box">
+      <div class="bruch-allg-dir bruch-allg-dir--kur">addieren</div>
+      <div class="formula-main" style="margin:0.15rem 0 0.75rem;">
+        $\dfrac{a}{c} + \dfrac{b}{c} \;=\; \dfrac{a + b}{c}$
+      </div>
+      <div class="bruch-allg-dir bruch-allg-dir--kur">subtrahieren</div>
+      <div class="formula-main" style="margin:0.15rem 0;">
+        $\dfrac{a}{c} - \dfrac{b}{c} \;=\; \dfrac{a - b}{c}$
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{1}{2} + \\dfrac{1}{3} = \\dfrac{2}{5}", "richtig": false, "warum": "Nenner werden nicht addiert: Hauptnenner $6$, $\\dfrac{3}{6} + \\dfrac{2}{6} = \\dfrac{5}{6}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{1}{3} + \\dfrac{1}{4}", "optionen": ["\\dfrac{7}{12}", "\\dfrac{2}{7}", "\\dfrac{2}{12}", "\\dfrac{1}{12}"], "richtig": [0], "warum": "Hauptnenner $12$: $\\dfrac{4}{12} + \\dfrac{3}{12} = \\dfrac{7}{12}$ — die Nenner werden nicht addiert."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{3}{x} + \\dfrac{2}{x} = \\dfrac{5}{2x}", "richtig": false, "warum": "Nenner schon gleich: nur die Zähler addieren, $\\dfrac{3}{x} + \\dfrac{2}{x} = \\dfrac{5}{x}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{x+1}{2} + \\dfrac{x}{3}", "optionen": ["\\dfrac{5x+3}{6}", "\\dfrac{5x+1}{6}", "\\dfrac{2x+1}{5}", "\\dfrac{2x+1}{6}"], "richtig": [0], "warum": "Hauptnenner $6$, beim Erweitern den ganzen Zähler multiplizieren: $\\dfrac{(x+1) \\cdot 3}{6} + \\dfrac{x \\cdot 2}{6} = \\dfrac{5x+3}{6}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{x+1}{2} = \\dfrac{x+1 \\cdot 3}{2 \\cdot 3}", "richtig": false, "warum": "Erweitern multipliziert den ganzen Zähler, also mit Klammer: $\\dfrac{x+1}{2} = \\dfrac{(x+1) \\cdot 3}{2 \\cdot 3}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\dfrac{a+2}{3} + \\dfrac{a}{6}", "optionen": ["\\dfrac{2(a+2)+a}{6}", "\\dfrac{3a+4}{6}", "\\dfrac{2a+2+a}{6}", "\\dfrac{2a+2}{9}"], "richtig": [0, 1], "warum": "Hauptnenner $6$, den ganzen Zähler $a+2$ mit $2$ multiplizieren: $\\dfrac{(a+2) \\cdot 2 + a}{6} = \\dfrac{3a+4}{6}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "-\\dfrac{1}{4} - \\dfrac{1}{4} = \\dfrac{1}{2}", "richtig": false, "warum": "Beide negativ, also bleibt das Ergebnis negativ: $-\\dfrac{1}{4} - \\dfrac{1}{4} = -\\dfrac{2}{4} = -\\dfrac{1}{2}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "-\\dfrac{2}{3} + \\left(-\\dfrac{1}{6}\\right)", "optionen": ["-\\dfrac{5}{6}", "\\dfrac{5}{6}", "-\\dfrac{1}{2}", "-\\dfrac{3}{9}"], "richtig": [0], "warum": "Hauptnenner $6$, beide negativ, also bleibt das Ergebnis negativ: $-\\dfrac{4}{6} - \\dfrac{1}{6} = -\\dfrac{5}{6}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "-\\dfrac{1}{3} - \\dfrac{1}{3}", "optionen": ["-\\dfrac{2}{3}", "\\dfrac{-1-1}{3}", "\\dfrac{2}{3}", "-\\dfrac{2}{6}", "\\dfrac{1}{9}"], "richtig": [0, 1], "warum": "Beide negativ, also bleibt das Ergebnis negativ: $\\dfrac{-1-1}{3} = -\\dfrac{2}{3}$ — positiv wird nur Minus mal Minus."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{5}{x} - \\dfrac{2+x}{x}", "optionen": ["\\dfrac{3-x}{x}", "\\dfrac{3+x}{x}", "\\dfrac{7+x}{x}", "3-x"], "richtig": [0], "warum": "Das Minus gilt für den ganzen Zähler $2+x$: $\\dfrac{5-(2+x)}{x} = \\dfrac{3-x}{x}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{7}{8} - \\dfrac{3-a}{8} = \\dfrac{4-a}{8}", "richtig": false, "warum": "Das Minus gilt für den ganzen Zähler $3-a$: $\\dfrac{7-(3-a)}{8} = \\dfrac{4+a}{8}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\dfrac{2x}{5} - \\dfrac{x-1}{5}", "optionen": ["\\dfrac{2x-(x-1)}{5}", "\\dfrac{x+1}{5}", "\\dfrac{2x-x-1}{5}", "\\dfrac{3x-1}{5}"], "richtig": [0, 1], "warum": "Das Minus gilt für den ganzen Zähler $x-1$: $\\dfrac{2x-(x-1)}{5} = \\dfrac{x+1}{5}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{1}{x} + \\dfrac{1}{2x}", "optionen": ["\\dfrac{3}{2x}", "\\dfrac{2}{3x}", "\\dfrac{2}{2x}", "\\dfrac{1}{3x}"], "richtig": [0], "warum": "Hauptnenner $2x$: $\\dfrac{2}{2x} + \\dfrac{1}{2x} = \\dfrac{3}{2x}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{a}{3} + \\dfrac{a}{6} = \\dfrac{a}{2}", "richtig": true, "warum": "Hauptnenner $6$: $\\dfrac{2a}{6} + \\dfrac{a}{6} = \\dfrac{3a}{6} = \\dfrac{a}{2}$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{5}{6} - \\dfrac{3}{4}", "optionen": ["\\dfrac{1}{12}", "\\dfrac{2}{2}", "\\dfrac{1}{2}", "\\dfrac{19}{12}"], "richtig": [0], "warum": "Hauptnenner $12$: $\\dfrac{10}{12} - \\dfrac{9}{12} = \\dfrac{1}{12}$ — die Nenner werden nicht subtrahiert."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "-\\dfrac{x}{2} - \\dfrac{x}{2} = -x", "richtig": true, "warum": "Beide negativ, also bleibt das Ergebnis negativ: $-\\dfrac{x}{2} - \\dfrac{x}{2} = -\\dfrac{2x}{2} = -x$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\dfrac{1}{2} + \\dfrac{1}{4}", "optionen": ["\\dfrac{3}{4}", "\\dfrac{2}{4} + \\dfrac{1}{4}", "\\dfrac{1+1}{2+4}", "\\dfrac{1}{8}"], "richtig": [0, 1], "warum": "Hauptnenner $4$: $\\dfrac{2}{4} + \\dfrac{1}{4} = \\dfrac{3}{4}$ — die Nenner werden weder addiert noch multipliziert."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/viz/mathe-viz.js?v=20260927t2149"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  const PIE = 72;
+
+  function addPiece(num, den) {
+    const wrap = document.createElement('div');
+    wrap.className = 'bruch-add-piece';
+    const pie = document.createElement('div');
+    pie.className = 'bruch-add-pie';
+    MatheViz.fractionPie(pie, { num, den, size: PIE });
+    const lab = document.createElement('div');
+    lab.className = 'bruch-add-lab';
+    if (window.katex) {
+      katex.render(`\\dfrac{${num}}{${den}}`, lab, { throwOnError: false });
+    } else {
+      lab.textContent = `${num}/${den}`;
+    }
+    wrap.append(pie, lab);
+    return wrap;
+  }
+
+  function addOp(sym) {
+    const s = document.createElement('span');
+    s.className = 'bruch-add-op';
+    s.textContent = sym;
+    return s;
+  }
+
+  function fillRow(sel, nodes) {
+    const row = document.querySelector(sel);
+    row.replaceChildren(...nodes);
+  }
+
+  // 1/2 + 1/2 = 2/2
+  fillRow('#viz-add-gleich', [
+    addPiece(1, 2), addOp('+'), addPiece(1, 2), addOp('='), addPiece(2, 2),
+  ]);
+
+  // 1/2 + 1/3 → 3/6 + 2/6 = 5/6
+  fillRow('#viz-add-verschieden', [
+    addPiece(1, 2), addOp('+'), addPiece(1, 3),
+    addOp('→'),
+    addPiece(3, 6), addOp('+'), addPiece(2, 6), addOp('='), addPiece(5, 6),
+  ]);
+
+  const revealSequence = ['sec-addieren', 'sec-subtrahieren', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+</script>
+
+</body>
+</html>

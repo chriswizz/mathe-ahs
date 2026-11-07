@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wurzelgesetze – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Wurzelgesetze</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Wurzelgesetze</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee grundidee-pfeile grundidee-zeilen">
+        <li><span>$\sqrt{x} \cdot \sqrt{y} = \sqrt{x \cdot y}$</span><span>→</span><span>Produkt, <span class="bedingung">$x \ge 0,\; y \ge 0$</span></span></li>
+        <li><span>$\dfrac{\sqrt{x}}{\sqrt{y}} = \sqrt{\dfrac{x}{y}}$</span><span>→</span><span>Quotient, <span class="bedingung">$x \ge 0,\; y &gt; 0$</span></span></li>
+        <li><span>$\sqrt{x^{2} \cdot y} = x\sqrt{y}$</span><span>→</span><span>teilweise, <span class="bedingung">$x \ge 0$</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="sec-produkt" hidden>
+    <h2>Produkt</h2>
+    <p>Wurzeln multiplizieren → eine Wurzel aus dem Produkt.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\sqrt{4} \cdot \sqrt{9}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{4 \cdot 9}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{36}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 6$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quotient" hidden>
+    <h2>Quotient</h2>
+    <p>Funktioniert wie das Produkt.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\dfrac{\sqrt{36}}{\sqrt{4}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{\dfrac{36}{4}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{9}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 3$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-teilweise" hidden>
+    <h2>Teilweise ziehen</h2>
+    <p>Quadratischen Faktor unter der Wurzel herausziehen.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\sqrt{12}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{4 \cdot 3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{4} \cdot \sqrt{3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 2\sqrt{3}$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$\sqrt{9x^{2}}$</div>
+          <div class="schritt-op">$x \ge 0$</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{9 \cdot x^{2}}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= \sqrt{9} \cdot x$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= 3x$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box">
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0 0.75rem;">
+        $\sqrt{a} \cdot \sqrt{b} = \sqrt{a \cdot b}$
+        <span class="formula-bedingung">$(a \ge 0,\; b \ge 0)$</span>
+      </div>
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0 0.75rem;">
+        $\dfrac{\sqrt{a}}{\sqrt{b}} = \sqrt{\dfrac{a}{b}}$
+        <span class="formula-bedingung">$(a \ge 0,\; b &gt; 0)$</span>
+      </div>
+      <div class="formula-main mit-bedingung" style="margin:0.15rem 0;">
+        $\sqrt{a^{2} \cdot b} = a\sqrt{b}$
+        <span class="formula-bedingung">$(a \ge 0,\; b \ge 0)$</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{9+16} = \\sqrt{9} + \\sqrt{16}", "richtig": false, "warum": "Die Wurzelgesetze gelten nur für mal und geteilt: $\\sqrt{9+16} = \\sqrt{25} = 5$, aber $\\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{x^{2} + 9} = x + 3", "richtig": false, "warum": "Unter der Wurzel steht eine Summe, kein Produkt — $x^{2}$ ist hier kein Faktor."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\sqrt{36 + 64}", "optionen": ["10", "14", "100"], "richtig": [0], "warum": "Erst unter der Wurzel addieren: $\\sqrt{36 + 64} = \\sqrt{100} = 10$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\sqrt{9 \\cdot 16}", "optionen": ["\\sqrt{9} \\cdot \\sqrt{16}", "12", "\\sqrt{9} + \\sqrt{16}", "3 \\cdot 16"], "richtig": [0, 1], "warum": "Produkt → Wurzel aus jedem Faktor: $\\sqrt{9 \\cdot 16} = \\sqrt{9} \\cdot \\sqrt{16} = 3 \\cdot 4 = 12$; bei plus geht das nicht."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{12} = 4\\sqrt{3}", "richtig": false, "warum": "Der Faktor $4$ kommt als $\\sqrt{4} = 2$ heraus: $\\sqrt{12} = \\sqrt{4 \\cdot 3} = 2\\sqrt{3}$."},
+      {"art": "sc", "frage": "Ziehe die Wurzel teilweise.", "ausgang": "\\sqrt{50}", "optionen": ["5\\sqrt{2}", "25\\sqrt{2}", "2\\sqrt{5}", "5\\sqrt{10}"], "richtig": [0], "warum": "$50 = 25 \\cdot 2$ und $\\sqrt{25} = 5$: $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$."},
+      {"art": "sc", "frage": "Ziehe die Wurzel teilweise.", "ausgang": "\\sqrt{48}", "optionen": ["4\\sqrt{3}", "16\\sqrt{3}", "8\\sqrt{6}"], "richtig": [0], "warum": "Quadratischer Faktor $16$: $\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt{3}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\sqrt{18}", "optionen": ["3\\sqrt{2}", "9\\sqrt{2}", "\\sqrt{9} \\cdot \\sqrt{2}", "2\\sqrt{3}", "\\sqrt{9} + \\sqrt{2}"], "richtig": [0, 2], "warum": "$\\sqrt{18} = \\sqrt{9 \\cdot 2} = \\sqrt{9} \\cdot \\sqrt{2} = 3\\sqrt{2}$ — der Faktor $9$ kommt als $3$ heraus."},
+      {"art": "sc", "frage": "Ziehe die Wurzel teilweise.", "ausgang": "\\sqrt{4x^{2}y}", "bedingung": ["x \\ge 0", "y \\ge 0"], "optionen": ["2x\\sqrt{y}", "4x\\sqrt{y}", "2x^{2}\\sqrt{y}", "2y\\sqrt{x}"], "richtig": [0], "warum": "Die quadratischen Faktoren $4$ und $x^{2}$ herausziehen: $\\sqrt{4x^{2}y} = \\sqrt{4} \\cdot \\sqrt{x^{2}} \\cdot \\sqrt{y} = 2x\\sqrt{y}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{25x} = 5x", "bedingung": ["x \\ge 0"], "richtig": false, "warum": "Nur $25$ ist ein quadratischer Faktor, $x$ bleibt unter der Wurzel: $\\sqrt{25x} = 5\\sqrt{x}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{2} \\cdot \\sqrt{8} = 4", "richtig": true, "warum": "Produkt → eine Wurzel: $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$."},
+      {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{\\sqrt{75}}{\\sqrt{3}}", "optionen": ["5", "25", "5\\sqrt{3}", "\\sqrt{72}"], "richtig": [0], "warum": "Quotient → eine Wurzel: $\\dfrac{\\sqrt{75}}{\\sqrt{3}} = \\sqrt{\\dfrac{75}{3}} = \\sqrt{25} = 5$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\sqrt{2x} \\cdot \\sqrt{8x}", "bedingung": ["x \\ge 0"], "optionen": ["4x", "\\sqrt{16x^{2}}", "16x", "\\sqrt{10x}"], "richtig": [0, 1], "warum": "Produkt → eine Wurzel: $\\sqrt{2x} \\cdot \\sqrt{8x} = \\sqrt{16x^{2}} = 4x$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{\\dfrac{x}{9}} = \\dfrac{\\sqrt{x}}{3}", "bedingung": ["x \\ge 0"], "richtig": true, "warum": "Quotient: $\\sqrt{\\dfrac{x}{9}} = \\dfrac{\\sqrt{x}}{\\sqrt{9}} = \\dfrac{\\sqrt{x}}{3}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{\\sqrt{18}}{\\sqrt{2}} = 9", "richtig": false, "warum": "Unter der Wurzel steht $9$, die Wurzel bleibt: $\\dfrac{\\sqrt{18}}{\\sqrt{2}} = \\sqrt{\\dfrac{18}{2}} = \\sqrt{9} = 3$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "3\\sqrt{2} = \\sqrt{6}", "richtig": false, "warum": "Die $3$ steht nicht unter der Wurzel: $3\\sqrt{2} = \\sqrt{9} \\cdot \\sqrt{2} = \\sqrt{18}$."},
+      {"art": "sc", "frage": "Schreibe als eine Wurzel.", "ausgang": "2\\sqrt{5}", "optionen": ["\\sqrt{20}", "\\sqrt{10}", "\\sqrt{7}", "\\sqrt{50}"], "richtig": [0], "warum": "Die $2$ steht nicht unter der Wurzel, sie kommt als $\\sqrt{4}$ hinein: $2\\sqrt{5} = \\sqrt{4} \\cdot \\sqrt{5} = \\sqrt{20}$."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js?v=20261107t0900"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  const revealSequence = ['sec-produkt', 'sec-quotient', 'sec-teilweise', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+</script>
+
+</body>
+</html>

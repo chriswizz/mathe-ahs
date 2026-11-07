@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pythagoras – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Pythagoras</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Pythagoras</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <div class="formula-main" style="margin:0; text-align:left">$a^{2} + b^{2} = c^{2}$</div>
+    </div>
+    <div class="idee-viz">
+      <p>$c$ ist die Hypotenuse, die längste Seite. Sie liegt dem rechten Winkel gegenüber.</p>
+      <p>$a$ und $b$ sind die Katheten. Sie bilden den rechten Winkel.</p>
+      <svg viewBox="0 0 180 120" width="200" height="133" style="align-self:center" role="img" aria-label="Rechtwinkliges Dreieck, c gegenüber dem rechten Winkel">
+        <polygon points="28,96 156,96 28,22" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M28,82 A14,14 0 0 1 42,96" fill="none" stroke="var(--baustein)" stroke-width="1.5"/>
+        <circle cx="33" cy="91" r="1.6" fill="var(--baustein)"/>
+        <text x="92" y="114" text-anchor="middle" font-size="16" fill="currentColor">a</text>
+        <text x="16" y="59" text-anchor="end" dominant-baseline="middle" font-size="16" fill="currentColor">b</text>
+        <text x="102" y="42" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="var(--baustein)" font-weight="700">c</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="sec-hyp" hidden>
+    <h2>Hypotenuse</h2>
+    <p>Beide Katheten gegeben.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$a = 3$, $b = 4$</div>
+          <div class="schritt-op">Angabe</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$a^{2} + b^{2} = c^{2}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$c^{2} = 3^{2} + 4^{2}$</div>
+          <div class="schritt-op">einsetzen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$c^{2} = 9 + 16$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$c^{2} = 25$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$c = \sqrt{25}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$c = 5$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-kathete" hidden>
+    <h2>Kathete</h2>
+    <p>Hypotenuse und eine Kathete gegeben → zuerst umformen.</p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$a = 6$, $c = 10$</div>
+          <div class="schritt-op">Angabe</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$a^{2} + b^{2} = c^{2}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b^{2} = c^{2} - a^{2}$</div>
+          <div class="schritt-op">umformen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b^{2} = 10^{2} - 6^{2}$</div>
+          <div class="schritt-op">einsetzen</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b^{2} = 100 - 36$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b^{2} = 64$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b = \sqrt{64}$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$b = 8$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{a^{2} + b^{2}} = a + b", "richtig": false, "warum": "Die Wurzel gilt für die ganze Summe: $\\sqrt{3^{2} + 4^{2}} = \\sqrt{25} = 5$, aber $3 + 4 = 7$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{9 + 16} = \\sqrt{9} + \\sqrt{16}", "richtig": false, "warum": "$\\sqrt{9 + 16} = \\sqrt{25} = 5$, aber $\\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $15$, eine Kathete $9$. Stimmt das für die andere Kathete?", "aussage": "15^{2} - 9^{2} = 144", "soll": "12", "pruefung": "soll", "richtig": false, "warum": "$15^{2} - 9^{2} = 144$ ist erst das Quadrat der Kathete — die Wurzel fehlt: $\\sqrt{144} = 12$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $13$, eine Kathete $5$. Stimmt das für die andere Kathete?", "aussage": "\\sqrt{13^{2} - 5^{2}} = 12", "soll": "12", "pruefung": "soll", "richtig": true, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{13^{2} - 5^{2}} = \\sqrt{144} = 12$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $5$, eine Kathete $4$. Stimmt das für die andere Kathete?", "aussage": "\\sqrt{5^{2} + 4^{2}} = \\sqrt{41}", "soll": "3", "pruefung": "soll", "richtig": false, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen, also minus: $\\sqrt{5^{2} - 4^{2}} = \\sqrt{9} = 3$."},
+      {"art": "rf", "frage": "Die Seiten $8$ und $15$ bilden den rechten Winkel. Stimmt das für die dritte Seite?", "aussage": "\\sqrt{15^{2} - 8^{2}} = \\sqrt{161}", "soll": "17", "pruefung": "soll", "richtig": false, "warum": "$8$ und $15$ bilden den rechten Winkel, sind also die Katheten; die dritte Seite ist die Hypotenuse: $\\sqrt{8^{2} + 15^{2}} = \\sqrt{289} = 17$."},
+      {"art": "rf", "frage": "Die Seite $10$ liegt dem rechten Winkel gegenüber, eine andere Seite ist $6$. Stimmt das für die dritte Seite?", "aussage": "\\sqrt{10^{2} - 6^{2}} = 8", "soll": "8", "pruefung": "soll", "richtig": true, "warum": "$10$ liegt dem rechten Winkel gegenüber, ist also die Hypotenuse → zuerst umformen: $\\sqrt{100 - 36} = \\sqrt{64} = 8$."},
+      {"art": "sc", "frage": "Die Katheten sind $5$ und $12$. Berechne die Hypotenuse.", "soll": "13", "optionen": ["13", "17", "169", "\\sqrt{17}"], "richtig": [0], "warum": "$\\sqrt{5^{2} + 12^{2}} = \\sqrt{25 + 144} = \\sqrt{169} = 13$."},
+      {"art": "sc", "frage": "Die Hypotenuse ist $10$, eine Kathete $8$. Berechne die andere Kathete.", "soll": "6", "optionen": ["6", "\\sqrt{164}", "2", "36"], "richtig": [0], "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{10^{2} - 8^{2}} = \\sqrt{100 - 64} = \\sqrt{36} = 6$."},
+      {"art": "sc", "frage": "Die Katheten sind beide $2$. Berechne die Hypotenuse.", "soll": "\\sqrt{8}", "optionen": ["\\sqrt{8}", "4", "8", "2"], "richtig": [0], "warum": "$\\sqrt{2^{2} + 2^{2}} = \\sqrt{4 + 4} = \\sqrt{8}$ — nicht $2 + 2$."},
+      {"art": "sc", "frage": "Die Seiten $6$ und $8$ bilden den rechten Winkel. Berechne die dritte Seite.", "soll": "10", "optionen": ["10", "14", "100", "\\sqrt{28}"], "richtig": [0], "warum": "$6$ und $8$ sind die Katheten: $\\sqrt{6^{2} + 8^{2}} = \\sqrt{100} = 10$."},
+      {"art": "sc", "frage": "Die Seite $5$ liegt dem rechten Winkel gegenüber, eine andere Seite ist $3$. Berechne die dritte Seite.", "soll": "4", "optionen": ["4", "2", "16", "\\sqrt{34}"], "richtig": [0], "warum": "$5$ ist die Hypotenuse → zuerst umformen: $\\sqrt{5^{2} - 3^{2}} = \\sqrt{16} = 4$."},
+      {"art": "sc", "frage": "Die Seiten $b$ und $c$ bilden den rechten Winkel, $b$ ist $9$ und $c$ ist $12$. Welche Rechnung ergibt $a$?", "soll": "15", "optionen": ["\\sqrt{9^{2} + 12^{2}}", "\\sqrt{12^{2} - 9^{2}}", "9 + 12", "9^{2} + 12^{2}"], "richtig": [0], "warum": "$b$ und $c$ sind die Katheten; $a$ liegt dem rechten Winkel gegenüber, ist also die Hypotenuse: $\\sqrt{9^{2} + 12^{2}} = \\sqrt{225} = 15$."},
+      {"art": "sc", "frage": "Die Hypotenuse ist $17$, eine Kathete $8$. Welche Rechnung ergibt die andere Kathete?", "soll": "15", "optionen": ["\\sqrt{17^{2} - 8^{2}}", "\\sqrt{17^{2} + 8^{2}}", "17 - 8", "17^{2} - 8^{2}"], "richtig": [0], "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{17^{2} - 8^{2}} = \\sqrt{225} = 15$."},
+      {"art": "mc", "frage": "Welche Zahlen haben denselben Wert?", "ausgang": "\\sqrt{6^{2} + 8^{2}}", "optionen": ["10", "\\sqrt{100}", "\\sqrt{36 + 64}", "14", "100", "\\sqrt{36} + \\sqrt{64}"], "richtig": [0, 1, 2], "warum": "$\\sqrt{6^{2} + 8^{2}} = \\sqrt{36 + 64} = \\sqrt{100} = 10$; die Wurzel gilt für die ganze Summe."},
+      {"art": "mc", "frage": "Die Hypotenuse ist $13$, eine Kathete $12$. Welche Rechnungen ergeben die andere Kathete?", "soll": "5", "optionen": ["\\sqrt{13^{2} - 12^{2}}", "\\sqrt{169 - 144}", "\\sqrt{25}", "\\sqrt{13^{2} + 12^{2}}", "13 - 12", "13^{2} - 12^{2}"], "richtig": [0, 1, 2], "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{13^{2} - 12^{2}} = \\sqrt{169 - 144} = \\sqrt{25} = 5$; die Wurzel gilt für die ganze Differenz."},
+      {"art": "mc", "frage": "Welche Zahlen haben denselben Wert?", "ausgang": "\\sqrt{5^{2} + 5^{2}}", "optionen": ["\\sqrt{50}", "\\sqrt{25 + 25}", "10", "50", "\\sqrt{5} + \\sqrt{5}"], "richtig": [0, 1], "warum": "$\\sqrt{5^{2} + 5^{2}} = \\sqrt{25 + 25} = \\sqrt{50}$ — nicht $5 + 5$."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  const revealSequence = ['sec-hyp', 'sec-kathete', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+</script>
+
+</body>
+</html>

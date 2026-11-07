@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binomische Formeln – Grundbaustein – Mathe AHS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t0900">
+</head>
+<body class="thema-layout">
+
+<nav class="site-nav">
+  <a href="../index.html" class="logo">Mathe <span>AHS</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Themen</a>
+    <a href="index.html" class="active">Grundbausteine</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="breadcrumb">
+    <a href="../index.html">Startseite</a>
+    <span class="sep">›</span>
+    <a href="index.html">Grundbausteine</a>
+    <span class="sep">›</span>
+    <span class="current">Binomische Formeln</span>
+  </div>
+
+  <div class="thema-header">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
+        <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
+        <rect x="1" y="11" width="58" height="30" rx="5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+    </div>
+    <h1>Binomische Formeln</h1>
+  </div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+  </div>
+
+  <section class="section" id="sec-grundidee">
+    <h2>Grundidee</h2>
+    <div class="grundidee-box">
+      <ul class="grundidee grundidee-formel">
+        <li>
+          <span class="grundidee-nr">I</span>
+          <span>$(a + b)^2$</span>
+          <span class="grundidee-eq">$=$</span>
+          <span>$(a + b)(a + b)$</span>
+          <span class="grundidee-eq">$=$</span>
+          <span>$a^2$</span>
+          <span>$+\,2ab$</span>
+          <span>$+\,b^2$</span>
+        </li>
+        <li>
+          <span class="grundidee-nr">II</span>
+          <span>$(a - b)^2$</span>
+          <span class="grundidee-eq">$=$</span>
+          <span>$(a - b)(a - b)$</span>
+          <span class="grundidee-eq">$=$</span>
+          <span>$a^2$</span>
+          <span>$-\,2ab$</span>
+          <span>$+\,b^2$</span>
+        </li>
+        <li>
+          <span class="grundidee-nr">III</span>
+          <span></span>
+          <span></span>
+          <span>$(a + b)(a - b)$</span>
+          <span class="grundidee-eq">$=$</span>
+          <span>$a^2$</span>
+          <span></span>
+          <span>$-\,b^2$</span>
+        </li>
+      </ul>
+    </div>
+    <div class="idee-viz">
+      <p>Darstellung für <strong>I</strong>. <span class="farb-legende"><span class="farb-a">a</span><span class="farb-b">b</span></span></p>
+      <div class="farb-viz">
+        <div class="farb-viz-line">
+          (<span class="farb-a">x</span> + <span class="farb-b">2</span>)²
+        </div>
+        <div class="farb-viz-mid" aria-hidden="true">
+          <svg class="farb-viz-arcs" viewBox="0 0 180 120" width="180" height="120">
+            <defs>
+              <marker id="binom-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--baustein)"/>
+              </marker>
+            </defs>
+            <text x="90" y="16" text-anchor="middle" fill="var(--baustein)" font-size="11" font-weight="700">ausmultiplizieren</text>
+            <path d="M22 42 C65 18, 115 18, 158 42" fill="none" stroke="var(--baustein)" stroke-width="2.25"
+                  stroke-linecap="round" marker-end="url(#binom-arr)"/>
+            <path d="M158 78 C115 102, 65 102, 22 78" fill="none" stroke="var(--baustein)" stroke-width="2.25"
+                  stroke-linecap="round" marker-end="url(#binom-arr)"/>
+            <text x="90" y="114" text-anchor="middle" fill="var(--baustein)" font-size="11" font-weight="700">faktorisieren</text>
+          </svg>
+        </div>
+        <div class="farb-viz-line">
+          <span class="farb-a">x</span>² + 2·<span class="farb-a">x</span>·<span class="farb-b">2</span> + <span class="farb-b">2</span>²
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-plus" hidden>
+    <h2>I (a + b)²</h2>
+    <p>
+      Erstes Quadrat, <strong>doppeltes Produkt</strong>, zweites Quadrat.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$(x + 4)^2$</div>
+          <div class="schritt-op">Quadrat + doppeltes Produkt + Quadrat</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 + 2 \cdot x \cdot 4 + 4^2$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 + 8x + 16$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-minus" hidden>
+    <h2>II (a − b)²</h2>
+    <p>
+      Funktioniert wie (a + b)² — das doppelte Produkt wird <strong>subtrahiert</strong>.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$(x - 4)^2$</div>
+          <div class="schritt-op">doppeltes Produkt subtrahieren</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 - 2 \cdot x \cdot 4 + 4^2$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 - 8x + 16$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-differenz" hidden>
+    <h2>III (a + b)(a − b)</h2>
+    <p>
+      Erstes Quadrat <strong>minus</strong> zweites Quadrat.
+    </p>
+
+    <div class="loesungsweg">
+      <div class="loesungsweg-title">Beispiel</div>
+      <div class="schritte">
+        <div class="schritt">
+          <span class="schritt-nr">①</span>
+          <div class="schritt-formel">$(x + 4)(x - 4)$</div>
+          <div class="schritt-op">Quadrat minus Quadrat</div>
+        </div>
+        <div class="schritt">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 - 4^2$</div>
+          <div class="schritt-op"></div>
+        </div>
+        <div class="schritt lsg">
+          <span class="schritt-nr"></span>
+          <div class="schritt-formel">$= x^2 - 16$</div>
+          <div class="schritt-op"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-allgemein" hidden>
+    <h2>Allgemein</h2>
+    <div class="formula-display bruch-allg-box formel-liste">
+      <span class="grundidee-nr">I</span>
+      <span>$(a + b)^2 = a^2 + 2ab + b^2$</span>
+      <span class="grundidee-nr">II</span>
+      <span>$(a - b)^2 = a^2 - 2ab + b^2$</span>
+      <span class="grundidee-nr">III</span>
+      <span>$(a + b)(a - b) = a^2 - b^2$</span>
+    </div>
+  </section>
+
+  <section class="section" id="sec-quiz" hidden>
+    <h2>Quiz</h2>
+    <script type="application/json" id="quiz-daten">
+    [
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x + 3)^{2} = x^{2} + 9", "richtig": false, "warum": "Das doppelte Produkt fehlt: $(x + 3)^{2} = x^{2} + 2 \\cdot x \\cdot 3 + 3^{2} = x^{2} + 6x + 9$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(2x - 1)^{2} = 4x^{2} - 1", "richtig": false, "warum": "Erstes Quadrat, doppeltes Produkt, zweites Quadrat: $(2x - 1)^{2} = (2x)^{2} - 2 \\cdot 2x \\cdot 1 + 1^{2} = 4x^{2} - 4x + 1$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(x - 5)^{2}", "optionen": ["x^{2} - 10x + 25", "x^{2} - 25", "x^{2} - 5x + 25", "x^{2} - 10x - 25"], "richtig": [0], "warum": "Das doppelte Produkt wird subtrahiert: $(x - 5)^{2} = x^{2} - 2 \\cdot x \\cdot 5 + 5^{2} = x^{2} - 10x + 25$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $(a - b)^{2}$?", "ausgang": "(a - b)^{2}", "optionen": ["a^{2} - 2ab + b^{2}", "(a - b)(a - b)", "a^{2} - b^{2}", "a^{2} - ab + b^{2}", "(a + b)(a - b)"], "richtig": [0, 1], "warum": "Erstes Quadrat, doppeltes Produkt subtrahieren, zweites Quadrat: $(a - b)^{2} = (a - b)(a - b) = a^{2} - 2ab + b^{2}$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(x + 6)(x - 6)", "optionen": ["x^{2} - 36", "x^{2} + 12x + 36", "x^{2} - 12x + 36", "x^{2} + 36"], "richtig": [0], "warum": "Erstes Quadrat minus zweites Quadrat: $(x + 6)(x - 6) = x^{2} - 6^{2} = x^{2} - 36$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(a + b)(a - b) = a^{2} - 2ab + b^{2}", "richtig": false, "warum": "Erstes Quadrat minus zweites Quadrat: $(a + b)(a - b) = a^{2} - b^{2}$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(3 + y)(3 - y)", "optionen": ["9 - y^{2}", "9 - 6y + y^{2}", "9 + y^{2}", "y^{2} - 9"], "richtig": [0], "warum": "Erstes Quadrat minus zweites Quadrat: $(3 + y)(3 - y) = 3^{2} - y^{2} = 9 - y^{2}$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $(x + 5)(x - 5)$?", "ausgang": "(x + 5)(x - 5)", "optionen": ["x^{2} - 25", "x^{2} - 5^{2}", "x^{2} - 10x + 25", "x^{2} + 25"], "richtig": [0, 1], "warum": "Erstes Quadrat minus zweites Quadrat, kein doppeltes Produkt: $(x + 5)(x - 5) = x^{2} - 5^{2} = x^{2} - 25$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x - 5)^{2} = x^{2} - 5x + 25", "richtig": false, "warum": "Das doppelte Produkt ist $2 \\cdot x \\cdot 5 = 10x$, also $(x - 5)^{2} = x^{2} - 10x + 25$."},
+      {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(2x + 3y)^{2}", "optionen": ["4x^{2} + 12xy + 9y^{2}", "4x^{2} + 6xy + 9y^{2}", "2x^{2} + 12xy + 3y^{2}", "4x^{2} + 9y^{2}"], "richtig": [0], "warum": "Erstes Quadrat, doppeltes Produkt, zweites Quadrat: $(2x + 3y)^{2} = (2x)^{2} + 2 \\cdot 2x \\cdot 3y + (3y)^{2} = 4x^{2} + 12xy + 9y^{2}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(2x + 5)^{2} = 4x^{2} + 20x + 25", "richtig": true, "warum": "Das doppelte Produkt ist $2 \\cdot 2x \\cdot 5 = 20x$, also $(2x + 5)^{2} = 4x^{2} + 20x + 25$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(5 + x)^{2} = 25 + 10x + x^{2}", "richtig": true, "warum": "Erstes Quadrat, doppeltes Produkt, zweites Quadrat: $(5 + x)^{2} = 5^{2} + 2 \\cdot 5 \\cdot x + x^{2} = 25 + 10x + x^{2}$."},
+      {"art": "sc", "frage": "Faktorisiere.", "ausgang": "x^{2} + 8x + 16", "optionen": ["(x + 4)^{2}", "(x + 8)^{2}", "(x + 4)(x - 4)", "(x + 16)^{2}"], "richtig": [0], "warum": "Quadrat, doppeltes Produkt, Quadrat: $x^{2} + 8x + 16 = x^{2} + 2 \\cdot x \\cdot 4 + 4^{2} = (x + 4)^{2}$."},
+      {"art": "sc", "frage": "Faktorisiere.", "ausgang": "9x^{2} - 4", "optionen": ["(3x + 2)(3x - 2)", "(3x - 2)^{2}", "(9x + 4)(9x - 4)", "(3x + 4)(3x - 4)"], "richtig": [0], "warum": "Quadrat minus Quadrat: $9x^{2} - 4 = (3x)^{2} - 2^{2} = (3x + 2)(3x - 2)$."},
+      {"art": "sc", "frage": "Faktorisiere.", "ausgang": "x^{2} - 1", "optionen": ["(x + 1)(x - 1)", "(x - 1)^{2}", "(x + 1)^{2}", "x\\,(x - 1)"], "richtig": [0], "warum": "Quadrat minus Quadrat, denn $1 = 1^{2}$: $x^{2} - 1 = x^{2} - 1^{2} = (x + 1)(x - 1)$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{2} - 6x + 9 = (x - 3)^{2}", "richtig": true, "warum": "Quadrat, doppeltes Produkt, Quadrat: $x^{2} - 6x + 9 = x^{2} - 2 \\cdot x \\cdot 3 + 3^{2} = (x - 3)^{2}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{2} + 9 = (x + 3)^{2}", "richtig": false, "warum": "Bei $(x + 3)^{2}$ kommt das doppelte Produkt dazu: $(x + 3)^{2} = x^{2} + 6x + 9$."},
+      {"art": "mc", "frage": "Welche Terme sind gleich $x^{2} - 4x + 4$?", "ausgang": "x^{2} - 4x + 4", "optionen": ["(x - 2)^{2}", "(x - 2)(x - 2)", "(x - 2)(x + 2)", "(x - 4)^{2}"], "richtig": [0, 1], "warum": "Quadrat, doppeltes Produkt, Quadrat: $x^{2} - 4x + 4 = x^{2} - 2 \\cdot x \\cdot 2 + 2^{2} = (x - 2)^{2}$."}
+    ]
+    </script>
+  </section>
+
+  <div class="weiter-nav">
+    <button class="weiter-btn-main" id="weiter-btn"><span>Weiter</span>&nbsp;<span>▾</span></button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/quiz.js?v=20261107t0900"></script>
+<script>
+  const DELIMITERS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+  ];
+  renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+
+  const revealSequence = ['sec-plus', 'sec-minus', 'sec-differenz', 'sec-allgemein', 'sec-quiz'];
+  const weiterBtn = document.getElementById('weiter-btn');
+  const navContainer = weiterBtn.closest('.weiter-nav');
+  const navInitialParent = navContainer.parentNode;
+  const navInitialNext = navContainer.nextSibling;
+  let revealIdx = 0;
+
+  function scrollDownSmart(topEl, bottomEl) {
+    requestAnimationFrame(() => {
+      const pad = 12;
+      const topRect = topEl.getBoundingClientRect();
+      const bottomRect = bottomEl.getBoundingClientRect();
+      const desiredDelta = bottomRect.bottom - window.innerHeight + pad;
+      if (desiredDelta <= 0) return;
+      const topAlreadyVisible = topRect.top < window.innerHeight && topRect.bottom > 0;
+      const delta = topAlreadyVisible ? desiredDelta : Math.min(desiredDelta, Math.max(topRect.top - pad, 0));
+      if (delta > 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+    });
+  }
+
+  weiterBtn.addEventListener('click', () => {
+    if (revealIdx >= revealSequence.length) return;
+    const el = document.getElementById(revealSequence[revealIdx]);
+    el.removeAttribute('hidden');
+    renderMathInElement(el, { delimiters: DELIMITERS, throwOnError: false });
+    el.insertAdjacentElement('afterend', navContainer);
+    revealIdx++;
+    if (revealIdx >= revealSequence.length) {
+      navContainer.setAttribute('hidden', '');
+      scrollDownSmart(el, el);
+    } else {
+      scrollDownSmart(el, navContainer);
+    }
+  });
+
+  function showAllMode() {
+    revealSequence.forEach(id => {
+      document.getElementById(id).removeAttribute('hidden');
+    });
+    renderMathInElement(document.body, { delimiters: DELIMITERS, throwOnError: false });
+    navContainer.setAttribute('hidden', '');
+    revealIdx = revealSequence.length;
+  }
+
+  function showStepsMode() {
+    revealSequence.forEach(id => document.getElementById(id).setAttribute('hidden', ''));
+    navInitialParent.insertBefore(navContainer, navInitialNext);
+    navContainer.removeAttribute('hidden');
+    revealIdx = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.mode === 'all') showAllMode();
+      else showStepsMode();
+    });
+  });
+
+  showAllMode();
+</script>
+
+</body>
+</html>

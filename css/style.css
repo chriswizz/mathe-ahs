@@ -1758,7 +1758,22 @@ a:hover { text-decoration: underline; }
   .site-nav { padding: 0 1rem; }
   .anim-stage { padding: 1.25rem; }
   .formula-display { padding: 1rem; }
-  .entd-op, .schritt-op { display: none; }
+  .entd-op { display: none; }
+  /* Hinweis rechts (grau / heft): am Handy klein unter der Formel statt daneben */
+  .schritt-op {
+    position: static;
+    transform: none;
+    display: block;
+    margin-top: 0.25rem;
+    white-space: normal;
+    text-align: center;
+  }
+  .schritt-op:empty { display: none; }
+  .schritt-op.schritt-op-opt {
+    align-items: center;
+    max-width: none;
+    text-align: center;
+  }
   .hero h1 { font-size: 1.7rem; }
   .thema-layout .muster-grid,
   .thema-layout .quiz-antworten { grid-template-columns: 1fr; }

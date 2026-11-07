@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quadratische Gleichungen – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
 </head>
 <body class="thema-layout">
 
@@ -32,8 +32,8 @@
   </div>
 
   <div class="mode-toggle">
-    <button class="mode-btn" data-mode="steps">Schritt für Schritt</button>
-    <button class="mode-btn active" data-mode="all">Alles zeigen</button>
+    <button class="mode-btn active" data-mode="steps">Schritt für Schritt</button>
+    <button class="mode-btn" data-mode="all">Alles zeigen</button>
   </div>
 
   <!-- ══ TEIL 1: DAS AUGE SCHULEN ══ -->
@@ -885,8 +885,8 @@
     });
   });
 
-  // TEMP zum Testen: Default = Alles zeigen
-  showAllMode();
+  // Default = Schritt für Schritt
+  showStepsMode();
 
   // Farbcodierter Gleichungspool — Abstände wie Muster „alles da“ (.eq-slots), ohne Lücken-Slots
   const Q = '#1d4ed8', L = '#047857', A = '#b45309';

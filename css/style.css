@@ -61,7 +61,6 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.05);
 
   --t-fast: 0.15s ease;
-  --t-anim: 0.35s ease;
 
   /* Schriftleiter. Entscheidend = gerenderte Größe am Bildschirm, nicht die Rem-Zahl.
      KaTeX zeichnet Zeichen × --katex-scale. Zum Probieren nur diese vier Werte ändern. */
@@ -153,65 +152,16 @@ a:hover { text-decoration: underline; }
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
-
-/* ----- Prerequisites Box ----- */
-.prerequisites {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-}
-.prerequisites-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--baustein);
-  margin-bottom: 0.625rem;
-}
-.baustein-chips {
+/* Seitenkopf der Bausteine: Symbol + Gebiet (.gb-card-gebiet wie auf der Karte), Abstand wie .gb-card-meta */
+.baustein-kopf {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.baustein-chip {
-  display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.625rem;
-  background: var(--surface-alt);
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-md);
-  font-size: 0.83rem;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  transition: border-color var(--t-fast), background var(--t-fast);
-  text-decoration: none;
-  user-select: none;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
 }
-.baustein-chip:hover { border-color: var(--baustein); text-decoration: none; }
-.baustein-chip.verstanden {
-  background: var(--ok-light);
-  border-color: var(--ok);
-  color: #15803d;
-}
-.baustein-chip .icon-baustein {
-  width: 18px;
-  height: 14px;
-  flex-shrink: 0;
-  color: var(--baustein);
-}
-.baustein-chip.verstanden .icon-baustein { color: var(--ok); }
-.baustein-chip .chip-status {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--ghost);
-  flex-shrink: 0;
-  transition: background var(--t-fast);
-}
-.baustein-chip.verstanden .chip-status { background: var(--ok); }
+.baustein-kopf > svg { width: 36px; height: 28px; flex-shrink: 0; color: var(--baustein); }
+/* Hinweis Formelsammlung im Kopf (.gb-card-ab): bricht am Handy innerhalb des Spans um, dann mit Zeilenabstand */
+.baustein-kopf > .gb-card-ab { line-height: 1.25; }
 
 /* ----- Section ----- */
 .section {
@@ -252,8 +202,8 @@ a:hover { text-decoration: underline; }
 .formula-main { font-size: var(--formel-size); margin-bottom: 1rem; }
 /* Bedingung (a ≥ 0, b ≠ 0 …): eigenes Element neben der Formel, klein und grau
    wie .schritt-op (außerhalb der Schriftleiter). Gleiche Rolle → gleiche Darstellung in
-   Allgemein (.formula-main.mit-bedingung), Quiz-Kasten (.quiz-aufgabe.mit-bedingung)
-   und Grundidee-Zeile (.bedingung, im Satz). Schmal: unter der Formel (Media-Query unten). */
+   Allgemein (.formula-main.mit-bedingung) und Quiz-Kasten (.quiz-aufgabe.mit-bedingung).
+   Schmal: unter der Formel (Media-Query unten). */
 .mit-bedingung {
   position: relative;
   align-self: stretch;
@@ -263,9 +213,6 @@ a:hover { text-decoration: underline; }
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-}
-.formula-bedingung,
-.bedingung {
   font-size: 0.88rem;
   color: var(--text-muted);
   white-space: nowrap;
@@ -319,63 +266,6 @@ a:hover { text-decoration: underline; }
 .term-card.abs  .term-card-title { color: var(--abs);  }
 .term-card-formula { font-size: 1.05rem; margin-bottom: 0.5rem; }
 .term-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
-
-/* ----- Animation Container ----- */
-.animation-container {
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  margin: 1.25rem 0;
-}
-.anim-header {
-  background: var(--surface-alt);
-  padding: 0.625rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-.anim-stage {
-  display: grid;
-  padding: 1.75rem 2rem;
-  min-height: 130px;
-  align-items: center;
-}
-.anim-frame {
-  grid-area: 1 / 1;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--t-anim), transform var(--t-anim);
-  text-align: center;
-  pointer-events: none;
-}
-.anim-frame.active {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-}
-.anim-frame-eq { font-size: 1.25rem; margin-bottom: 0.75rem; }
-.anim-frame-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-.anim-frame-label strong { color: var(--text); font-style: normal; }
-.anim-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  background: var(--surface-alt);
-  border-top: 1px solid var(--border);
-}
-.anim-indicator {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  min-width: 36px;
-  text-align: center;
-}
 
 /* ----- Type Overview Cards ----- */
 .typ-grid {
@@ -481,32 +371,11 @@ a:hover { text-decoration: underline; }
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--border);
 }
-.typ-nr {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--primary);
-}
 .typ-name {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
-
-/* ----- Erkennungsmerkmal ----- */
-.erkennungsmerkmal {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  background: var(--primary-light);
-  border-left: 3px solid var(--primary);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
-  padding: 0.75rem 1rem;
-  margin: 1rem 0;
-  font-size: 0.87rem;
-}
-.erkennungsmerkmal-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
 
 /* ----- Formel-Zeile (geteilt) ----- */
 .entd-eq,
@@ -605,19 +474,6 @@ a:hover { text-decoration: underline; }
   color: var(--text-muted);
 }
 
-/* ----- Info Box ----- */
-.info-box {
-  background: var(--surface-alt);
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--r-md);
-  padding: 0.875rem 1rem;
-  font-size: 0.86rem;
-  color: var(--text-muted);
-  margin: 1rem 0;
-  line-height: 1.6;
-}
-.info-box strong { color: var(--text); }
-
 /* ----- Lösungsweg Intro ----- */
 .loesung-intro {
   margin-top: 1.25rem;
@@ -630,44 +486,6 @@ a:hover { text-decoration: underline; }
   line-height: 1.6;
 }
 .loesung-intro strong { color: var(--primary); }
-.loesung-intro .lf-name { color: inherit; }
-
-.loesung-block {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  padding: 1rem;
-  background: #eff6ff;
-  border: 1.5px solid #93c5fd;
-  border-radius: var(--r-md);
-}
-.loesung-block .loesung-intro {
-  margin: 0 0 0.75rem;
-  padding: 0;
-  background: none;
-  border: none;
-  border-radius: 0;
-}
-.loesung-block .formel-box {
-  margin: 0;
-  background: var(--surface);
-  border-color: var(--border);
-}
-
-/* ----- Baustein Reference ----- */
-.baustein-ref {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.8rem;
-  color: var(--baustein);
-  font-weight: 500;
-  background: var(--baustein-light);
-  padding: 0.25rem 0.625rem;
-  border-radius: 20px;
-  margin: 0.25rem 0.25rem 0.25rem 0;
-}
-.baustein-ref a { color: var(--baustein); }
-.baustein-ref svg { width: 14px; height: 11px; flex-shrink: 0; }
 
 /* ----- Discriminant Box ----- */
 .diskriminante {
@@ -745,14 +563,20 @@ a:hover { text-decoration: underline; }
 .thema-card-meta { font-size: 0.73rem; color: var(--text-muted); }
 
 /* ----- Grundbausteine Overview ----- */
+/* Spalte mind. 250px: der längste Kurztitel („Multiplizieren / dividieren“) bleibt bei jeder Breite einzeilig;
+   bei voller Seitenbreite (.page-wrapper 860px) bleiben es 3 Spalten */
 .gb-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
 }
-/* In einer Section (Themen: „Grundbausteine dazu“) kommt der Abstand vom Stack, nicht vom Grid */
-.section .gb-grid { margin-top: 0; }
+/* In einer Section (Themen: „Grundbausteine dazu“) kommt der Abstand vom Stack, nicht vom Grid;
+   Spalte mind. 230px: Kurztitel der verlinkten Karten bleiben einzeilig, am Desktop bleiben es 3 Spalten
+   (250px wie in der Übersicht ergäbe dort nur 2) */
+.section .gb-grid { margin-top: 0; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+/* Übersicht: ein Grid je Gebiet; zwischen den Gruppen deutlich mehr Abstand als zwischen Karten (1rem) */
+.gb-grid + .gb-grid { margin-top: 3rem; }
 .gb-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -765,9 +589,7 @@ a:hover { text-decoration: underline; }
   transition: all var(--t-fast);
 }
 .gb-card:hover { border-color: var(--baustein); box-shadow: var(--shadow-md); text-decoration: none; }
-.gb-card.verstanden { border-color: var(--ok); }
 .gb-card-icon { width: 36px; height: 28px; color: var(--baustein); }
-.gb-card.verstanden .gb-card-icon { color: var(--ok); }
 .gb-card-meta {
   display: flex;
   align-items: center;
@@ -775,22 +597,22 @@ a:hover { text-decoration: underline; }
   margin-bottom: 0.75rem;
 }
 .gb-card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
-.gb-card-ab {
+.gb-card-gebiet {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--baustein);
+  line-height: 1;
+}
+.gb-card-ab,
+.gb-card-sep {
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-muted);
   line-height: 1;
 }
 .gb-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
-.gb-card-status {
-  margin-top: 0.875rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ghost);
-}
-.gb-card.verstanden .gb-card-status { color: var(--ok); }
 
 /* Brüche: Kürzen ↔ Erweitern Visual */
 .bruch-dual {
@@ -966,13 +788,6 @@ a:hover { text-decoration: underline; }
   color: var(--text);
   padding: 0 0.15rem;
 }
-.bruch-add-cap {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.2;
-  margin-top: -0.15rem;
-}
 
 /* Doppelbruch: strukturelle Viz außen/innen (keine Torten) */
 .doppel-viz {
@@ -1087,9 +902,6 @@ a:hover { text-decoration: underline; }
 .bruch-allg-dir--ext {
   color: var(--baustein);
 }
-.bruch-allg .formula-display {
-  margin: 0.5rem 0;
-}
 
 /* Herausheben / Ausmultiplizieren: Faktor farbig */
 .farb-viz {
@@ -1174,30 +986,6 @@ a:hover { text-decoration: underline; }
 }
 .klammern-term .kl-end {
   display: inline-block;
-}
-
-/* ----- Mark-as-Understood Button ----- */
-.mark-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: var(--r-md);
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-  transition: all var(--t-fast);
-  font-family: inherit;
-  margin-top: 1.5rem;
-}
-.mark-btn:hover { border-color: var(--ok); color: var(--ok); }
-.mark-btn.active {
-  background: var(--ok-light);
-  border-color: var(--ok);
-  color: #15803d;
 }
 
 /* ================================================
@@ -1293,10 +1081,6 @@ a:hover { text-decoration: underline; }
   font-size: 0.9rem;
   color: var(--text-muted);
   gap: 0.4rem;
-}
-.thema-layout .formel-line {
-  font-size: var(--math-size);
-  text-align: center;
 }
 
 /*
@@ -1549,7 +1333,6 @@ a:hover { text-decoration: underline; }
 }
 .thema-layout .mode-btn:not(.active):hover { color: var(--text); }
 .thema-layout .weiter-nav { display: flex; justify-content: center; margin: 1.5rem 0; }
-.thema-layout .weiter-nav[hidden] { display: none; }
 .thema-layout .weiter-btn-main {
   display: inline-flex;
   align-items: center;
@@ -1573,7 +1356,6 @@ a:hover { text-decoration: underline; }
   justify-content: center;
   margin: 2rem 0 1rem;
 }
-.thema-layout .vertiefung-teaser[hidden] { display: none; }
 .thema-layout .vertiefung-toggle {
   display: inline-flex;
   align-items: center;
@@ -1715,13 +1497,9 @@ a:hover { text-decoration: underline; }
   font-size: 0.8rem;
   font-weight: 600;
 }
-.thema-layout .rolle .dot { width: 10px; height: 10px; border-radius: 50%; }
 .thema-layout .rolle.quad { background: var(--quad-light); color: var(--quad); }
-.thema-layout .rolle.quad .dot { background: var(--quad); }
 .thema-layout .rolle.lin  { background: var(--lin-light);  color: var(--lin);  }
-.thema-layout .rolle.lin  .dot { background: var(--lin);  }
 .thema-layout .rolle.abs  { background: var(--abs-light);  color: var(--abs);  }
-.thema-layout .rolle.abs  .dot { background: var(--abs);  }
 
 /* ----- Responsive ----- */
 /* Binome-Grundidee schmal: drei Zeilen je Formel (Term / = Klammern / = Ergebnis),
@@ -1756,10 +1534,10 @@ a:hover { text-decoration: underline; }
   .typ-grid { grid-template-columns: 1fr; }
   .diskriminante { grid-template-columns: 1fr; }
   .site-nav { padding: 0 1rem; }
-  .anim-stage { padding: 1.25rem; }
   .formula-display { padding: 1rem; }
-  .entd-op { display: none; }
-  /* Hinweis rechts (grau / heft): am Handy klein unter der Formel statt daneben */
+  /* Hinweis rechts (grau / heft): am Handy klein unter der Formel statt daneben
+     (.entd-op in den LGS-Entdeckungszeilen hat dieselbe Rolle) */
+  .entd-op,
   .schritt-op {
     position: static;
     transform: none;
@@ -1768,6 +1546,7 @@ a:hover { text-decoration: underline; }
     white-space: normal;
     text-align: center;
   }
+  .entd-op:empty,
   .schritt-op:empty { display: none; }
   .schritt-op.schritt-op-opt {
     align-items: center;

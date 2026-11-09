@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brüche addieren / subtrahieren – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,13 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Brüche</span>
     </div>
     <h1>Brüche addieren / subtrahieren</h1>
   </div>
@@ -51,15 +51,15 @@
     <h2>Grundidee</h2>
     <div class="grundidee-box">
       <ul class="grundidee">
-        <li><strong>Addieren / Subtrahieren</strong> → gleicher <strong>Nenner</strong> → nur die <strong>Zähler</strong> + / −</li>
+        <li><strong>Addieren / Subtrahieren</strong> → gleicher Nenner → nur die Zähler + / −</li>
       </ul>
     </div>
     <div class="idee-viz">
-      <p>Nenner schon gleich</p>
+      <p><strong>Nenner schon gleich</strong></p>
       <div class="bruch-add-row" id="viz-add-gleich"></div>
     </div>
     <div class="idee-viz">
-      <p><strong>Verschiedene Nenner</strong> → zuerst auf einen gemeinsamen Nenner <strong>erweitern</strong></p>
+      <p><strong>Verschiedene Nenner</strong> → zuerst auf einen gemeinsamen Nenner erweitern</p>
       <div class="bruch-add-row" id="viz-add-verschieden"></div>
     </div>
   </section>
@@ -170,7 +170,7 @@
     <h2>Quiz</h2>
     <script type="application/json" id="quiz-daten">
     [
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{1}{2} + \\dfrac{1}{3} = \\dfrac{2}{5}", "richtig": false, "warum": "Nenner werden nicht addiert: Hauptnenner $6$, $\\dfrac{3}{6} + \\dfrac{2}{6} = \\dfrac{5}{6}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{1}{3} + \\dfrac{1}{5} = \\dfrac{2}{8}", "richtig": false, "warum": "Nenner werden nicht addiert: Hauptnenner $15$, $\\dfrac{5}{15} + \\dfrac{3}{15} = \\dfrac{8}{15}$."},
       {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{1}{3} + \\dfrac{1}{4}", "optionen": ["\\dfrac{7}{12}", "\\dfrac{2}{7}", "\\dfrac{2}{12}", "\\dfrac{1}{12}"], "richtig": [0], "warum": "Hauptnenner $12$: $\\dfrac{4}{12} + \\dfrac{3}{12} = \\dfrac{7}{12}$ — die Nenner werden nicht addiert."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{3}{x} + \\dfrac{2}{x} = \\dfrac{5}{2x}", "richtig": false, "warum": "Nenner schon gleich: nur die Zähler addieren, $\\dfrac{3}{x} + \\dfrac{2}{x} = \\dfrac{5}{x}$."},
       {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{x+1}{2} + \\dfrac{x}{3}", "optionen": ["\\dfrac{5x+3}{6}", "\\dfrac{5x+1}{6}", "\\dfrac{2x+1}{5}", "\\dfrac{2x+1}{6}"], "richtig": [0], "warum": "Hauptnenner $6$, beim Erweitern den ganzen Zähler multiplizieren: $\\dfrac{(x+1) \\cdot 3}{6} + \\dfrac{x \\cdot 2}{6} = \\dfrac{5x+3}{6}$."},
@@ -199,9 +199,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
 <script src="../js/viz/mathe-viz.js?v=20260927t2149"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

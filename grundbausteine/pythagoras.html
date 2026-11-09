@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pythagoras – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,15 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Geometrie</span>
+      <span class="gb-card-sep" aria-hidden="true">·</span>
+      <span class="gb-card-ab">Formelsammlung S. 5</span>
     </div>
     <h1>Pythagoras</h1>
   </div>
@@ -169,14 +171,14 @@
     [
       {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{a^{2} + b^{2}} = a + b", "richtig": false, "warum": "Die Wurzel gilt für die ganze Summe: $\\sqrt{3^{2} + 4^{2}} = \\sqrt{25} = 5$, aber $3 + 4 = 7$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "\\sqrt{9 + 16} = \\sqrt{9} + \\sqrt{16}", "richtig": false, "warum": "$\\sqrt{9 + 16} = \\sqrt{25} = 5$, aber $\\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$."},
-      {"art": "rf", "frage": "Die Hypotenuse ist $15$, eine Kathete $9$. Stimmt das für die andere Kathete?", "aussage": "15^{2} - 9^{2} = 144", "soll": "12", "pruefung": "soll", "richtig": false, "warum": "$15^{2} - 9^{2} = 144$ ist erst das Quadrat der Kathete — die Wurzel fehlt: $\\sqrt{144} = 12$."},
-      {"art": "rf", "frage": "Die Hypotenuse ist $13$, eine Kathete $5$. Stimmt das für die andere Kathete?", "aussage": "\\sqrt{13^{2} - 5^{2}} = 12", "soll": "12", "pruefung": "soll", "richtig": true, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{13^{2} - 5^{2}} = \\sqrt{144} = 12$."},
-      {"art": "rf", "frage": "Die Hypotenuse ist $5$, eine Kathete $4$. Stimmt das für die andere Kathete?", "aussage": "\\sqrt{5^{2} + 4^{2}} = \\sqrt{41}", "soll": "3", "pruefung": "soll", "richtig": false, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen, also minus: $\\sqrt{5^{2} - 4^{2}} = \\sqrt{9} = 3$."},
-      {"art": "rf", "frage": "Die Seiten $8$ und $15$ bilden den rechten Winkel. Stimmt das für die dritte Seite?", "aussage": "\\sqrt{15^{2} - 8^{2}} = \\sqrt{161}", "soll": "17", "pruefung": "soll", "richtig": false, "warum": "$8$ und $15$ bilden den rechten Winkel, sind also die Katheten; die dritte Seite ist die Hypotenuse: $\\sqrt{8^{2} + 15^{2}} = \\sqrt{289} = 17$."},
-      {"art": "rf", "frage": "Die Seite $10$ liegt dem rechten Winkel gegenüber, eine andere Seite ist $6$. Stimmt das für die dritte Seite?", "aussage": "\\sqrt{10^{2} - 6^{2}} = 8", "soll": "8", "pruefung": "soll", "richtig": true, "warum": "$10$ liegt dem rechten Winkel gegenüber, ist also die Hypotenuse → zuerst umformen: $\\sqrt{100 - 36} = \\sqrt{64} = 8$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $15$, eine Kathete $9$. Ergibt diese Rechnung die andere Kathete?", "aussage": "15^{2} - 9^{2} = 144", "soll": "12", "pruefung": "soll", "richtig": false, "warum": "$15^{2} - 9^{2} = 144$ ist erst das Quadrat der Kathete — die Wurzel fehlt: $\\sqrt{144} = 12$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $13$, eine Kathete $5$. Ergibt diese Rechnung die andere Kathete?", "aussage": "\\sqrt{13^{2} - 5^{2}} = 12", "soll": "12", "pruefung": "soll", "richtig": true, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{13^{2} - 5^{2}} = \\sqrt{144} = 12$."},
+      {"art": "rf", "frage": "Die Hypotenuse ist $5$, eine Kathete $4$. Ergibt diese Rechnung die andere Kathete?", "aussage": "\\sqrt{5^{2} + 4^{2}} = \\sqrt{41}", "soll": "3", "pruefung": "soll", "richtig": false, "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen, also minus: $\\sqrt{5^{2} - 4^{2}} = \\sqrt{9} = 3$."},
+      {"art": "rf", "frage": "Die Seiten $8$ und $15$ bilden den rechten Winkel. Ergibt diese Rechnung die dritte Seite?", "aussage": "\\sqrt{15^{2} - 8^{2}} = \\sqrt{161}", "soll": "17", "pruefung": "soll", "richtig": false, "warum": "$8$ und $15$ bilden den rechten Winkel, sind also die Katheten; die dritte Seite ist die Hypotenuse: $\\sqrt{8^{2} + 15^{2}} = \\sqrt{289} = 17$."},
+      {"art": "rf", "frage": "Die Seite $20$ liegt dem rechten Winkel gegenüber, eine andere Seite ist $12$. Ergibt diese Rechnung die dritte Seite?", "aussage": "\\sqrt{20^{2} - 12^{2}} = 16", "soll": "16", "pruefung": "soll", "richtig": true, "warum": "$20$ liegt dem rechten Winkel gegenüber, ist also die Hypotenuse → zuerst umformen: $\\sqrt{400 - 144} = \\sqrt{256} = 16$."},
       {"art": "sc", "frage": "Die Katheten sind $5$ und $12$. Berechne die Hypotenuse.", "soll": "13", "optionen": ["13", "17", "169", "\\sqrt{17}"], "richtig": [0], "warum": "$\\sqrt{5^{2} + 12^{2}} = \\sqrt{25 + 144} = \\sqrt{169} = 13$."},
       {"art": "sc", "frage": "Die Hypotenuse ist $10$, eine Kathete $8$. Berechne die andere Kathete.", "soll": "6", "optionen": ["6", "\\sqrt{164}", "2", "36"], "richtig": [0], "warum": "Hypotenuse und eine Kathete gegeben → zuerst umformen: $\\sqrt{10^{2} - 8^{2}} = \\sqrt{100 - 64} = \\sqrt{36} = 6$."},
-      {"art": "sc", "frage": "Die Katheten sind beide $2$. Berechne die Hypotenuse.", "soll": "\\sqrt{8}", "optionen": ["\\sqrt{8}", "4", "8", "2"], "richtig": [0], "warum": "$\\sqrt{2^{2} + 2^{2}} = \\sqrt{4 + 4} = \\sqrt{8}$ — nicht $2 + 2$."},
+      {"art": "sc", "frage": "Die Katheten sind $2$ und $3$. Berechne die Hypotenuse.", "soll": "\\sqrt{13}", "optionen": ["\\sqrt{13}", "5", "13", "\\sqrt{5}"], "richtig": [0], "warum": "$\\sqrt{2^{2} + 3^{2}} = \\sqrt{4 + 9} = \\sqrt{13}$ — nicht $2 + 3$."},
       {"art": "sc", "frage": "Die Seiten $6$ und $8$ bilden den rechten Winkel. Berechne die dritte Seite.", "soll": "10", "optionen": ["10", "14", "100", "\\sqrt{28}"], "richtig": [0], "warum": "$6$ und $8$ sind die Katheten: $\\sqrt{6^{2} + 8^{2}} = \\sqrt{100} = 10$."},
       {"art": "sc", "frage": "Die Seite $5$ liegt dem rechten Winkel gegenüber, eine andere Seite ist $3$. Berechne die dritte Seite.", "soll": "4", "optionen": ["4", "2", "16", "\\sqrt{34}"], "richtig": [0], "warum": "$5$ ist die Hypotenuse → zuerst umformen: $\\sqrt{5^{2} - 3^{2}} = \\sqrt{16} = 4$."},
       {"art": "sc", "frage": "Die Seiten $b$ und $c$ bilden den rechten Winkel, $b$ ist $9$ und $c$ ist $12$. Welche Rechnung ergibt $a$?", "soll": "15", "optionen": ["\\sqrt{9^{2} + 12^{2}}", "\\sqrt{12^{2} - 9^{2}}", "9 + 12", "9^{2} + 12^{2}"], "richtig": [0], "warum": "$b$ und $c$ sind die Katheten; $a$ liegt dem rechten Winkel gegenüber, ist also die Hypotenuse: $\\sqrt{9^{2} + 12^{2}} = \\sqrt{225} = 15$."},
@@ -196,8 +198,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

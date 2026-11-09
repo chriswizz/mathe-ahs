@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brüche kürzen / erweitern – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,13 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Brüche</span>
     </div>
     <h1>Brüche kürzen / erweitern</h1>
   </div>
@@ -51,12 +51,12 @@
     <h2>Grundidee</h2>
     <div class="grundidee-box">
       <ul class="grundidee">
-        <li><strong>Kürzen</strong> → Zähler und Nenner durch denselben <strong>Faktor</strong> dividieren</li>
-        <li><strong>Erweitern</strong> → Zähler und Nenner mit demselben <strong>Faktor</strong> multiplizieren</li>
+        <li><strong>Kürzen</strong> → Zähler und Nenner durch denselben Faktor dividieren</li>
+        <li><strong>Erweitern</strong> → Zähler und Nenner mit demselben Faktor multiplizieren</li>
       </ul>
     </div>
     <div class="idee-viz">
-      <p>Der <strong>Wert</strong> bleibt gleich — nur die Schreibweise ändert sich.</p>
+      <p>Der Wert bleibt gleich — nur die Schreibweise ändert sich.</p>
       <div id="viz-kuerzen-dual" class="bruch-dual"></div>
     </div>
   </section>
@@ -233,9 +233,9 @@
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/cancel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
 <script src="../js/viz/mathe-viz.js?v=20260927t2149"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

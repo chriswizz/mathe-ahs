@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herausheben / Ausmultiplizieren – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,13 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Terme</span>
     </div>
     <h1>Herausheben / Ausmultiplizieren</h1>
   </div>
@@ -51,12 +51,12 @@
     <h2>Grundidee</h2>
     <div class="grundidee-box">
       <ul class="grundidee">
-        <li><strong>Herausheben</strong> → gemeinsamen Faktor <strong>vor</strong> die Klammer</li>
-        <li><strong>Ausmultiplizieren</strong> → Faktor mit jedem Summanden <strong>multiplizieren</strong></li>
+        <li><strong>Herausheben</strong> → gemeinsamen Faktor vor die Klammer</li>
+        <li><strong>Ausmultiplizieren</strong> → Faktor mit jedem Summanden multiplizieren</li>
       </ul>
     </div>
     <div class="idee-viz">
-      <p>Der <strong>Term</strong> bleibt gleich — nur die Schreibweise ändert sich.</p>
+      <p>Der Term bleibt gleich — nur die Schreibweise ändert sich.</p>
       <div class="farb-viz">
         <div class="farb-viz-line">
           <span class="farb-f">2</span>x + <span class="farb-f">2</span>y
@@ -230,7 +230,7 @@
       {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "-2\\,(x - 4)", "optionen": ["-2x + 8", "-2x - 8", "-2x - 4", "2x - 8"], "richtig": [0], "warum": "Den Faktor $-2$ mit jedem Summanden multiplizieren: $-2 \\cdot x + (-2) \\cdot (-4) = -2x + 8$."},
       {"art": "sc", "frage": "Hebe $-3$ heraus.", "ausgang": "-3x - 6", "optionen": ["-3\\,(x + 2)", "-3\\,(x - 2)", "3\\,(x - 2)", "-3\\,(x - 6)"], "richtig": [0], "warum": "Aus jedem Summanden $-3$ herausheben: $-3x - 6 = -3 \\cdot x + (-3) \\cdot 2 = -3\\,(x + 2)$."},
       {"art": "mc", "frage": "Welche Terme sind gleich $-(x - y)$?", "ausgang": "-(x - y)", "optionen": ["-x + y", "y - x", "-x - y", "x - y"], "richtig": [0, 1], "warum": "Das Minus gilt für jeden Summanden: $-(x - y) = -x + y = y - x$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "6x + 4 = 3x + 2 \\cdot 2", "richtig": false, "warum": "Der Faktor $2$ steht vor der ganzen Klammer: $6x + 4 = 2\\,(3x + 2)$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "8x + 12 = 2x + 3 \\cdot 4", "richtig": false, "warum": "Ohne Klammer gilt Punkt vor Strich: $2x + 3 \\cdot 4 = 2x + 12$. Richtig: $8x + 12 = 4\\,(2x + 3)$."},
       {"art": "sc", "frage": "Hebe heraus.", "ausgang": "10a + 15b", "optionen": ["5\\,(2a + 3b)", "5\\,(2a + 15b)", "5 \\cdot 2a + 3b", "5\\,(5a + 10b)"], "richtig": [0], "warum": "Aus jedem Summanden $5$ herausheben, die Klammer bleibt: $10a + 15b = 5 \\cdot 2a + 5 \\cdot 3b = 5\\,(2a + 3b)$."},
       {"art": "sc", "frage": "Hebe heraus.", "ausgang": "4x^{2} - 6x", "optionen": ["2x\\,(2x - 3)", "2x\\,(2x - 6)", "2x\\,(x - 3)", "2x \\cdot 2x - 3"], "richtig": [0], "warum": "Aus jedem Summanden $2x$ herausheben: $4x^{2} - 6x = 2x \\cdot 2x - 2x \\cdot 3 = 2x\\,(2x - 3)$."},
       {"art": "sc", "frage": "Hebe heraus.", "ausgang": "x\\,(a + b) + 2\\,(a + b)", "optionen": ["(a + b)(x + 2)", "2x\\,(a + b)", "(a + b)^{2}\\,(x + 2)", "x + 2\\,(a + b)"], "richtig": [0], "warum": "Die ganze Klammer $(a + b)$ ist der gemeinsame Faktor: $x\\,(a + b) + 2\\,(a + b) = (a + b)(x + 2)$."},
@@ -240,7 +240,7 @@
       {"art": "rf", "frage": "Stimmt das?", "aussage": "(a + 1)(b + 2) = ab + 2", "richtig": false, "warum": "Jeden Summanden der ersten Klammer mit jedem der zweiten multiplizieren: $(a + 1)(b + 2) = ab + 2a + b + 2$."},
       {"art": "mc", "frage": "Welche Terme sind gleich $(x + 1)(y + 2)$?", "ausgang": "(x + 1)(y + 2)", "optionen": ["xy + 2x + y + 2", "x\\,(y + 2) + (y + 2)", "xy + 2", "xy + 2x + 2"], "richtig": [0, 1], "warum": "$x$ und $1$ je mit $(y + 2)$ multiplizieren: $x\\,(y + 2) + 1 \\cdot (y + 2) = xy + 2x + y + 2$."},
       {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(2x - 1)(x + 3)", "optionen": ["2x^{2} + 5x - 3", "2x^{2} - 3", "2x^{2} + 7x - 3", "2x^{2} + 5x + 3"], "richtig": [0], "warum": "Jeden Summanden der ersten Klammer mit jedem der zweiten multiplizieren: $(2x - 1)(x + 3) = 2x^{2} + 6x - x - 3 = 2x^{2} + 5x - 3$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "3\\,(x + 4) = 3x + 4", "richtig": false, "warum": "Der Faktor $3$ wird mit jedem Summanden multipliziert: $3\\,(x + 4) = 3x + 12$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "5\\,(x + 2) = 5x + 2", "richtig": false, "warum": "Der Faktor $5$ wird mit jedem Summanden multipliziert: $5\\,(x + 2) = 5x + 10$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "2x\\,(x - 3) = 2x^{2} - 6x", "richtig": true, "warum": "Der Faktor $2x$ wird mit jedem Summanden multipliziert: $2x \\cdot x - 2x \\cdot 3 = 2x^{2} - 6x$."}
     ]
     </script>
@@ -254,8 +254,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

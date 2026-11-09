@@ -1,32 +1,6 @@
 'use strict';
 
-/* ── Schritt-Animationen ─────────────────────────── */
-function initAnimations() {
-  document.querySelectorAll('.animation-container').forEach(container => {
-    const frames = Array.from(container.querySelectorAll('.anim-frame'));
-    const btnNext = container.querySelector('.btn-next');
-    const btnPrev = container.querySelector('.btn-prev');
-    const indicator = container.querySelector('.anim-indicator');
-    let current = 0;
-
-    function show(i) {
-      frames.forEach((f, idx) => f.classList.toggle('active', idx === i));
-      if (indicator) indicator.textContent = `${i + 1} / ${frames.length}`;
-      if (btnPrev) btnPrev.disabled = i === 0;
-      if (btnNext) btnNext.disabled = i === frames.length - 1;
-    }
-
-    btnNext?.addEventListener('click', () => { if (current < frames.length - 1) show(++current); });
-    btnPrev?.addEventListener('click', () => { if (current > 0) show(--current); });
-
-    show(0);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initAnimations();
-  equalizeGrundideeZeilen();
-});
+document.addEventListener('DOMContentLoaded', equalizeGrundideeZeilen);
 
 /* Pro Grundidee-Kasten: alle Zeilen so hoch wie die höchste Zeile in diesem Kasten. */
 function equalizeGrundideeZeilen() {

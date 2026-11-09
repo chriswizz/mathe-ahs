@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potenzgesetze – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,15 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Potenzen</span>
+      <span class="gb-card-sep" aria-hidden="true">·</span>
+      <span class="gb-card-ab">Formelsammlung S. 4</span>
     </div>
     <h1>Potenzgesetze</h1>
   </div>
@@ -232,14 +234,14 @@
     <h2>Quiz</h2>
     <script type="application/json" id="quiz-daten">
     [
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{2} \\cdot x^{3} = x^{6}", "richtig": false, "warum": "Gleiche Basis, mal → Exponenten addieren: $x^{2} \\cdot x^{3} = x^{2+3} = x^{5}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "x^{4} \\cdot x^{5} = x^{20}", "richtig": false, "warum": "Gleiche Basis, mal → Exponenten addieren: $x^{4} \\cdot x^{5} = x^{4+5} = x^{9}$."},
       {"art": "sc", "frage": "Schreibe als eine Potenz.", "ausgang": "x^{3} \\cdot x \\cdot x^{2}", "optionen": ["x^{6}", "x^{5}", "3x^{6}"], "richtig": [0], "warum": "$x$ steht für $x^{1}$: $x^{3} \\cdot x \\cdot x^{2} = x^{3+1+2} = x^{6}$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x^{2})^{3} = x^{5}", "richtig": false, "warum": "Potenz einer Potenz → Exponenten multiplizieren: $(x^{2})^{3} = x^{2 \\cdot 3} = x^{6}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x^{3})^{5} = x^{8}", "richtig": false, "warum": "Potenz einer Potenz → Exponenten multiplizieren: $(x^{3})^{5} = x^{3 \\cdot 5} = x^{15}$."},
       {"art": "sc", "frage": "Schreibe als eine Potenz.", "ausgang": "(a^{4})^{2}", "optionen": ["a^{8}", "a^{6}", "a^{16}", "2a^{8}"], "richtig": [0], "warum": "Exponenten multiplizieren: $(a^{4})^{2} = a^{4 \\cdot 2} = a^{8}$."},
-      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\left(\\dfrac{x}{y}\\right)^{2}", "bedingung": ["y \\neq 0"], "optionen": ["\\dfrac{x^{2}}{y^{2}}", "\\dfrac{x^{2}}{y}", "\\dfrac{x}{y} \\cdot \\dfrac{x}{y}", "\\dfrac{2x}{2y}"], "richtig": [0, 2], "warum": "Zähler und Nenner hoch $2$: $\\left(\\dfrac{x}{y}\\right)^{2} = \\dfrac{x}{y} \\cdot \\dfrac{x}{y} = \\dfrac{x^{2}}{y^{2}}$."},
+      {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\left(\\dfrac{x}{y}\\right)^{3}", "bedingung": ["y \\neq 0"], "optionen": ["\\dfrac{x^{3}}{y^{3}}", "\\dfrac{x^{3}}{y}", "\\dfrac{x}{y} \\cdot \\dfrac{x}{y} \\cdot \\dfrac{x}{y}", "\\dfrac{3x}{3y}"], "richtig": [0, 2], "warum": "Zähler und Nenner hoch $3$: $\\left(\\dfrac{x}{y}\\right)^{3} = \\dfrac{x}{y} \\cdot \\dfrac{x}{y} \\cdot \\dfrac{x}{y} = \\dfrac{x^{3}}{y^{3}}$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{x^{6}}{x^{2}} = x^{3}", "bedingung": ["x \\neq 0"], "richtig": false, "warum": "Gleiche Basis, geteilt → Exponenten subtrahieren: $\\dfrac{x^{6}}{x^{2}} = x^{6-2} = x^{4}$."},
       {"art": "sc", "frage": "Schreibe als eine Potenz.", "ausgang": "\\dfrac{x^{2} \\cdot x^{5}}{x^{3}}", "bedingung": ["x \\neq 0"], "optionen": ["x^{4}", "x^{7}", "x^{7/3}", "x^{10}"], "richtig": [0], "warum": "Erst der Zähler: $x^{2} \\cdot x^{5} = x^{7}$, dann $\\dfrac{x^{7}}{x^{3}} = x^{7-3} = x^{4}$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "(2x)^{2} = 2x^{2}", "richtig": false, "warum": "Die Potenz gilt für jeden Faktor: $(2x)^{2} = 2^{2} \\cdot x^{2} = 4x^{2}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(3x)^{2} = 3x^{2}", "richtig": false, "warum": "Die Potenz gilt für jeden Faktor: $(3x)^{2} = 3^{2} \\cdot x^{2} = 9x^{2}$."},
       {"art": "sc", "frage": "Vereinfache.", "ausgang": "(-2x)^{3}", "optionen": ["-8x^{3}", "-2x^{3}", "8x^{3}", "-6x^{3}"], "richtig": [0], "warum": "Die Potenz gilt für jeden Faktor, auch für $-2$: $(-2x)^{3} = (-2)^{3} \\cdot x^{3} = -8x^{3}$."},
       {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "(2x^{3})^{2}", "optionen": ["4x^{6}", "2x^{6}", "4x^{5}", "2^{2} \\cdot x^{6}"], "richtig": [0, 3], "warum": "Jeder Faktor hoch $2$: $(2x^{3})^{2} = 2^{2} \\cdot (x^{3})^{2} = 4x^{6}$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "\\left(\\dfrac{x}{3}\\right)^{2} = \\dfrac{x^{2}}{3}", "richtig": false, "warum": "Zähler und Nenner hoch $2$: $\\left(\\dfrac{x}{3}\\right)^{2} = \\dfrac{x^{2}}{3^{2}} = \\dfrac{x^{2}}{9}$."},
@@ -263,8 +265,8 @@
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/cancel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

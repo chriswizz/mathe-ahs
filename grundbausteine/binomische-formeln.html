@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binomische Formeln – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,15 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Terme</span>
+      <span class="gb-card-sep" aria-hidden="true">·</span>
+      <span class="gb-card-ab">Formelsammlung S. 4</span>
     </div>
     <h1>Binomische Formeln</h1>
   </div>
@@ -84,7 +86,7 @@
       </ul>
     </div>
     <div class="idee-viz">
-      <p>Darstellung für <strong>I</strong>. <span class="farb-legende"><span class="farb-a">a</span><span class="farb-b">b</span></span></p>
+      <p>Darstellung für I. <span class="farb-legende"><span class="farb-a">a</span><span class="farb-b">b</span></span></p>
       <div class="farb-viz">
         <div class="farb-viz-line">
           (<span class="farb-a">x</span> + <span class="farb-b">2</span>)²
@@ -219,7 +221,7 @@
       {"art": "rf", "frage": "Stimmt das?", "aussage": "(a + b)(a - b) = a^{2} - 2ab + b^{2}", "richtig": false, "warum": "Erstes Quadrat minus zweites Quadrat: $(a + b)(a - b) = a^{2} - b^{2}$."},
       {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(3 + y)(3 - y)", "optionen": ["9 - y^{2}", "9 - 6y + y^{2}", "9 + y^{2}", "y^{2} - 9"], "richtig": [0], "warum": "Erstes Quadrat minus zweites Quadrat: $(3 + y)(3 - y) = 3^{2} - y^{2} = 9 - y^{2}$."},
       {"art": "mc", "frage": "Welche Terme sind gleich $(x + 5)(x - 5)$?", "ausgang": "(x + 5)(x - 5)", "optionen": ["x^{2} - 25", "x^{2} - 5^{2}", "x^{2} - 10x + 25", "x^{2} + 25"], "richtig": [0, 1], "warum": "Erstes Quadrat minus zweites Quadrat, kein doppeltes Produkt: $(x + 5)(x - 5) = x^{2} - 5^{2} = x^{2} - 25$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x - 5)^{2} = x^{2} - 5x + 25", "richtig": false, "warum": "Das doppelte Produkt ist $2 \\cdot x \\cdot 5 = 10x$, also $(x - 5)^{2} = x^{2} - 10x + 25$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "(x - 7)^{2} = x^{2} - 7x + 49", "richtig": false, "warum": "Das doppelte Produkt ist $2 \\cdot x \\cdot 7 = 14x$, also $(x - 7)^{2} = x^{2} - 14x + 49$."},
       {"art": "sc", "frage": "Multipliziere aus.", "ausgang": "(2x + 3y)^{2}", "optionen": ["4x^{2} + 12xy + 9y^{2}", "4x^{2} + 6xy + 9y^{2}", "2x^{2} + 12xy + 3y^{2}", "4x^{2} + 9y^{2}"], "richtig": [0], "warum": "Erstes Quadrat, doppeltes Produkt, zweites Quadrat: $(2x + 3y)^{2} = (2x)^{2} + 2 \\cdot 2x \\cdot 3y + (3y)^{2} = 4x^{2} + 12xy + 9y^{2}$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "(2x + 5)^{2} = 4x^{2} + 20x + 25", "richtig": true, "warum": "Das doppelte Produkt ist $2 \\cdot 2x \\cdot 5 = 20x$, also $(2x + 5)^{2} = 4x^{2} + 20x + 25$."},
       {"art": "rf", "frage": "Stimmt das?", "aussage": "(5 + x)^{2} = 25 + 10x + x^{2}", "richtig": true, "warum": "Erstes Quadrat, doppeltes Produkt, zweites Quadrat: $(5 + x)^{2} = 5^{2} + 2 \\cdot 5 \\cdot x + x^{2} = 25 + 10x + x^{2}$."},
@@ -241,8 +243,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },

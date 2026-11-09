@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brüche multiplizieren / dividieren – Grundbaustein – Mathe AHS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="../css/style.css?v=20261107t1500">
+  <link rel="stylesheet" href="../css/style.css?v=20261109t1111">
 </head>
 <body class="thema-layout">
 
@@ -31,13 +31,13 @@
   </div>
 
   <div class="thema-header">
-    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-      <svg style="width:32px;height:25px;color:var(--baustein)" viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="baustein-kopf">
+      <svg viewBox="0 0 60 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="9" y="1" width="17" height="14" rx="3"/><rect x="34" y="1" width="17" height="14" rx="3"/>
         <circle cx="17.5" cy="8" r="4.5" fill="white" opacity="0.2"/><circle cx="42.5" cy="8" r="4.5" fill="white" opacity="0.2"/>
         <rect x="1" y="11" width="58" height="30" rx="5"/>
       </svg>
-      <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--baustein)">Grundbaustein</span>
+      <span class="gb-card-gebiet">Brüche</span>
     </div>
     <h1>Brüche multiplizieren / dividieren</h1>
   </div>
@@ -51,12 +51,12 @@
     <h2>Grundidee</h2>
     <div class="grundidee-box">
       <ul class="grundidee">
-        <li><strong>Multiplizieren</strong> → <strong>Zähler × Zähler, Nenner × Nenner</strong></li>
-        <li><strong>Dividieren</strong> → mit dem <strong>Kehrwert</strong> multiplizieren</li>
+        <li><strong>Multiplizieren</strong> → Zähler × Zähler, Nenner × Nenner</li>
+        <li><strong>Dividieren</strong> → mit dem Kehrwert multiplizieren</li>
       </ul>
     </div>
     <div class="idee-viz">
-      <p><strong>Kein</strong> gleicher Nenner nötig</p>
+      <p>Kein gleicher Nenner nötig</p>
       <div class="bruch-add-row" id="viz-mult-haelfte"></div>
     </div>
   </section>
@@ -178,7 +178,7 @@
       {"art": "sc", "frage": "Berechne und kürze vollständig.", "ausgang": "\\dfrac{3x}{4} \\cdot \\dfrac{2}{9x}", "pruefung": "gekuerzt", "optionen": ["\\dfrac{1}{6}", "\\dfrac{6x}{36x}", "\\dfrac{x}{6}", "\\dfrac{1}{6x}"], "richtig": [0], "warum": "Quer kürzen: $3x$ mit $9x$ durch $3x$, $2$ mit $4$ durch $2$: $\\dfrac{1}{2} \\cdot \\dfrac{1}{3} = \\dfrac{1}{6}$."},
       {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\dfrac{4}{9} \\cdot \\dfrac{6}{5}", "optionen": ["\\dfrac{4}{3} \\cdot \\dfrac{2}{5}", "\\dfrac{8}{15}", "\\dfrac{2}{9} \\cdot \\dfrac{3}{5}", "\\dfrac{2}{15}"], "richtig": [0, 1], "warum": "Quer kürzen darf man $9$ mit $6$ (ein Nenner, ein Zähler); $4$ und $6$ sind beide Zähler: $\\dfrac{4}{3} \\cdot \\dfrac{2}{5} = \\dfrac{8}{15}$."},
       {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{x+2}{3} \\cdot \\dfrac{6}{x+2}", "optionen": ["2", "2x+4", "x+2", "\\dfrac{1}{2}"], "richtig": [0], "warum": "$x+2$ ist ein ganzer Faktor, oben und unten — als Ganzes kürzen: $\\dfrac{(x+2) \\cdot 6}{3 \\cdot (x+2)} = \\dfrac{6}{3} = 2$."},
-      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{1}{2} \\cdot \\dfrac{1}{3} = \\dfrac{3 \\cdot 2}{6}", "richtig": false, "warum": "Kein gleicher Nenner nötig: Zähler × Zähler, Nenner × Nenner, $\\dfrac{1}{2} \\cdot \\dfrac{1}{3} = \\dfrac{1}{6}$."},
+      {"art": "rf", "frage": "Stimmt das?", "aussage": "\\dfrac{1}{3} \\cdot \\dfrac{1}{4} = \\dfrac{4 \\cdot 3}{12}", "richtig": false, "warum": "Kein gleicher Nenner nötig: Zähler × Zähler, Nenner × Nenner, $\\dfrac{1}{3} \\cdot \\dfrac{1}{4} = \\dfrac{1}{12}$."},
       {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{2}{5} \\cdot \\dfrac{3}{5}", "optionen": ["\\dfrac{6}{25}", "\\dfrac{6}{5}", "\\dfrac{5}{25}", "\\dfrac{6}{10}"], "richtig": [0], "warum": "Auch bei gleichem Nenner: Zähler × Zähler, Nenner × Nenner, $\\dfrac{2 \\cdot 3}{5 \\cdot 5} = \\dfrac{6}{25}$."},
       {"art": "mc", "frage": "Welche Terme haben denselben Wert?", "ausgang": "\\dfrac{x}{2} \\cdot \\dfrac{x}{3}", "optionen": ["\\dfrac{x^{2}}{6}", "\\dfrac{x \\cdot x}{2 \\cdot 3}", "\\dfrac{3x \\cdot 2x}{6}", "\\dfrac{5x}{6}"], "richtig": [0, 1], "warum": "Kein gleicher Nenner nötig: $\\dfrac{x}{2} \\cdot \\dfrac{x}{3} = \\dfrac{x \\cdot x}{2 \\cdot 3} = \\dfrac{x^{2}}{6}$."},
       {"art": "sc", "frage": "Berechne.", "ausgang": "\\dfrac{2}{3} : \\dfrac{4}{9}", "optionen": ["\\dfrac{3}{2}", "\\dfrac{2}{3}", "\\dfrac{8}{27}", "\\dfrac{27}{8}"], "richtig": [0], "warum": "Mit dem Kehrwert des zweiten Bruchs multiplizieren: $\\dfrac{2}{3} \\cdot \\dfrac{9}{4} = \\dfrac{3}{2}$."},
@@ -203,9 +203,9 @@
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/cancel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-<script src="../js/app.js?v=20261107t1500"></script>
+<script src="../js/app.js?v=20261109t0945"></script>
 <script src="../js/viz/mathe-viz.js?v=20260927t2149"></script>
-<script src="../js/quiz.js?v=20261107t1500"></script>
+<script src="../js/quiz.js?v=20261109t0945"></script>
 <script>
   const DELIMITERS = [
     { left: '$$', right: '$$', display: true },
